@@ -1,0 +1,36 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Production build outputs
+dist/
+dist-electron/
+out/
+build/
+release/
+
+# SQLite databases & temp files
+*.sqlite
+*.sqlite-journal
+*.db
+*.db-journal
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Typst output / test artifacts
+*.pdf
+!research/**/*.pdf
