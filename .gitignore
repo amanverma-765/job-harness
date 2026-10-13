@@ -9,7 +9,6 @@ pnpm-debug.log*
 dist/
 dist-electron/
 out/
-build/
 release/
 
 # SQLite databases & temp files
