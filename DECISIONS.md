@@ -55,9 +55,6 @@ This document serves as the chronological timeline of architectural, technology,
    - **Decision**: For future job board application submission automation, attach to the user's existing Google Chrome via remote debugging (Chrome DevTools Protocol) rather than shipping generic headless Chromium.
    - **Rationale**: Inherits the candidate's existing logins, cookies, and human browser fingerprints, bypassing Cloudflare/DataDome automated browser detection.
 
-10. **Candidate Project Ingestion & Evidence Extraction: Repomix (Runtime)**
-    - **Decision**: Integrate `repomix` into the harness runtime to pack, inspect, and index the *candidate's own projects* (local codebases and GitHub repositories) during resume building and tailoring.
-    - **Rationale**: 
-      - *Truth-in-Resume Grounding*: Enables the agent to inspect the user's actual code, dependencies, and architecture to extract verifiable technical accomplishments, libraries, and design patterns.
-      - *Eliminating Hallucination*: Generates authentic, high-signal resume bullets (Google XYZ format) derived directly from the candidate's real repositories rather than generic LLM estimations.
-      - *Token-Efficient Context*: Standardizes repository packing into optimized formats ready for LLM indexing and semantic search.
+10. **Candidate Project Evidence & Deep Context: Repomix**
+    - **Decision**: Integrate `repomix` at runtime to pack and index the candidate's own local and GitHub project repositories.
+    - **Rationale**: Enables the resume building and tailoring engine to inspect the candidate's actual project codebases, extracting authentic architectural decisions, libraries used, scale indicators, and verifiable technical achievements directly into tailored resume bullets (grounding bullets in real code and eliminating hallucination).

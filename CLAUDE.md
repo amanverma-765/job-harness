@@ -26,7 +26,6 @@ All architectural, stack, and design choices are recorded in **`DECISIONS.md`**.
   2. The ADR number and title.
   3. The context and problem being solved.
   4. The explicit decision made and the rationale/reasons behind choosing that approach.
-- **Candidate Project Ingestion**: Use `repomix` at runtime to pack, inspect, and index the user's personal projects and GitHub repositories to extract authentic, evidence-backed achievements for resume tailoring.
 
 ---
 
