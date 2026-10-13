@@ -1,7 +1,7 @@
 {
   "name": "job-harness",
   "version": "0.1.0",
-  "description": "Agentic desktop harness for job seekers: ATS resume tailoring, Typst Resume-as-Code compilation, and pre-flight verification",
+  "description": "Agentic desktop harness for job seekers",
   "main": "./out/main/index.js",
   "author": "example.com",
   "homepage": "https://electron-vite.org",
