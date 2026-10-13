@@ -16,6 +16,18 @@ This file provides architectural, engineering, and coding standards for Claude C
 
 ---
 
+## Core Tech Stack & Architecture Decisions
+
+- **Database & Persistence**: Pure Effect SQL via `@effect/sql` + `@effect/sql-sqlite-node` over `better-sqlite3` + `sqlite-vec`.
+- **Native Packaging**: Using `electron-builder` with standard `electron-rebuild`; `better-sqlite3` is the gold standard for desktop SQLite apps, and `sqlite-vec` provides pre-compiled binaries for x86_64 and arm64.
+- **LLM & Structured Output**: Vercel AI SDK (`ai`) with provider packages wrapped inside an Effect-managed `LlmService`.
+- **UI Design System**: Tailwind CSS v4 + `shadcn/ui` + `lucide-react` for accessible desktop UI primitives.
+- **State Management**: `@tanstack/react-query` for asynchronous IPC data fetching paired with Zustand for active workspace state.
+- **Document Engine**: Use Typst as a bundled static CLI binary.
+- **Browser Automation**: Use the user's existing Chrome via remote debugging (CDP) for browser automation later in the future.
+
+---
+
 ## Strict Type Safety Standards
 
 1. **Zero `any` Policy**:
