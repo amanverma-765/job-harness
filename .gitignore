@@ -1,0 +1,53 @@
+# ==============================================================================
+# Resume-as-Code (RaC) .gitignore
+# ==============================================================================
+
+# 1. Scratchpad & Repomix Dumps (Extracted facts live in core/projects_corpus.yaml)
+.scratch/
+repomix-output.xml
+repomix-output.txt
+*.repomix.*
+
+# 2. Python Bytecode, Caches & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+ENV/
+env/
+
+# 3. Linter & Build Intermediates
+extracted.txt
+extracted_stream.txt
+*.tmp
+*.temp
+*.log
+*.bak
+
+# 4. Environment & Secrets
+.env
+.env.local
+.env.*.local
+
+# 5. OS Metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 6. Local Editor & Claude Settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.claude/settings.local.json
