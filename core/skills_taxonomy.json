@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "taxonomy_version": "2026.1",
+  "categories": {
+    "languages": {
+      "display_name": "Languages & Core",
+      "skills": {
+        "Python": { "aliases": ["Python3", "py"], "ontology": "Software Developers (15-1252.00)" },
+        "Go": { "aliases": ["Golang"], "ontology": "Systems Software (15-1251.00)" },
+        "Rust": { "aliases": ["Rustlang"], "ontology": "Systems Software (15-1251.00)" },
+        "TypeScript": { "aliases": ["TS"], "ontology": "Web Development (15-1254.00)" },
+        "C++": { "aliases": ["CPP", "C/C++"], "ontology": "Systems Software (15-1251.00)" },
+        "SQL": { "aliases": ["PostgreSQL", "SQL (Postgres)", "SQLite"], "ontology": "Database Administration (15-1242.00)" },
+        "Bash": { "aliases": ["Shell", "Zsh"], "ontology": "Systems Software (15-1251.00)" }
+      }
+    },
+    "infrastructure": {
+      "display_name": "Cloud & Infrastructure",
+      "skills": {
+        "Docker": { "aliases": ["Containerization"], "ontology": "DevOps & SRE" },
+        "Kubernetes": { "aliases": ["K8s", "Container Orchestration"], "ontology": "Cloud Architecture" },
+        "AWS": { "aliases": ["Amazon Web Services"], "ontology": "Cloud Platforms" },
+        "GCP": { "aliases": ["Google Cloud Platform"], "ontology": "Cloud Platforms" },
+        "Terraform": { "aliases": ["IaC", "Infrastructure as Code"], "ontology": "DevOps & SRE" },
+        "Git": { "aliases": ["GitHub", "Version Control"], "ontology": "Software Development" }
+      }
+    },
+    "databases": {
+      "display_name": "Databases & Storage",
+      "skills": {
+        "PostgreSQL": { "aliases": ["Postgres", "psql"], "ontology": "Relational Databases" },
+        "Redis": { "aliases": ["Redis Cache"], "ontology": "In-Memory Data Stores" },
+        "SQLite": { "aliases": ["SQLite3", "FTS5"], "ontology": "Embedded Databases" },
+        "ChromaDB": { "aliases": ["Chroma"], "ontology": "Vector Databases" }
+      }
+    },
+    "frameworks_and_tools": {
+      "display_name": "Frameworks & Developer Tools",
+      "skills": {
+        "FastAPI": { "aliases": ["FastAPI REST"], "ontology": "Web Frameworks" },
+        "Pydantic AI": { "aliases": ["Pydantic"], "ontology": "AI Agent Frameworks" },
+        "PyTorch": { "aliases": ["Torch"], "ontology": "Deep Learning" },
+        "Celery": { "aliases": ["Async Worker"], "ontology": "Task Queues" },
+        "Hugging Face": { "aliases": ["Transformers", "Sentence-Transformers"], "ontology": "NLP & AI" },
+        "pytest": { "aliases": ["Unit Testing", "Test Automation"], "ontology": "QA & Testing" },
+        "Model Context Protocol (MCP)": { "aliases": ["MCP"], "ontology": "AI Protocol Standards" }
+      }
+    }
+  },
+  "banned_non_skills": [
+    "hybrid search",
+    "embeddings",
+    "headless browsers",
+    "dom tree parsing",
+    "distributed locks",
+    "recall@k",
+    "mrr",
+    "evals",
+    "clean code",
+    "agile",
+    "scrum",
+    "problem solving",
+    "critical thinking"
+  ]
+}

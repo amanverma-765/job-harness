@@ -1,0 +1,41 @@
+# Candidate Master Ground Truth Profile (Resume-as-Code)
+# Immutable contact and location rules: location is strictly "Jaunpur, UP, India" and never altered.
+schema_version: "1.0.0"
+
+candidate:
+  name: "Aman Verma"
+  location: "Jaunpur, UP, India" # Immutable home location
+  email: "amanverma.dev@gmail.com"
+  phone: "+91 98765 43210"
+  linkedin: "linkedin.com/in/amanverma-765"
+  github: "github.com/amanverma-765"
+  portfolio: "amanverma.dev"
+  headline: "Backend & Systems Engineer | Agentic AI & Distributed Systems"
+
+education:
+  - institution: "Indian Institute of Information Technology"
+    degree: "Bachelor of Technology in Computer Science and Engineering"
+    location: "India"
+    start_date: "2021"
+    end_date: "2025"
+    gpa: "8.6 / 10.0"
+    honors:
+      - "Top 5% in Systems and Concurrency Coursework"
+
+experience:
+  - company: "LexoLegal"
+    location: "Remote"
+    title: "Software Engineering Intern"
+    start_date: "June 2024"
+    end_date: "Aug. 2024"
+    highlights:
+      - "Architected multi-tenant legal document search in Python using SQLite FTS5 and FastAPI, cutting query latency from 850ms to 110ms across 40,000 regulatory documents."
+      - "Engineered asynchronous task queue with Redis distributed caching and Celery, processing 15,000 document transformations daily with sub-200ms worker latency."
+    verified_skills:
+      - "Python"
+      - "FastAPI"
+      - "SQLite"
+      - "Redis"
+      - "Celery"
+      - "Docker"
+      - "PostgreSQL"
