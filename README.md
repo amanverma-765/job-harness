@@ -1,4 +1,4 @@
-# Resume-as-Code (RaC) & Autonomous Job Workflow Engine
+# Job Harness: Resume-as-Code (RaC) & Autonomous Job Workflow Engine
 
 > **A deterministic, Git-grounded, multi-gate recruitment automation system built for modern Applicant Tracking Systems (ATS) and high-velocity engineering hiring.**
 

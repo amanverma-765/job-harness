@@ -1,4 +1,4 @@
-# CLAUDE.md: Resume-as-Code (RaC) & Autonomous Job Workflow
+# CLAUDE.md: Job Harness (Resume-as-Code & Autonomous Workflow Engine)
 
 This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)** system. Resumes, cover letters, and outreach packages are treated as **compiled software artifacts**: factual state lives in structured YAML (`core/*.yaml`), styling is handled by a native Rust-based Typst engine (`core/templates/template.typ`), and continuous validation is enforced via automated Python linters (`engine/*`).
 
