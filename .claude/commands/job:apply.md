@@ -50,11 +50,12 @@ Master end-to-end orchestrator for the Resume-as-Code job application pipeline.
    - If a high-priority skill is missing from candidate truth: asks the user before deciding whether to omit or verify.
    - Compiles via `engine/compile.sh` and verifies exact 1-page budget.
 
-4. **Phase 4: Two-Layer Audit & Sign-off:**
+4. **Phase 4: Multi-Layer & Visual Audit Sign-off:**
    - Execute `/job:audit <company-slug>/<role-slug>`.
    - Runs `engine/verify_resume.py` and `engine/pdftotext_linter.py`.
+   - Runs `engine/visual_verify.py` and visually inspects the rendered PNG to ensure zero text overlaps or layout defects.
    - Cross-checks all metrics against git commit trees in `core/projects_corpus.yaml`.
-   - Asserts 0 issues detected across all 5 Gates and 1:1 skill proof rule.
+   - Asserts 0 issues detected across all 5 Gates, visual layout, and 1:1 skill proof rule.
 
 5. **Phase 5: Cover Letter & Cold Outreach Package:**
    - Execute `/job:cover-letter <company-slug>/<role-slug>` (4 paragraphs, zero em-dashes, 1-page Typst letterhead).

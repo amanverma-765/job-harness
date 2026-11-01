@@ -14,6 +14,7 @@ Enforces:
 
 import sys
 import re
+import yaml
 import argparse
 from pathlib import Path
 from typing import List, Dict, Tuple, Set
@@ -96,14 +97,55 @@ class ResumeVerifier:
                     self.log_issue("Gate 5: Branding", f"Non-canonical casing detected: use '{correct}'.", idx)
 
     def extract_bullets_and_skills(self) -> Tuple[List[Tuple[str, int]], List[Tuple[str, int]]]:
-        """Extract bullet points and listed skill items from Typst or LaTeX."""
+        """Extract bullet points and listed skill items from Typst, YAML, or LaTeX."""
         bullets = []
         skills = []
 
+        # Case 1: Pure YAML file
+        if self.file_path.suffix in [".yaml", ".yml"]:
+            try:
+                data = yaml.safe_load(self.raw_content) or {}
+                for idx, sk in enumerate(data.get("skills", []), start=1):
+                    skills.append((sk.get("skills", ""), idx))
+                for exp in data.get("experience", []):
+                    for idx, pt in enumerate(exp.get("points", []), start=1):
+                        bullets.append((pt, idx))
+                for proj in data.get("projects", []):
+                    if proj.get("skills"):
+                        bullets.append((proj.get("skills"), 0))
+                    for idx, pt in enumerate(proj.get("points", []), start=1):
+                        bullets.append((pt, idx))
+                return bullets, skills
+            except Exception as e:
+                self.log_issue("Parser", f"Failed to parse YAML file: {e}")
+                return bullets, skills
+
+        # Case 2: Typst file that loads a YAML file via yaml("...")
+        m_yaml = re.search(r'yaml\(\s*"([^"]+)"\s*\)', self.raw_content)
+        if self.is_typst and m_yaml:
+            yaml_rel = m_yaml.group(1)
+            yaml_path = self.file_path.parent / yaml_rel
+            if yaml_path.exists():
+                try:
+                    data = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+                    for idx, sk in enumerate(data.get("skills", []), start=1):
+                        skills.append((sk.get("skills", ""), idx))
+                    for exp in data.get("experience", []):
+                        for idx, pt in enumerate(exp.get("points", []), start=1):
+                            bullets.append((pt, idx))
+                    for proj in data.get("projects", []):
+                        if proj.get("skills"):
+                            bullets.append((proj.get("skills"), 0))
+                        for idx, pt in enumerate(proj.get("points", []), start=1):
+                            bullets.append((pt, idx))
+                    return bullets, skills
+                except Exception as e:
+                    self.log_warning("Parser", f"Found YAML reference {yaml_rel} but parsing failed: {e}")
+
+        # Case 3: Native Typst markup
         if self.is_typst:
             bullet_pattern = re.compile(r"^\s*\[([^\]]+)\](?:,)?\s*$")
 
-            # Match multi-line and single-line skill_item calls
             multi_skill_pattern = re.compile(
                 r'#skill_item\s*\(\s*(?:category:\s*"[^"]*",\s*)?skills:\s*"([^"]+)"',
                 re.DOTALL
@@ -117,7 +159,7 @@ class ResumeVerifier:
                 if m_bullet:
                     bullets.append((m_bullet.group(1), idx))
         else:
-            # LaTeX \item bullets and skills
+            # Case 4: LaTeX \item bullets and skills
             for idx, line in enumerate(self.raw_content.splitlines(), start=1):
                 if r"\item" in line:
                     clean = re.sub(r"\\item\s*", "", line).strip()
@@ -132,9 +174,19 @@ class ResumeVerifier:
         all_skills_text = " ".join([s[0] for s in skills]).lower()
 
         # Check if languages category exists
-        for idx, line in enumerate(self.raw_content.splitlines(), start=1):
-            if re.search(r'category:\s*"Languages', line, re.IGNORECASE) or r"\textbf{Languages" in line:
-                has_languages = True
+        search_targets = [self.raw_content]
+        m_yaml = re.search(r'yaml\(\s*"([^"]+)"\s*\)', self.raw_content)
+        if m_yaml:
+            yp = self.file_path.parent / m_yaml.group(1)
+            if yp.exists():
+                search_targets.append(yp.read_text(encoding="utf-8"))
+
+        for content in search_targets:
+            for idx, line in enumerate(content.splitlines(), start=1):
+                if re.search(r'category:\s*"?Languages', line, re.IGNORECASE) or r"\textbf{Languages" in line:
+                    has_languages = True
+                    break
+            if has_languages:
                 break
 
         if not has_languages and skills:

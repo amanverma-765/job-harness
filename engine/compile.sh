@@ -32,6 +32,11 @@ if command -v pdfinfo >/dev/null 2>&1; then
     exit 2
   fi
   echo "[+] PASSED: Exact 1-page budget verified."
+
+  # Automatically run visual render verification if pdftoppm is available
+  if command -v pdftoppm >/dev/null 2>&1; then
+    python3 "${REPO_ROOT}/engine/visual_verify.py" "${OUTPUT}"
+  fi
 else
   echo "[!] Warning: 'pdfinfo' utility not installed. Page budget check skipped."
 fi

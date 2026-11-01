@@ -24,7 +24,7 @@ Worth 15 minutes to chat through the concurrency and latency trade-offs?
 
 Best,  
 Aman Verma  
-amanverma.dev@gmail.com | +91 98765 43210
+akverma4aman@gmail.com | +91 6386617608
 
 ---
 

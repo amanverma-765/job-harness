@@ -28,10 +28,21 @@ Execute two-layer deterministic and adversarial validation audit on generated ap
      ```
      - Validates linear text stream and contact parsing.
 
-3. **Layer 2: Adversarial Skeptic Audit:**
+3. **Layer 2: Visual Layout & Render Inspection:**
+   - Execute the visual render verification tool:
+     ```bash
+     python3 engine/visual_verify.py targets/<company-slug>/<role-slug>/resume.pdf
+     ```
+   - Visually inspect the generated image (`.scratch/debug/<role>_visual-1.png`):
+     - Assert zero vertical text collisions between job titles/companies and dates/locations.
+     - Assert zero vertical text collisions in Education between university and degree.
+     - Assert clean right alignment of dates without single-word line wrapping.
+     - Assert balanced vertical whitespace fitting strictly on 1 page.
+
+4. **Layer 3: Adversarial Skeptic Audit:**
    - Cross-examine every single numeric claim and architecture bullet against git commit trees in `core/projects_corpus.yaml`.
    - Actively refute any unproven assertions or inflated metrics.
 
-4. **Emit Audit Report:**
+5. **Emit Audit Report:**
    - Save sign-off report to `targets/<company-slug>/<role-slug>/audit_report.md`.
-   - Report must confirm **0 issues detected** before the application package is approved.
+   - Report must confirm **0 issues detected** across AST, text stream, visual layout, and adversarial checks before the application package is approved.
