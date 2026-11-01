@@ -1,22 +1,32 @@
-// Jake's Resume Typst Engine - ATS-Optimized Single-Column Standard
-// Native Unicode CMap generation, 0 ligature drops, linear text stream extraction
+// NNJR-Engine: Single-Column ATS Typst Template
+// Adapted from tzx/NNJR with collision-free grids, native padding, and clean F-pattern typography
 
 #let resume(body) = {
+  set list(indent: 0.8em)
+  show list: set text(size: 0.94em)
+  show link: underline
+  show link: set underline(offset: 2pt)
+
   set page(
     paper: "us-letter",
-    margin: (x: 0.5in, top: 0.4in, bottom: 0.4in)
+    margin: (x: 0.45in, top: 0.35in, bottom: 0.35in)
   )
+
   set text(
+    size: 9.1pt,
     font: "Liberation Sans",
-    size: 9.6pt,
-    fill: rgb("#111111"),
-    spacing: 110%
+    fill: rgb("#111111")
   )
-  set par(justify: false, leading: 0.52em)
+  set par(leading: 0.42em)
+
   body
 }
 
-// Macro: Header (Centered, clean contact labels, no icon font corruption)
+#let name_header(name) = {
+  set text(size: 1.8em, weight: "bold")
+  [#name]
+}
+
 #let header(
   name: "",
   target_title: "",
@@ -26,14 +36,14 @@
   linkedin: "",
   site: ""
 ) = {
-  align(center)[
-    #text(size: 16pt, weight: "bold")[#name] \
-    #v(1pt)
-    #if target_title != "" [
-      #text(size: 10.5pt, weight: "bold", fill: rgb("#333333"))[#upper(target_title)] \
-      #v(2pt)
-    ]
-    #text(size: 9pt)[
+  align(center,
+    block[
+      #name_header(name) \
+      #if target_title != "" [
+        #v(1pt)
+        #text(size: 1.05em, weight: "bold", fill: rgb("#333333"))[#upper(target_title)] \
+        #v(1.5pt)
+      ]
       #{
         let parts = ()
         if location != "" { parts.push(location) }
@@ -50,88 +60,94 @@
         parts.join(" | ")
       }
     ]
-  ]
-  v(2pt)
-}
-
-// Macro: Section Heading with Divider Line
-#let resume_heading(title) = {
-  v(5pt)
-  text(size: 10.5pt, weight: "bold")[#upper(title)]
-  v(-3pt)
-  line(length: 100%, stroke: 0.5pt + rgb("#555555"))
+  )
   v(1pt)
 }
 
-// Macro: Education Item
+#let resume_heading(txt) = {
+  show heading: set text(size: 0.96em, weight: "bold")
+
+  block[
+    #v(3pt)
+    = #upper(txt)
+    #v(-4.5pt)
+    #line(length: 100%, stroke: 0.75pt + rgb("#333333"))
+    #v(0.5pt)
+  ]
+}
+
 #let edu_item(
   name: "",
   degree: "",
   location: "",
-  date: "",
-  gpa: ""
+  date: ""
 ) = {
-  grid(
-    columns: (1fr, auto),
-    text(weight: "bold")[#name], text(weight: "medium")[#date],
-    text(style: "italic")[#degree], text(style: "italic")[#location]
-  )
-  if gpa != "" [
-    #v(-2pt)
-    #text(size: 8.8pt)[Cumulative GPA: #gpa]
-  ]
-  v(1.5pt)
+  set block(above: 0.45em, below: 0.55em)
+  pad(left: 0.3em, right: 0.3em, grid(
+    columns: (3.2fr, 1fr),
+    align(left)[
+      *#name* \
+      _#degree _
+    ],
+    align(right)[
+      #date \
+      _#location _
+    ]
+  ))
 }
 
-// Macro: Experience Item (Supports arbitrary positional bullet arguments)
 #let exp_item(
   role: "",
   name: "",
-  location: "",
   date: "",
-  ..bullets
+  location: "",
+  ..points
 ) = {
-  grid(
-    columns: (1fr, auto),
-    [#text(weight: "bold")[#role] -- #text(weight: "semibold")[#name]], text(weight: "medium")[#date],
-    "", text(style: "italic")[#location]
-  )
-  v(0.5pt)
-  for b in bullets.pos() [
-    #list(marker: [•])[#b]
-  ]
-  v(1.5pt)
+  set block(above: 0.45em, below: 0.55em)
+  pad(left: 0.3em, right: 0.3em, box[
+    #grid(
+      columns: (3.2fr, 1fr),
+      align(left)[
+        *#role* \
+        _#name _
+      ],
+      align(right)[
+        #date \
+        _#location _
+      ]
+    )
+    #v(0.15em)
+    #list(..points)
+  ])
 }
 
-// Macro: Project Item (Supports arbitrary positional bullet arguments)
 #let project_item(
   name: "",
   skills: "",
   date: "",
   link_url: "",
-  ..bullets
+  ..points
 ) = {
-  grid(
-    columns: (1fr, auto),
-    [
-      #text(weight: "bold")[#name]
-      #if skills != "" [ | #text(style: "italic")[#skills] ]
-      #if link_url != "" [ | #link(link_url)[#text(size: 8.5pt)[#link_url]] ]
-    ],
-    text(weight: "medium")[#date]
-  )
-  v(0.5pt)
-  for b in bullets.pos() [
-    #list(marker: [•])[#b]
-  ]
-  v(1.5pt)
+  set block(above: 0.45em, below: 0.55em)
+  pad(left: 0.3em, right: 0.3em, box[
+    #if link_url != "" [
+      #link(link_url)[*#name*]
+    ] else [
+      *#name*
+    ]
+    #if skills != "" [ | _#skills _]
+    #h(1fr)
+    #date
+    #v(0.15em)
+    #list(..points)
+  ])
 }
 
-// Macro: Technical Skills Item
 #let skill_item(
-  category: "",
-  skills: ""
+  category: "Skills",
+  skills: "",
 ) = {
-  [ *#category:* #skills ]
-  v(1.5pt)
+  set block(above: 0.4em)
+  set text(size: 0.94em)
+  pad(left: 0.3em, right: 0.3em, block[*#category*: #skills])
 }
