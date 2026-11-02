@@ -33,6 +33,7 @@ experience:
       - "Automated daily judicial data ingestion across all 25 High Courts and 743 District Courts via Celery workers with Selectolax DOM extractors and PostgreSQL batch inserts to keep agent case records synchronized."
     verified_skills:
       - "Python"
+      - "Kotlin"
       - "FastAPI"
       - "SQLAlchemy"
       - "PostgreSQL"

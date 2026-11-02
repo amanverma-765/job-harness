@@ -13,19 +13,21 @@
   recipient_title: "",
   company_name: "",
   company_address: "",
+  font_size: 10.5pt,
+  leading: 0.72em,
   body
 ) = {
   set page(
     paper: "us-letter",
-    margin: (x: 0.8in, top: 0.8in, bottom: 0.8in)
+    margin: (x: 0.85in, top: 0.85in, bottom: 0.85in)
   )
   set text(
     font: "Nimbus Roman",
-    size: 10pt,
+    size: font_size,
     fill: rgb("#111111"),
     spacing: 120%
   )
-  set par(justify: true, leading: 0.65em)
+  set par(justify: true, leading: leading)
 
   // Header / Letterhead
   [

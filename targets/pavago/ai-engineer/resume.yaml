@@ -1,0 +1,63 @@
+personal:
+  name: "Aman Verma"
+  target_title: "AI Engineer"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+skills:
+  - category: "Languages & Core"
+    skills: "Python, SQL, Bash"
+  - category: "AI, Evals & Agentic Systems"
+    skills: "Pydantic AI, Model Context Protocol (MCP), ChromaDB, Ollama, PyMuPDF"
+  - category: "Backend & Distributed Infrastructure"
+    skills: "FastAPI, Celery, Redis, PostgreSQL, SQLite, Nginx, Docker"
+  - category: "Benchmarking, Testing & Tooling"
+    skills: "Pytest, Jupyter Notebooks, Matplotlib, OpenTelemetry, Logfire, Git"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Jan 2026 - Jun 2026"
+    points:
+      - "Architected async REST APIs in *FastAPI*, *SQLAlchemy*, and *PostgreSQL* (SQL) behind an *Nginx* proxy on Linux, containerized via *Docker* with automated *Git* CI/CD pipelines."
+      - "Built and deployed 'Munshi', an autonomous legal assistant in *Pydantic AI* and *FastAPI*, resolving multi-turn case inquiries with *sub-2s latency* via tool-calling loops."
+      - "Designed task pipelines with *Celery* workers and atomic *Redis* distributed locks, executing non-blocking 10s countdown task requeues to eliminate race conditions."
+      - "Integrated *Model Context Protocol (MCP)* clients with *Pydantic AI*, isolating verified user identity inside AgentDeps rather than LLM tool parameters to eliminate prompt injection risks."
+      - "Automated judicial data ingestion across 25 High Courts and 743 District Courts via *Celery* and *Bash*, utilizing Selectolax DOM extractors and JSON payloads for batch *PostgreSQL* updates."
+
+projects:
+  - name: "ncert-rag-evals"
+    skills: "Python, Jupyter Notebooks, SQLite FTS5, ChromaDB, Pytest"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Constructed an empirical retrieval benchmark across 17 STEM textbooks in *Python* and *Jupyter Notebooks*, implementing custom hybrid search in *SQLite FTS5* and *ChromaDB* to profile 8 retrieval strategies on raw CPU latency."
+      - "Proved that fusing BM25 with dense embeddings via Reciprocal Rank Fusion (RRF) achieved *86.9% Recall@5 in 8.9ms on CPU*, matching LLM query expansion while cutting latency by *99.8%*."
+      - "Engineered a document parser indexing 4,429 section-aware chunks into *SQLite FTS5* and *ChromaDB*; validated statistical significance via paired McNemar tests (*p = 0.0021*) across 92 unit tests in *Pytest*."
+  - name: "doubtless"
+    skills: "Pydantic AI, FastAPI, Celery, Redis, SQLite, OpenTelemetry, Logfire"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Developed an interactive lecture doubt-solver in *Pydantic AI* and *FastAPI*, fusing blackboard video frames with 45s playback dialogue windows to stream real-time solutions for visual queries via SSE."
+      - "Transcoded media via an asynchronous 4-stage ingestion pipeline in *Celery* and *Redis*, slicing 16kHz mono audio (<15MB/hr) and transcribing in <10s via Groq Whisper-Large-V3."
+      - "Implemented the async data layer with thread-safe *SQLite* WAL repositories and *Redis* caching; instrumented distributed tracing across agent runs via *OpenTelemetry* and *Logfire* (151 tests)."
+  - name: "vectorless-rag"
+    skills: "Python, Jupyter Notebooks, Matplotlib, Pydantic AI, Ollama, ChromaDB, PyMuPDF"
+    link_url: "https://github.com/amanverma-765/vectorless-rag"
+    points:
+      - "Evaluated dense vector search against LLM-based page indexing on benchmark documents using *Pydantic AI*, configuring *Ollama* as a local testbed alongside cloud LLMs across 18 benchmark queries."
+      - "Benchmarked retrieval trade-offs in *Jupyter Notebooks* using *Matplotlib*: analyzed query failure cases and plotted the *2.7x token cost* and *2x latency* tradeoff (while verifying *100% retrieval hit rate* and *0.85 citation precision*)."
+      - "Created a zero-framework document ingestion engine in *Python* using *PyMuPDF* and *ChromaDB*, streaming page-aligned windows with bounded memory (*<200MB*) to eliminate context truncation and cut extraction latency by *40%*."
+
+leadership:
+  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts and modern AI developer tools."
+  - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"

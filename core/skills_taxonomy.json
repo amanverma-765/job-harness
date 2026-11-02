@@ -6,6 +6,8 @@
       "display_name": "Languages & Core",
       "skills": {
         "Python": { "aliases": ["Python3", "py"], "ontology": "Software Developers (15-1252.00)" },
+        "Kotlin": { "aliases": ["Kotlin JVM", "KT"], "ontology": "Software Developers (15-1252.00)" },
+        "Java": { "aliases": ["Java JVM", "JDK"], "ontology": "Software Developers (15-1252.00)" },
         "Go": { "aliases": ["Golang"], "ontology": "Systems Software (15-1251.00)" },
         "Rust": { "aliases": ["Rustlang"], "ontology": "Systems Software (15-1251.00)" },
         "TypeScript": { "aliases": ["TS"], "ontology": "Web Development (15-1254.00)" },
@@ -43,7 +45,9 @@
         "Celery": { "aliases": ["Async Worker"], "ontology": "Task Queues" },
         "Hugging Face": { "aliases": ["Transformers", "Sentence-Transformers"], "ontology": "NLP & AI" },
         "pytest": { "aliases": ["Unit Testing", "Test Automation"], "ontology": "QA & Testing" },
-        "Model Context Protocol (MCP)": { "aliases": ["MCP"], "ontology": "AI Protocol Standards" }
+        "Model Context Protocol (MCP)": { "aliases": ["MCP"], "ontology": "AI Protocol Standards" },
+        "Matplotlib": { "aliases": ["matplotlib", "data visualization"], "ontology": "Data Visualization & Analysis" },
+        "Jupyter": { "aliases": ["Jupyter Notebooks", "IPython"], "ontology": "Interactive Computing & Notebooks" }
       }
     }
   },
