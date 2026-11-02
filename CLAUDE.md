@@ -22,7 +22,7 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
 ### 2.1 The Jake's Resume Typst Standard
 - **Presentation Engine:** `core/templates/template.typ` (adapted from Jake's Resume / NNJR for Typst).
 - **Single-Column Constraint:** Strict single-column layout only. Multi-column layouts interleave text streams during ATS extraction and are strictly prohibited.
-- **Font & Margins:** `New Computer Modern` serif font with native decomposed UTF-8 CMap tables (0 ligature drops in `pdftotext`), strict `0.5in` margins (research specification minimum to prevent spatial coordinate cropping), and US-Letter paper geometry.
+- **Font & Margins:** `Nimbus Roman` (Times Roman serif font, matching the LaTeX `mathptmx` / Jake's Resume standard) with native decomposed UTF-8 CMap tables (0 ligature drops in `pdftotext`), strict `0.5in` margins (research specification minimum to prevent spatial coordinate cropping), and US-Letter paper geometry.
 - **Section Hierarchy (DYNAMIC EXPERIENCE-AWARE RULE):**
   - **Case A: Candidate HAS Work Experience:**
     1. Header (Centered pure-text contact stream, zero icon glyphs)
@@ -70,7 +70,7 @@ Every ingested job description must be decomposed into four quadrants (`role_ana
 
 ### 2.7 Global Zero Em-Dash Rule (STRICT)
 - **Zero em-dashes (`---` or `—`) are permitted anywhere in any document** (resumes, cover letters, markdown reports, outreach).
-- Replace with commas, colons, semicolons, or parentheses. In Typst/LaTeX, use standard en-dashes (`--`) solely for number and date ranges (`2021 -- 2025`).
+- Replace with commas, colons, semicolons, or parentheses. In Typst/LaTeX, use standard single hyphens (`-`) for number and date ranges (`2021 - 2025`).
 
 ### 2.8 Strict 1-Page PDF Budget
 - Resumes and cover letters must fit on **exactly 1 page** (`pdfinfo <file>.pdf | grep "Pages: 1"`).

@@ -20,7 +20,7 @@
     margin: (x: 0.8in, top: 0.8in, bottom: 0.8in)
   )
   set text(
-    font: "Liberation Sans",
+    font: "Nimbus Roman",
     size: 10pt,
     fill: rgb("#111111"),
     spacing: 120%

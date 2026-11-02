@@ -9,6 +9,14 @@
   }
 }
 
+#let format_date(d) = {
+  if type(d) == str {
+    d.replace(" -- ", " - ").replace("--", "-")
+  } else {
+    d
+  }
+}
+
 #let yml_personal(d) = {
   header(
     name: d.at("name", default: ""),
@@ -39,7 +47,7 @@
       role: exp.role,
       name: exp.name,
       location: exp.location,
-      date: exp.date,
+      date: format_date(exp.date),
       ..pts
     )
   }
@@ -52,7 +60,7 @@
     project_item(
       name: proj.name,
       skills: proj.at("skills", default: ""),
-      date: proj.date,
+      date: format_date(proj.date),
       link_url: proj.at("link_url", default: ""),
       ..pts
     )
@@ -73,7 +81,7 @@
       name: edu.name,
       degree: edu.degree,
       location: edu.location,
-      date: edu.date
+      date: format_date(edu.date)
     )
   }
 }

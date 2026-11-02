@@ -20,7 +20,7 @@
 
   set text(
     size: 9.1pt,
-    font: "New Computer Modern",
+    font: "Nimbus Roman",
     fill: rgb("#000000")
   )
   set par(leading: line_gap)
@@ -70,11 +70,11 @@
 }
 
 #let resume_heading(txt) = {
-  show heading: set text(size: 0.94em, weight: "regular")
+  show heading: set text(size: 0.94em, weight: "bold")
 
   block[
     #v(section_gap)
-    = #smallcaps(txt)
+    = #upper(txt)
     #v(-4pt)
     #line(length: 100%, stroke: 0.9pt + black)
     #v(0.5pt)
