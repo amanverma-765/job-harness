@@ -63,7 +63,7 @@
   resume_heading[Leadership & Activities]
   let pts = d.map(render_point)
   set block(above: 0.45em, below: 0.55em)
-  pad(left: 0.3em, right: 0.3em, list(..pts))
+  pad(left: 0.8em, right: 0.4em, list(..pts))
 }
 
 #let yml_education(d) = {

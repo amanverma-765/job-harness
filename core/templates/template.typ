@@ -1,29 +1,32 @@
 // NNJR-Engine: Single-Column ATS Typst Template
 // Adapted from tzx/NNJR with collision-free grids, native padding, and clean F-pattern typography
 
+// Master line gap: controls intra-item leading, list bullet spacing, and skill row gaps all at once
+#let line_gap = 0.65em
+
 #let resume(body) = {
-  set list(indent: 0.8em)
+  set list(indent: 0.8em, spacing: line_gap)
   show list: set text(size: 0.94em)
   show link: underline
-  show link: set underline(offset: 2pt)
+  show link: set underline(offset: 2.5pt)
 
   set page(
     paper: "us-letter",
-    margin: (x: 0.45in, top: 0.35in, bottom: 0.35in)
+    margin: 0.5in
   )
 
   set text(
     size: 9.1pt,
-    font: "Liberation Sans",
-    fill: rgb("#111111")
+    font: "New Computer Modern",
+    fill: rgb("#000000")
   )
-  set par(leading: 0.42em)
+  set par(leading: line_gap)
 
   body
 }
 
 #let name_header(name) = {
-  set text(size: 1.8em, weight: "bold")
+  set text(size: 2.15em, weight: "bold")
   [#name]
 }
 
@@ -65,13 +68,13 @@
 }
 
 #let resume_heading(txt) = {
-  show heading: set text(size: 0.96em, weight: "bold")
+  show heading: set text(size: 0.94em, weight: "regular")
 
   block[
-    #v(3pt)
-    = #upper(txt)
-    #v(-4.5pt)
-    #line(length: 100%, stroke: 0.75pt + rgb("#333333"))
+    #v(2.5pt)
+    = #smallcaps(txt)
+    #v(-4pt)
+    #line(length: 100%, stroke: 0.9pt + black)
     #v(0.5pt)
   ]
 }
@@ -83,7 +86,7 @@
   date: ""
 ) = {
   set block(above: 0.45em, below: 0.55em)
-  pad(left: 0.3em, right: 0.3em, grid(
+  pad(left: 0.8em, right: 0.4em, grid(
     columns: (3.2fr, 1fr),
     align(left)[
       *#name* \
@@ -104,7 +107,7 @@
   ..points
 ) = {
   set block(above: 0.45em, below: 0.55em)
-  pad(left: 0.3em, right: 0.3em, box[
+  pad(left: 0.8em, right: 0.4em, box[
     #grid(
       columns: (3.2fr, 1fr),
       align(left)[
@@ -116,7 +119,7 @@
         _#location _
       ]
     )
-    #v(0.15em)
+    #v(line_gap * 0.4)
     #list(..points)
   ])
 }
@@ -129,7 +132,7 @@
   ..points
 ) = {
   set block(above: 0.45em, below: 0.55em)
-  pad(left: 0.3em, right: 0.3em, box[
+  pad(left: 0.8em, right: 0.4em, box[
     #if link_url != "" [
       #link(link_url)[*#name*]
     ] else [
@@ -138,7 +141,7 @@
     #if skills != "" [ | _#skills _]
     #h(1fr)
     #date
-    #v(0.15em)
+    #v(line_gap * 0.4)
     #list(..points)
   ])
 }
@@ -147,7 +150,7 @@
   category: "Skills",
   skills: "",
 ) = {
-  set block(above: 0.4em)
+  set block(above: line_gap)
   set text(size: 0.94em)
-  pad(left: 0.3em, right: 0.3em, block[*#category*: #skills])
+  pad(left: 0.8em, right: 0.4em, block[*#category*: #skills])
 }
