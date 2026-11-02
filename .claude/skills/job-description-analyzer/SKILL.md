@@ -13,9 +13,11 @@ description: Analyze job postings, extract the 4-Quadrant Matrix, standardize th
 
 ## Analysis Framework
 
-### 1. The 10.6x Requisition Title Multiplier
-- Extract the exact, literal job requisition title from the posting (e.g. `Senior Distributed Systems Engineer`, `Machine Learning Infrastructure Engineer`).
-- Save this exact string: it will be injected into the resume header and recent role subtitle to guarantee top placement in ATS substring queries.
+### 1. The 10.6x Requisition Title Multiplier & Title Sanitization
+- Extract the **relevant, canonical functional engineering title** representing the role (e.g. `Software Development Engineer Intern`, `Senior Distributed Systems Engineer`).
+- **Never copy raw portal strings verbatim.** Strip out recruiter tags, talent acquisition teams (e.g. `, Amazon University Talent Acquisition`), job/req IDs, cohort years/terms (`Summer 2025`), and parenthetical locations (`(Remote)`, `(US)`).
+- Normalize shorthand/acronyms to standard professional titles (`SDE I Intern` -> `Software Development Engineer Intern`).
+- Save this clean title: it will be injected into the resume header and recent role subtitle to match ATS substring queries cleanly.
 
 ### 2. The 4-Quadrant JD Extraction Matrix
 Classify all requirements into four distinct quadrants:

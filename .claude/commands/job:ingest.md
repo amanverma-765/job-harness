@@ -17,7 +17,7 @@ Ingest a job posting, extract the 4-Quadrant Matrix, standardize the 10.6x Requi
    - Save the raw job description to `targets/<company-slug>/<role-slug>/job_description.md`.
 
 3. **Extract 4-Quadrant Matrix & Title:**
-   - Extract the exact **10.6x Requisition Title**: store exact title for header injection.
+   - Extract and sanitize the **10.6x Requisition Title**: identify and extract the clean, relevant functional engineering role (e.g. `Software Development Engineer Intern`), stripping recruiter metadata (e.g. `, Amazon University Talent Acquisition`), req IDs, cohort terms (`Summer 2025`), and parenthetical locations.
    - Deconstruct JD into:
      - **Quadrant I (Languages & Runtimes):** Primary language tokens.
      - **Quadrant II (Infra, DB & Cloud):** Containerization, cloud, databases.
