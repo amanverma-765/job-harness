@@ -2,7 +2,10 @@
 // Adapted from tzx/NNJR with collision-free grids, native padding, and clean F-pattern typography
 
 // Master line gap: controls intra-item leading, list bullet spacing, and skill row gaps all at once
-#let line_gap = 0.65em
+#let line_gap = 0.70em
+
+// Master section gap: controls the vertical separation between all major content sections
+#let section_gap = 0.90em
 
 #let resume(body) = {
   set list(indent: 0.8em, spacing: line_gap)
@@ -40,7 +43,7 @@
   site: ""
 ) = {
   align(center,
-    block[
+    block(below: 0em)[
       #name_header(name) \
       #if target_title != "" [
         #v(1pt)
@@ -64,14 +67,13 @@
       }
     ]
   )
-  v(1pt)
 }
 
 #let resume_heading(txt) = {
   show heading: set text(size: 0.94em, weight: "regular")
 
   block[
-    #v(2.5pt)
+    #v(section_gap)
     = #smallcaps(txt)
     #v(-4pt)
     #line(length: 100%, stroke: 0.9pt + black)
@@ -85,7 +87,7 @@
   location: "",
   date: ""
 ) = {
-  set block(above: 0.45em, below: 0.55em)
+  set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, grid(
     columns: (3.2fr, 1fr),
     align(left)[
@@ -106,7 +108,7 @@
   location: "",
   ..points
 ) = {
-  set block(above: 0.45em, below: 0.55em)
+  set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, box[
     #grid(
       columns: (3.2fr, 1fr),
@@ -131,7 +133,7 @@
   link_url: "",
   ..points
 ) = {
-  set block(above: 0.45em, below: 0.55em)
+  set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, box[
     #if link_url != "" [
       #link(link_url)[*#name*]
@@ -150,7 +152,7 @@
   category: "Skills",
   skills: "",
 ) = {
-  set block(above: line_gap)
+  set block(above: line_gap, below: 0em)
   set text(size: 0.94em)
-  pad(left: 0.8em, right: 0.4em, block[*#category*: #skills])
+  pad(left: 0.8em, right: 0.4em, [*#category*: #skills])
 }

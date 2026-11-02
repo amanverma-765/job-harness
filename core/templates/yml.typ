@@ -62,7 +62,7 @@
 #let yml_leadership(d) = {
   resume_heading[Leadership & Activities]
   let pts = d.map(render_point)
-  set block(above: 0.45em, below: 0.55em)
+  set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, list(..pts))
 }
 
@@ -81,10 +81,17 @@
 #let yml_resume(data) = {
   show: resume
 
+  let has_experience = "experience" in data and data.experience != none and data.experience.len() > 0
+
   yml_personal(data.personal)
-  if "skills" in data { yml_skills(data.skills) }
-  if "experience" in data { yml_experience(data.experience) }
-  if "projects" in data { yml_projects(data.projects) }
+  if has_experience {
+    yml_experience(data.experience)
+    if "projects" in data { yml_projects(data.projects) }
+    if "skills" in data { yml_skills(data.skills) }
+  } else {
+    if "skills" in data { yml_skills(data.skills) }
+    if "projects" in data { yml_projects(data.projects) }
+  }
   if "leadership" in data { yml_leadership(data.leadership) }
   if "education" in data { yml_education(data.education) }
 }

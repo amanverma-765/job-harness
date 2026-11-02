@@ -33,7 +33,9 @@ Synthesize a tailored Jake's Resume in Typst strictly grounded in commit-pinned 
 5. **Generate Typst Document:**
    - Import `core/templates/template.typ`.
    - Author `targets/<company-slug>/<role-slug>/resume.typ`.
-   - Enforce section order: Header -> Technical Skills -> Work Experience -> Projects -> Education (Strictly Last).
+   - Enforce dynamic section order (`core/templates/yml.typ` handles this automatically):
+     - If candidate has experience: Header -> Work Experience -> Projects -> Technical Skills -> Leadership -> Education.
+     - If student with zero experience: Header -> Technical Skills -> Projects -> Leadership -> Education.
 
 6. **Compile & Enforce 1-Page Budget:**
    - Execute:

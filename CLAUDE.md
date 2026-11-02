@@ -20,15 +20,23 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
 ## 2. Core Architectural Protocols & Quality Policies
 
 ### 2.1 The Jake's Resume Typst Standard
-- **Presentation Engine:** `core/templates/template.typ` (adapted from Jake's Resume for Typst).
+- **Presentation Engine:** `core/templates/template.typ` (adapted from Jake's Resume / NNJR for Typst).
 - **Single-Column Constraint:** Strict single-column layout only. Multi-column layouts interleave text streams during ATS extraction and are strictly prohibited.
-- **Font & Margins:** Clean `Liberation Sans` (0 ligature drops, native UTF-8 CMap tables) with 0.4in–0.5in margins and US-Letter paper geometry.
-- **Section Hierarchy (MANDATORY ORDER):**
-  1. Header (Centered pure-text contact stream, zero icon glyphs)
-  2. Technical Skills
-  3. Work Experience
-  4. Projects & Open Source
-  5. Education (Strictly placed at the very bottom so recruiters evaluate engineering firepower and repositories first)
+- **Font & Margins:** `New Computer Modern` serif font with native decomposed UTF-8 CMap tables (0 ligature drops in `pdftotext`), strict `0.5in` margins (research specification minimum to prevent spatial coordinate cropping), and US-Letter paper geometry.
+- **Section Hierarchy (DYNAMIC EXPERIENCE-AWARE RULE):**
+  - **Case A: Candidate HAS Work Experience:**
+    1. Header (Centered pure-text contact stream, zero icon glyphs)
+    2. Work Experience (Immediately showcases production impact, roles, and tenures first)
+    3. Projects & Open Source
+    4. Technical Skills
+    5. Leadership & Activities (if present)
+    6. Education (Strictly placed at the very bottom)
+  - **Case B: Student with ZERO Work Experience:**
+    1. Header (Centered pure-text contact stream, zero icon glyphs)
+    2. Technical Skills (Immediately establishes core languages and tools)
+    3. Projects & Open Source (Showcases verified repositories and engineering firepower)
+    4. Leadership & Activities (if present)
+    5. Education (Strictly placed at the very bottom)
 
 ### 2.2 The 10.6x Requisition Title Multiplier
 - ATS platforms run literal substring queries against applicant title fields.
@@ -71,6 +79,12 @@ Every ingested job description must be decomposed into four quadrants (`role_ana
 - Structure all application workspaces as: `targets/<company>/<role-slug>/`.
 - `targets/<company>/company_research.md` is shared across multiple role openings at the same firm to prevent redundant web scraping.
 - Role-specific artifacts (`job_description.md`, `role_analysis.md`, `resume.typ`, `resume.pdf`, `cover_letter.pdf`, `outreach.md`, `audit_report.md`) remain completely isolated.
+
+### 2.10 Unified Gap Variables (Zero Arbitrary Spacings)
+All document spacings must be governed by single master variables in `core/templates/template.typ`. Never scatter ad-hoc or arbitrary per-element spacings:
+- **Unified Section Gap (`section_gap = 0.90em`):** Controls the vertical separation before every one of the 6 major content sections (Header $\to$ Technical Skills $\to$ Work Experience $\to$ Projects $\to$ Leadership $\to$ Education). All 6 content blocks must share this exact uniform separation.
+- **Unified Line Gap (`line_gap = 0.70em`):** Controls all intra-item text leading (`par(leading)`), list bullet item spacing (`list(spacing)`), and skill category row gaps (`skill_item`) via a single variable.
+- **Proportional Scaling Rule (MANDATORY FOR ALL AGENTS):** Whenever the user asks to increase line gaps, or whenever an agent needs to expand spacing to cover/fill the resume vertical page budget, the agent MUST increase BOTH `line_gap` and `section_gap` proportionally in `em` (e.g. `section_gap` scaled alongside `line_gap`), while strictly enforcing the 1-page PDF budget. Never adjust one while leaving the other disconnected.
 
 ---
 

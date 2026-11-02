@@ -20,8 +20,9 @@ description: Ensure single-column parsing fidelity, Unicode CMap integrity, and 
    - Use canonical headers: `Technical Skills`, `Work Experience`, `Projects & Open Source`, `Education`.
    - Never use colloquial headers like *"My Journey"* or *"Toolkit"*.
 
-3. **Section Hierarchy Policy for Candidate:**
-   - **Header -> Technical Skills -> Work Experience -> Projects -> Education (Strictly Last)**.
+3. **Dynamic Section Hierarchy Policy for Candidate:**
+   - **If candidate HAS Work Experience:** Header -> Work Experience -> Projects -> Technical Skills -> Leadership -> Education.
+   - **If student with ZERO Work Experience:** Header -> Technical Skills -> Projects -> Leadership -> Education.
    - Placing education at the bottom ensures hiring managers and ATS rankers evaluate engineering firepower and open-source contributions first.
 
 4. **Zero Tables & Zero Graphic Text Boxes:**
