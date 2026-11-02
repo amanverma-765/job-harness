@@ -40,7 +40,7 @@
 }
 
 #let yml_experience(d) = {
-  resume_heading[Experience]
+  resume_heading[Work Experience]
   for exp in d {
     let pts = exp.points.map(render_point)
     exp_item(

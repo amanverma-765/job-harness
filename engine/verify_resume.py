@@ -16,6 +16,7 @@ import sys
 import re
 import yaml
 import argparse
+import subprocess
 from pathlib import Path
 from typing import List, Dict, Tuple, Set
 
@@ -261,6 +262,45 @@ class ResumeVerifier:
                 if not re.search(pat, combined_bullets_text):
                     self.log_warning("1:1 Skill Evidence Proof", f"Skill '{clean_token}' listed in Technical Skills has NO supporting evidence in Experience or Projects bullets. Keyword-stuffing penalty risk.", line_no)
 
+    def check_density_and_over_stuffing(self, bullets: List[Tuple[str, int]]):
+        """Audit page density: detect over-stuffing (>18 bullets, >550 words, compressed line gaps) or under-filling."""
+        total_bullets = len(bullets)
+        all_text = " ".join([b[0] for b in bullets])
+        bullet_words = len(re.sub(r"[*_\\]", "", all_text).split())
+
+        # Check total document word count from compiled PDF if available
+        pdf_path = self.file_path.with_suffix(".pdf")
+        doc_words = 0
+        if pdf_path.exists():
+            try:
+                raw_pdf_text = subprocess.check_output(["pdftotext", "-layout", str(pdf_path), "-"]).decode("utf-8")
+                doc_words = len(raw_pdf_text.split())
+            except Exception:
+                pass
+        if not doc_words:
+            doc_words = bullet_words
+
+        # Check line gap if specified
+        m_lg = re.search(r'line_gap:\s*([0-9.]+)em', self.raw_content)
+        if m_lg:
+            lg_val = float(m_lg.group(1))
+            if lg_val < 0.68:
+                self.log_warning("Over-Stuffing Alert", f"line_gap is compressed to {lg_val}em (< 0.68em floor). Do not cram text with reduced spacing; suggest pruning bullets.")
+
+        # Base templates (core/templates/resume_base) are master catalogs with allowed overflow.
+        is_base_catalog = "core/templates" in str(self.file_path)
+
+        if total_bullets > 18:
+            if not is_base_catalog:
+                self.log_warning("Over-Stuffing Alert", f"Resume has {total_bullets} bullets (threshold: max 18). Visual density causes recruiter scan fatigue. Recommended pruning: remove {total_bullets - 18} lowest-match bullet(s).")
+
+        if doc_words > 600:
+            if not is_base_catalog:
+                self.log_warning("Over-Stuffing Alert", f"Total document word count is {doc_words} words (threshold: max 600 words for tailored resumes; +{doc_words - 600} words over). Recommend pruning candidate bullets to reduce cognitive load.")
+
+        if total_bullets < 14 and (not m_lg or float(m_lg.group(1)) <= 0.75):
+            self.log_warning("Under-Fill Alert", f"Resume has only {total_bullets} bullets with low/default line gap. Scale line_gap to 0.85em-0.90em or add commit-grounded pointers to avoid dead-space.")
+
     def run_all(self) -> bool:
         self.check_em_dashes()
         self.check_canonical_branding()
@@ -269,6 +309,7 @@ class ResumeVerifier:
         self.check_gate_2_defensibility(bullets)
         self.check_gate_4_fluff_and_verbs(bullets)
         self.check_1_to_1_skill_evidence(bullets, skills)
+        self.check_density_and_over_stuffing(bullets)
 
         print(f"[*] Verified resume: {self.file_path}")
         print(f"    Bullets checked: {len(bullets)}")

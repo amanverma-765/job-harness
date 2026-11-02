@@ -35,6 +35,10 @@ Recruiters scan in an F-pattern during their 6–15 second visual review:
 - Every tool, language, database, or framework listed in the `Technical Skills` section **must have corresponding proof in at least one experience or project bullet point**.
 - Prevents ATS keyword-stuffing penalties and ensures technical defensibility during hiring manager interviews.
 
-### 5. Full-Page Vertical Budget Calibration (Company Tailoring)
-- When generating or refining company-tailored resumes (`targets/<company>/<role>/`), calibrate `line_gap` upward (and proportionally `section_gap` and `header_gap`) so that the content covers the full vertical page budget.
-- Never leave an awkward dead-space / empty trailing bottom margin. Scale spacing until the document is visually balanced from top to bottom, strictly satisfying the exact 1-page PDF budget.
+### 5. Full-Page Vertical Calibration & Density Thresholds (Under-fill vs Over-stuffing)
+- **Full-Page Fill Rule (Under-filled Resumes):**
+  - Calibrate `line_gap` upward (and proportionally `section_gap` and `header_gap`) up to `0.85em–0.92em` so that content cleanly covers the vertical page budget without leaving trailing dead-space.
+  - If spacing expansion alone is insufficient, pull in defensible extra bullet pointers from `core/projects_corpus.yaml` or user-suggested facts to fill out under-indexed items.
+- **Over-stuffing Thresholds & Pruning Protocol:**
+  - **Thresholds:** Total bullets must not exceed **18**, total word count must not exceed **600 words**, and `line_gap` must not be compressed below `0.68em`.
+  - **Warning & Pruning Suggestions:** If any threshold is breached, the agent must alert the user to recruiter scan fatigue and suggest specific ranked candidate bullets for removal (e.g. secondary leadership points, redundant tech bullets, or lowest-priority project details).

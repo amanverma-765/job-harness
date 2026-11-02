@@ -22,8 +22,8 @@ experience:
   - company: "LexoLegal"
     location: "Remote"
     title: "Software Development Engineer Intern"
-    start_date: "January 2026"
-    end_date: "June 2026"
+    start_date: "Jan 2026"
+    end_date: "Jun 2026"
     highlights:
       - "Architected asynchronous REST APIs in FastAPI, SQLAlchemy 2.0, and PostgreSQL behind an Nginx reverse proxy, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and Alembic schema migrations."
       - "Built and deployed 'Munshi', an autonomous legal assistant using Pydantic AI and FastAPI, resolving multi-turn case inquiries over WhatsApp with sub-2s latency via tool-calling execution loops."

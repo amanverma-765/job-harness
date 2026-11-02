@@ -43,4 +43,10 @@ Synthesize a tailored Jake's Resume in Typst strictly grounded in commit-pinned 
      bash engine/compile.sh targets/<company-slug>/<role-slug>/resume.typ targets/<company-slug>/<role-slug>/resume.pdf
      ```
    - Must output: `[+] PASSED: Exact 1-page budget verified.`
-   - **Full-Page Vertical Budget Calibration:** Inspect the compiled PDF and visual render (`.scratch/debug/resume_visual-1.png`). If the content leaves noticeable empty dead-space at the bottom, increase `line_gap` (and scale `section_gap` and `header_gap` proportionally in `em`) so the resume covers the full vertical page budget from top to bottom while strictly asserting `Pages: 1`.
+   - **Full-Page Fill Calibration (Under-filled Resumes):**
+     - Inspect compiled PDF and visual render (`.scratch/debug/resume_visual-1.png`).
+     - If the resume leaves empty dead-space at the bottom, make it look filled by increasing `line_gap` (up to `0.85em–0.92em`), proportionally scaling `section_gap` and `header_gap`, or pulling in extra defensible pointers from `core/projects_corpus.yaml` or user suggestions.
+   - **Over-stuffing Verification & Pruning Recommendations:**
+     - Verify against limits: **Max 18 total bullets**, **max 600 words**, and `line_gap >= 0.68em`.
+     - If content exceeds these thresholds (or crushes line gaps below 0.68em to fit), **notify the user immediately**.
+     - Warn about recruiter visual scan fatigue, and provide a concrete ranked list of recommended bullets/lines to remove for user confirmation.

@@ -88,9 +88,22 @@ All document spacings must be governed by single master variables in `core/templ
 - **Unified Line Gap (`line_gap = 0.70em`):** Controls all intra-item text leading (`par(leading)`), list bullet item spacing (`list(spacing)`), and skill category row gaps (`skill_item`) via a single variable.
 - **Proportional Scaling Rule (MANDATORY FOR ALL AGENTS):** Whenever the user asks to increase line gaps, or whenever an agent needs to expand spacing to cover/fill the resume vertical page budget, the agent MUST increase BOTH `line_gap` and `section_gap` proportionally in `em` (e.g. `section_gap` scaled alongside `line_gap`), while strictly enforcing the 1-page PDF budget. Never adjust one while leaving the other disconnected.
 
-### 2.11 Full-Page Vertical Calibration Rule (Tailored Resumes)
-- When generating company-tailored resumes (`targets/<company>/<role-slug>/`), agents must calibrate and increase `line_gap` (and proportionally `section_gap` and `header_gap`) so the content fills the full vertical page budget cleanly without leaving awkward empty dead-space at the bottom.
-- Ensure the document spans top-to-bottom harmoniously while strictly enforcing the exact 1-page PDF constraint (`Pages: 1`). Never leave a tailored resume with substantial trailing whitespace at the bottom.
+### 2.11 Full-Page Vertical Calibration & Density Thresholds (Under-fill vs Over-stuffing)
+- **Full-Page Fill Rule (Under-filled Resumes):**
+  - Resumes must never leave noticeable dead-space or trailing whitespace (> 1 inch) at the bottom.
+  - When tailoring a resume that under-fills the page, agents must actively make the document look filled by:
+    1. Calibrating `line_gap` upward (and proportionally `section_gap` and `header_gap`) up to `0.85em–0.92em`.
+    2. Adding defensible, commit-grounded bullet points from `core/projects_corpus.yaml` (or user-suggested facts) to under-indexed projects or experience.
+- **Over-stuffing Threshold & Pruning Notification Protocol:**
+  - **Base Catalog vs Tailored Scope:** The base resume (`core/templates/resume_base.pdf`) serves as the comprehensive master catalog and is allowed slight overflow/exceeding of density limits. Strict overfitting and over-stuffing thresholds are enforced strictly on company-tailored resumes (`targets/<company>/<role>/`).
+  - **Threshold Limits (Tailored Resumes):**
+    - Total bullets: **Maximum 18 bullets** across the entire resume.
+    - Word count: **Maximum 600 words** total body text.
+    - Spacing floor: `line_gap` must never be compressed below `0.68em` to cram excess content onto 1 page.
+  - **Over-stuffing Verification & User Action:**
+    - If a resume exceeds 18 bullets, exceeds 600 words, or requires `line_gap < 0.68em` to avoid spilling to Page 2, the agent **MUST explicitly flag the over-stuffing to the user**.
+    - Explain the recruiter scan fatigue risk (cognitive overload during 6–15s triage).
+    - Provide a concrete, ranked list of recommended bullet removals (e.g., secondary leadership points, lowest JD-match project bullets, or redundant tech items) for the user to approve.
 
 ---
 
