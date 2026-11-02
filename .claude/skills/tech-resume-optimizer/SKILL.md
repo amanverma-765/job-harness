@@ -34,3 +34,7 @@ Recruiters scan in an F-pattern during their 6–15 second visual review:
 ### 4. 1:1 Skill-to-Evidence Rule
 - Every tool, language, database, or framework listed in the `Technical Skills` section **must have corresponding proof in at least one experience or project bullet point**.
 - Prevents ATS keyword-stuffing penalties and ensures technical defensibility during hiring manager interviews.
+
+### 5. Full-Page Vertical Budget Calibration (Company Tailoring)
+- When generating or refining company-tailored resumes (`targets/<company>/<role>/`), calibrate `line_gap` upward (and proportionally `section_gap` and `header_gap`) so that the content covers the full vertical page budget.
+- Never leave an awkward dead-space / empty trailing bottom margin. Scale spacing until the document is visually balanced from top to bottom, strictly satisfying the exact 1-page PDF budget.

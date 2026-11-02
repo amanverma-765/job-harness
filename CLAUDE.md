@@ -11,8 +11,9 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
 - **Candidate Location (STRICTLY IMMUTABLE):** `Jaunpur, UP, India`. Never alter or synthesize the candidate's home location to match a job posting's geography.
 - **Single Source of Truth:**
   - `core/profile.yaml`: Contact info, degrees, academic records, and verified work tenures.
-  - `core/projects_corpus.yaml`: Verified open-source and systems repositories, commit-pinned to exact Git SHAs with empirical metrics and test suite counts.
+  - `core/projects_corpus.yaml`: Verified open-source and systems repositories, commit-pinned to exact Git SHAs with empirical metrics and test suite counts. Every project entry MUST maintain at least **3 defensible bullet pointers** (`defensible_bullets`).
   - `core/skills_taxonomy.json`: Canonical O*NET/Lightcast skill ontology and explicit list of banned non-skills.
+- **Minimum 3-Pointer Project KB Rule (MANDATORY):** Every project indexed in `core/projects_corpus.yaml` must contain at least 3 distinct, commit-verified bullet points (`defensible_bullets`) obeying the Google XYZ formula. Never store fewer than 3 pointers per project in the knowledge base.
 - **Zero Hallucination & Zero Exaggeration:** Never invent projects, frameworks, test suites, or performance metrics. Every metric and technology claim must be anchored in verified Git commit trees or candidate-confirmed facts.
 
 ---
@@ -82,9 +83,14 @@ Every ingested job description must be decomposed into four quadrants (`role_ana
 
 ### 2.10 Unified Gap Variables (Zero Arbitrary Spacings)
 All document spacings must be governed by single master variables in `core/templates/template.typ`. Never scatter ad-hoc or arbitrary per-element spacings:
+- **Unified Header Gap (`header_gap = 1.30em`):** Controls the vertical separation specifically between the contact info stream and the first section title.
 - **Unified Section Gap (`section_gap = 0.90em`):** Controls the vertical separation before every one of the 6 major content sections (Header $\to$ Technical Skills $\to$ Work Experience $\to$ Projects $\to$ Leadership $\to$ Education). All 6 content blocks must share this exact uniform separation.
 - **Unified Line Gap (`line_gap = 0.70em`):** Controls all intra-item text leading (`par(leading)`), list bullet item spacing (`list(spacing)`), and skill category row gaps (`skill_item`) via a single variable.
 - **Proportional Scaling Rule (MANDATORY FOR ALL AGENTS):** Whenever the user asks to increase line gaps, or whenever an agent needs to expand spacing to cover/fill the resume vertical page budget, the agent MUST increase BOTH `line_gap` and `section_gap` proportionally in `em` (e.g. `section_gap` scaled alongside `line_gap`), while strictly enforcing the 1-page PDF budget. Never adjust one while leaving the other disconnected.
+
+### 2.11 Full-Page Vertical Calibration Rule (Tailored Resumes)
+- When generating company-tailored resumes (`targets/<company>/<role-slug>/`), agents must calibrate and increase `line_gap` (and proportionally `section_gap` and `header_gap`) so the content fills the full vertical page budget cleanly without leaving awkward empty dead-space at the bottom.
+- Ensure the document spans top-to-bottom harmoniously while strictly enforcing the exact 1-page PDF constraint (`Pages: 1`). Never leave a tailored resume with substantial trailing whitespace at the bottom.
 
 ---
 
@@ -136,7 +142,7 @@ When executing user commands, follow the explicit workflows defined in `.claude/
 - **`/job:sync-kb [repo-name]`**: Inspects remote Git HEADs, updates commit SHAs, refreshes repomix facts.
 - **`/job:ingest <url-or-text>`**: Builds 4-Quadrant Matrix, extracts 10.6x title, checks Hard Qualification Gate.
 - **`/job:research <company> [role]`**: Gathers 3-phase intelligence, ranks hiring gaps by `(Fit x Impact) / Effort`, caches result.
-- **`/job:tailor <company>/<role>`**: Synthesizes Jake's Typst resume, applies 1:1 proof rule, and compiles 1-page PDF.
+- **`/job:tailor <company>/<role>`**: Synthesizes Jake's Typst resume, applies 1:1 proof rule, expands line gaps to cover the full vertical page budget, and compiles 1-page PDF.
 - **`/job:audit <company>/<role>`**: Runs deterministic AST linters and adversarial commit-tree verification.
 - **`/job:cover-letter <company>/<role>`**: Generates 4-paragraph Typst cover letter (250–350w, 0 em-dashes).
 - **`/job:outreach <company>/<role>`**: Drafts <=120-word cold email + 1-weekend MVP demo spec.

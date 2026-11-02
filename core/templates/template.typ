@@ -7,11 +7,26 @@
 // Master section gap: controls the vertical separation between all major content sections
 #let section_gap = 0.90em
 
-#let resume(body) = {
+// Master header gap: controls vertical separation between the contact line and the first section title
+#let header_gap = 1.30em
+
+#let line_gap_state = state("line_gap_state", line_gap)
+#let section_gap_state = state("section_gap_state", section_gap)
+#let header_gap_state = state("header_gap_state", header_gap)
+
+#let resume(
+  line_gap: line_gap,
+  section_gap: section_gap,
+  header_gap: header_gap,
+  body
+) = {
+  line_gap_state.update(line_gap)
+  section_gap_state.update(section_gap)
+  header_gap_state.update(header_gap)
+
   set list(indent: 0.8em, spacing: line_gap)
   show list: set text(size: 0.94em)
-  show link: underline
-  show link: set underline(offset: 2.5pt)
+  show link: set text(fill: rgb("#004f9e"))
 
   set page(
     paper: "us-letter",
@@ -52,8 +67,10 @@
       ]
       #{
         let parts = ()
-        if location != "" { parts.push(location) }
-        if phone != "" { parts.push(phone) }
+        if phone != "" {
+          let clean_phone = phone.replace(" ", "").replace("-", "")
+          parts.push(link("tel:" + clean_phone)[#phone])
+        }
         if email != "" { parts.push(link("mailto:" + email)[#email]) }
         if linkedin != "" {
           let clean_li = linkedin.replace("https://", "").replace("http://", "")
@@ -69,16 +86,26 @@
   )
 }
 
+#let is_first_heading = state("is_first_heading", true)
+#let is_first_skill = state("is_first_skill", true)
+
 #let resume_heading(txt) = {
   show heading: set text(size: 0.94em, weight: "bold")
 
   block[
-    #v(section_gap)
+    #context {
+      let first = is_first_heading.get()
+      let h_gap = header_gap_state.get()
+      let s_gap = section_gap_state.get()
+      let gap = if first { h_gap } else { s_gap }
+      v(gap)
+    }
     = #upper(txt)
     #v(-4pt)
     #line(length: 100%, stroke: 0.9pt + black)
     #v(0.5pt)
   ]
+  is_first_heading.update(false)
 }
 
 #let edu_item(
@@ -121,7 +148,10 @@
         _#location _
       ]
     )
-    #v(line_gap * 0.4)
+    #context {
+      let l_gap = line_gap_state.get()
+      v(l_gap * 0.4)
+    }
     #list(..points)
   ])
 }
@@ -135,15 +165,17 @@
 ) = {
   set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, box[
-    #if link_url != "" [
-      #link(link_url)[*#name*]
-    ] else [
-      *#name*
-    ]
+    *#name*
     #if skills != "" [ | _#skills _]
-    #h(1fr)
-    #date
-    #v(line_gap * 0.4)
+    #if link_url != "" [
+      #h(1fr)
+      #let label = if link_url.contains("github.com") [GitHub] else [Link]
+      #link(link_url)[#label]
+    ]
+    #context {
+      let l_gap = line_gap_state.get()
+      v(l_gap * 0.4)
+    }
     #list(..points)
   ])
 }
@@ -152,7 +184,13 @@
   category: "Skills",
   skills: "",
 ) = {
-  set block(above: line_gap, below: 0em)
-  set text(size: 0.94em)
-  pad(left: 0.8em, right: 0.4em, [*#category*: #skills])
+  context {
+    let first = is_first_skill.get()
+    let l_gap = line_gap_state.get()
+    let ab = if first { 0.45em } else { l_gap }
+    set block(above: ab, below: 0em)
+    set text(size: 0.94em)
+    pad(left: 0.8em, right: 0.4em, [*#category*: #skills])
+  }
+  is_first_skill.update(false)
 }

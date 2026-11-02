@@ -37,9 +37,10 @@ Synthesize a tailored Jake's Resume in Typst strictly grounded in commit-pinned 
      - If candidate has experience: Header -> Work Experience -> Projects -> Technical Skills -> Leadership -> Education.
      - If student with zero experience: Header -> Technical Skills -> Projects -> Leadership -> Education.
 
-6. **Compile & Enforce 1-Page Budget:**
+6. **Compile, Calibrate Line Gaps & Enforce Full-Page 1-Page Budget:**
    - Execute:
      ```bash
      bash engine/compile.sh targets/<company-slug>/<role-slug>/resume.typ targets/<company-slug>/<role-slug>/resume.pdf
      ```
    - Must output: `[+] PASSED: Exact 1-page budget verified.`
+   - **Full-Page Vertical Budget Calibration:** Inspect the compiled PDF and visual render (`.scratch/debug/resume_visual-1.png`). If the content leaves noticeable empty dead-space at the bottom, increase `line_gap` (and scale `section_gap` and `header_gap` proportionally in `em`) so the resume covers the full vertical page budget from top to bottom while strictly asserting `Pages: 1`.

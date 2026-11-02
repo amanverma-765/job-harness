@@ -17,8 +17,10 @@
 | **Gate 4** | Fluff Ban & Scannability | **PASSED** | Zero academic hyperbole; lead action verbs unbolded; verb diversity verified (no lead verb repeated > 2 times). |
 | **Gate 5** | ATS Rigor & Zero Em-Dashes | **PASSED** | 0 em-dashes (`---` or `—`) found; canonical branding verified (`GitHub`, `PostgreSQL`). |
 | **1:1 Proof** | Skill-to-Evidence Rule | **PASSED** | 100% of skills listed under `#skill_item` have supporting proof in experience/project bullets. |
-| **Budget** | Strict 1-Page Constraint | **PASSED** | `resume.pdf` verified at exactly 1 page via `pdfinfo`. |
+| **Budget** | Strict 1-Page Constraint | **PASSED** | `resume.pdf` verified at exactly 1 page via `pdfinfo` with 17 total bullets across experience and 3 projects (3 pointers each). |
+| **Page Fill** | Full-Page Vertical Calibration | **PASSED** | Scaled `line_gap = 0.85em`, `section_gap = 1.09em`, `header_gap = 1.58em`; content covers 94.4% of vertical page height with balanced whitespace. |
 | **Stream** | PDF Stream Extraction | **PASSED** | Verified via `pdftotext -layout`: clean single-column flow, zero glyph drops, valid contact fields. |
+| **KB Rigor** | 3-Pointer Project Minimum | **PASSED** | All 3 selected repositories contain >=3 commit-grounded defensible bullets in `core/projects_corpus.yaml`. |
 
 ---
 

@@ -60,7 +60,6 @@
     project_item(
       name: proj.name,
       skills: proj.at("skills", default: ""),
-      date: format_date(proj.date),
       link_url: proj.at("link_url", default: ""),
       ..pts
     )
@@ -86,8 +85,38 @@
   }
 }
 
-#let yml_resume(data) = {
-  show: resume
+#let yml_resume(
+  data,
+  line_gap: none,
+  section_gap: none,
+  header_gap: none
+) = {
+  let sp = data.at("spacing", default: (:))
+  let lg = if line_gap != none {
+    line_gap
+  } else if "line_gap" in sp {
+    eval(sp.line_gap)
+  } else {
+    0.70em
+  }
+
+  let sg = if section_gap != none {
+    section_gap
+  } else if "section_gap" in sp {
+    eval(sp.section_gap)
+  } else {
+    0.90em
+  }
+
+  let hg = if header_gap != none {
+    header_gap
+  } else if "header_gap" in sp {
+    eval(sp.header_gap)
+  } else {
+    1.30em
+  }
+
+  show: resume.with(line_gap: lg, section_gap: sg, header_gap: hg)
 
   let has_experience = "experience" in data and data.experience != none and data.experience.len() > 0
 
