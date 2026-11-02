@@ -39,10 +39,16 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
     4. Leadership & Activities (if present)
     5. Education (Strictly placed at the very bottom)
 
-### 2.2 The 10.6x Requisition Title Multiplier
+### 2.2 The 10.6x Requisition Title Multiplier & Title Sanitization
 - ATS platforms run literal substring queries against applicant title fields.
-- Extract the exact, literal job requisition title from the posting (e.g. `Senior Distributed Systems Engineer`, `AI/ML Engineering Intern`).
-- Inject this exact title into:
+- Extract the **relevant, canonical functional engineering title** from the posting (e.g. `Software Development Engineer Intern`, `Senior Distributed Systems Engineer`), NOT the raw portal string.
+- **Mandatory Title Sanitization:** Strip all recruiting team noise, organizational boilerplate, and posting metadata:
+  - Remove recruiter/talent team tags (e.g. `, Amazon University Talent Acquisition`, `Campus Recruiting`).
+  - Remove requisition/job IDs (e.g. `Req-12345`, `Job ID: 2541290`).
+  - Remove seasonal/cohort markers (e.g. `Summer 2025`, `Fall 2024`, `Class of 2025`).
+  - Remove modality/location tags in parentheses (e.g. `(Remote)`, `(Hybrid)`, `(US)`).
+  - Expand internal shorthand/acronyms to standard titles (e.g. `SDE I Intern` -> `Software Development Engineer Intern`, `SWE` -> `Software Engineer`).
+- Inject this clean, relevant title into:
   - The resume header subtitle (`target_title: "..."`).
   - The most recent role subtitle if functionally aligned.
 
