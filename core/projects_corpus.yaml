@@ -3,6 +3,129 @@
 schema_version: "1.0.0"
 
 repositories:
+  - id: "watchtower"
+    name: "WatchTower"
+    owner: "amanverma-765"
+    repo_url: "https://github.com/amanverma-765/WatchTower"
+    commit_sha: "da2c112b0798279baab4c2f8188b7af36703f3af"
+    last_indexed: "2026-11-03T12:00:00Z"
+    domain: "Android / Local-First Systems & Monitoring"
+    architecture_patterns:
+      - "Local-first DOM change detection via Myers diff algorithm"
+      - "Concurrent background inspection via WorkManager and Kotlin Coroutines"
+      - "Room Database with reactive Flow pipelines and OkHttp custom SSL trust"
+    empirical_metrics:
+      benchmarks:
+        - metric: "UI frame rate"
+          value: "Consistent 60 FPS"
+        - metric: "Concurrency pool"
+          value: "1-20 simultaneous requests"
+        - metric: "WorkManager schedule interval"
+          value: "15m to 24h configurable intervals"
+    verified_stack:
+      - "Kotlin"
+      - "Jetpack Compose"
+      - "WorkManager"
+      - "Coroutines"
+      - "Flow"
+      - "Room"
+      - "OkHttp"
+      - "WebView"
+    defensible_bullets:
+      - "Developed a local-first Android web monitoring app utilizing MD5 checksum hashing and Myers diff algorithm to track DOM modifications and dispatch real-time push alerts."
+      - "Optimized concurrent network inspection via Kotlin Coroutines with semaphore rate limiting, executing background crawls via WorkManager while maintaining a consistent 60 FPS UI frame rate."
+      - "Architected persistent storage using Room Database with Flow observables and integrated OkHttp client with custom SSL trust managers and automated WebView visual diff rendering."
+
+  - id: "modflix"
+    name: "modflix"
+    owner: "amanverma-765"
+    repo_url: "https://github.com/amanverma-765/modflix"
+    commit_sha: "97069711f2a9e052158e3a22e7528ca94b378feb"
+    last_indexed: "2026-11-03T12:00:00Z"
+    domain: "Mobile Systems / Media Streaming & Web Scraping"
+    architecture_patterns:
+      - "Multi-module architecture isolating scraping into independent :cassini module"
+      - "Dynamic mirror domain resolution with resilient fallback extraction"
+      - "Ktor HTTP client abstraction and Koin dependency injection"
+    empirical_metrics:
+      benchmarks:
+        - metric: "Provider coverage"
+          value: "8+ streaming providers"
+        - metric: "Domain synchronization"
+          value: "Automated CI/CD via GitHub Actions"
+    verified_stack:
+      - "Kotlin"
+      - "Jetpack Compose"
+      - "Ktor"
+      - "Koin"
+      - "KSoup"
+      - "ExoPlayer"
+      - "GitHub Actions"
+    defensible_bullets:
+      - "Architected a multi-module streaming application in Jetpack Compose, isolating network scraping into an independent media-parsing library module (:cassini) with clean unit testing."
+      - "Engineered an asynchronous web scraper with KSoup and Ktor, implementing dynamic domain mirror resolution across 8+ streaming providers with resilient link extraction and IMDb metadata enrichment."
+      - "Built a background automated domain-resolution pipeline via GitHub Actions and custom Python scrapers, synchronizing live mirror endpoints to ensure continuous media streaming uptime."
+
+  - id: "oak"
+    name: "oak"
+    owner: "amanverma-765"
+    repo_url: "https://github.com/amanverma-765/oak"
+    commit_sha: "1c72f8759cdfe1f6510f7f634ab08ac9bb344d5a"
+    last_indexed: "2026-11-03T12:00:00Z"
+    domain: "Kotlin Multiplatform (KMP) / E-Commerce SDK"
+    architecture_patterns:
+      - "Clean Architecture with platform-agnostic domain use cases"
+      - "Multi-engine Ktor HTTP client abstractions for Android, iOS, and JVM"
+      - "Custom Gradle convention plugins for multi-target publication"
+    empirical_metrics:
+      benchmarks:
+        - metric: "Platform targets"
+          value: "Android, iOS, and JVM"
+        - metric: "Catalog coverage"
+          value: "5+ major e-commerce platforms"
+    verified_stack:
+      - "Kotlin"
+      - "Kotlin Multiplatform (KMP)"
+      - "Compose Multiplatform (CMP)"
+      - "Ktor"
+      - "Koin"
+      - "Gradle (Kotlin DSL)"
+    defensible_bullets:
+      - "Engineered an open-source Kotlin Multiplatform library targeting Android, iOS, and JVM to extract and normalize catalog and pricing data across 5+ major e-commerce platforms."
+      - "Implemented Clean Architecture with platform-agnostic domain use cases, multi-engine Ktor HTTP client abstractions, and custom Gradle convention plugins for automated Maven Central publication."
+      - "Abstracted multi-platform e-commerce pagination and product schema mappers using Koin dependency injection, decoupling network scrapers from client consumer applications."
+
+  - id: "cypher-x"
+    name: "cypher-x"
+    owner: "amanverma-765"
+    repo_url: "https://github.com/amanverma-765/cypher-x"
+    commit_sha: "e08514989a7b86c60c7e55771a8adbe1ac03b982"
+    last_indexed: "2026-11-03T12:00:00Z"
+    domain: "Mobile Security / Cryptographic Storage"
+    architecture_patterns:
+      - "Hardware-backed AndroidKeyStore AES-256-GCM authenticated encryption"
+      - "Biometric authentication gates with AndroidX BiometricPrompt"
+      - "MVI unidirectional data flow and Room encrypted local persistence"
+    empirical_metrics:
+      benchmarks:
+        - metric: "Encryption standard"
+          value: "AES-256-GCM with random IVs"
+        - metric: "Offline persistence"
+          value: "100% local-first storage in Room"
+    verified_stack:
+      - "Kotlin"
+      - "Jetpack Compose"
+      - "AndroidKeyStore"
+      - "Biometrics"
+      - "Room"
+      - "MVI"
+      - "Koin"
+      - "Coroutines"
+    defensible_bullets:
+      - "Built an offline-first encrypted password manager utilizing hardware-backed AndroidKeyStore and AES-256-GCM authenticated encryption with cryptographically random initialization vectors."
+      - "Implemented biometric authentication gates using AndroidX BiometricPrompt and MVI unidirectional data flow to secure local Room database persistence against unauthorized access."
+      - "Architected a modular Clean Architecture domain layer with Koin dependency injection and reactive Flow pipelines, managing secure credential lifecycle states across UI components."
+
   - id: "ncert-rag-evals"
     name: "ncert-rag-evals"
     owner: "amanverma-765"

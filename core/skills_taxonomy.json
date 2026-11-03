@@ -5,49 +5,80 @@
     "languages": {
       "display_name": "Languages & Core",
       "skills": {
-        "Python": { "aliases": ["Python3", "py"], "ontology": "Software Developers (15-1252.00)" },
         "Kotlin": { "aliases": ["Kotlin JVM", "KT"], "ontology": "Software Developers (15-1252.00)" },
-        "Java": { "aliases": ["Java JVM", "JDK"], "ontology": "Software Developers (15-1252.00)" },
+        "Python": { "aliases": ["Python3", "py"], "ontology": "Software Developers (15-1252.00)" },
+        "SQL": { "aliases": ["PostgreSQL", "SQL (Postgres)", "SQLite"], "ontology": "Database Administration (15-1242.00)" },
+        "DSA": { "aliases": ["Data Structures & Algorithms"], "ontology": "Computer Science Foundations" },
+        "OOP": { "aliases": ["Object-Oriented Programming"], "ontology": "Computer Science Foundations" },
+        "DBMS": { "aliases": ["Database Management Systems"], "ontology": "Computer Science Foundations" },
+        "Operating Systems": { "aliases": ["OS"], "ontology": "Computer Science Foundations" },
         "Go": { "aliases": ["Golang"], "ontology": "Systems Software (15-1251.00)" },
         "Rust": { "aliases": ["Rustlang"], "ontology": "Systems Software (15-1251.00)" },
         "TypeScript": { "aliases": ["TS"], "ontology": "Web Development (15-1254.00)" },
         "C++": { "aliases": ["CPP", "C/C++"], "ontology": "Systems Software (15-1251.00)" },
-        "SQL": { "aliases": ["PostgreSQL", "SQL (Postgres)", "SQLite"], "ontology": "Database Administration (15-1242.00)" },
         "Bash": { "aliases": ["Shell", "Zsh"], "ontology": "Systems Software (15-1251.00)" }
       }
     },
-    "infrastructure": {
-      "display_name": "Cloud & Infrastructure",
+    "mobile_and_multiplatform": {
+      "display_name": "Mobile & Multiplatform",
       "skills": {
-        "Docker": { "aliases": ["Containerization"], "ontology": "DevOps & SRE" },
-        "Kubernetes": { "aliases": ["K8s", "Container Orchestration"], "ontology": "Cloud Architecture" },
-        "AWS": { "aliases": ["Amazon Web Services"], "ontology": "Cloud Platforms" },
-        "GCP": { "aliases": ["Google Cloud Platform"], "ontology": "Cloud Platforms" },
-        "Terraform": { "aliases": ["IaC", "Infrastructure as Code"], "ontology": "DevOps & SRE" },
-        "Git": { "aliases": ["GitHub", "Version Control"], "ontology": "Software Development" }
+        "Android SDK": { "aliases": ["Android"], "ontology": "Mobile Application Development" },
+        "Jetpack Compose": { "aliases": ["Compose"], "ontology": "Modern Declarative UI" },
+        "Kotlin Multiplatform (KMP)": { "aliases": ["KMP", "Kotlin Multiplatform"], "ontology": "Cross-Platform Systems" },
+        "Compose Multiplatform (CMP)": { "aliases": ["CMP", "Compose Multiplatform"], "ontology": "Cross-Platform UI" },
+        "Retrofit": { "aliases": ["Square Retrofit"], "ontology": "HTTP Client Libraries" },
+        "Room": { "aliases": ["Room Database", "Room KMP", "Room SQLite"], "ontology": "Local Persistence" },
+        "SQLite": { "aliases": ["SQLite3", "FTS5", "SQLite WAL"], "ontology": "Embedded Databases" },
+        "WorkManager": { "aliases": ["Android WorkManager"], "ontology": "Background Task Scheduling" },
+        "Jetpack Navigation": { "aliases": ["Compose Navigation"], "ontology": "Application Navigation" }
       }
     },
-    "databases": {
-      "display_name": "Databases & Storage",
+    "backend_and_cloud": {
+      "display_name": "Backend & Cloud",
       "skills": {
-        "PostgreSQL": { "aliases": ["Postgres", "psql"], "ontology": "Relational Databases" },
-        "Redis": { "aliases": ["Redis Cache"], "ontology": "In-Memory Data Stores" },
-        "SQLite": { "aliases": ["SQLite3", "FTS5"], "ontology": "Embedded Databases" },
-        "ChromaDB": { "aliases": ["Chroma"], "ontology": "Vector Databases" }
-      }
-    },
-    "frameworks_and_tools": {
-      "display_name": "Frameworks & Developer Tools",
-      "skills": {
+        "Spring Boot": { "aliases": ["Spring"], "ontology": "Enterprise Web Frameworks" },
+        "Spring Data JPA": { "aliases": ["Spring Data", "JPA", "Hibernate"], "ontology": "ORM & Data Access" },
+        "Spring Security": { "aliases": ["Spring Auth"], "ontology": "Application Security" },
+        "Ktor": { "aliases": ["Ktor Client", "Ktor Server"], "ontology": "Kotlin Asynchronous Framework" },
         "FastAPI": { "aliases": ["FastAPI REST"], "ontology": "Web Frameworks" },
-        "Pydantic AI": { "aliases": ["Pydantic"], "ontology": "AI Agent Frameworks" },
-        "PyTorch": { "aliases": ["Torch"], "ontology": "Deep Learning" },
-        "Celery": { "aliases": ["Async Worker"], "ontology": "Task Queues" },
-        "Hugging Face": { "aliases": ["Transformers", "Sentence-Transformers"], "ontology": "NLP & AI" },
-        "pytest": { "aliases": ["Unit Testing", "Test Automation"], "ontology": "QA & Testing" },
-        "Model Context Protocol (MCP)": { "aliases": ["MCP"], "ontology": "AI Protocol Standards" },
-        "Matplotlib": { "aliases": ["matplotlib", "data visualization"], "ontology": "Data Visualization & Analysis" },
-        "Jupyter": { "aliases": ["Jupyter Notebooks", "IPython"], "ontology": "Interactive Computing & Notebooks" }
+        "Celery": { "aliases": ["Celery Worker"], "ontology": "Task Queues" },
+        "Redis": { "aliases": ["Redis Cache"], "ontology": "In-Memory Data Stores" },
+        "PostgreSQL": { "aliases": ["Postgres", "psql"], "ontology": "Relational Databases" },
+        "REST APIs": { "aliases": ["RESTful APIs", "REST"], "ontology": "API Architecture" },
+        "WebSockets": { "aliases": ["WebSocket"], "ontology": "Real-time Protocols" },
+        "Firebase": { "aliases": ["FCM", "Firebase Cloud Messaging"], "ontology": "Cloud Services" },
+        "Docker": { "aliases": ["Containerization"], "ontology": "DevOps & SRE" },
+        "Kubernetes": { "aliases": ["K8s"], "ontology": "Cloud Architecture" }
+      }
+    },
+    "architecture_and_async": {
+      "display_name": "Architecture & Async",
+      "skills": {
+        "Clean Architecture": { "aliases": ["Domain-Driven Design"], "ontology": "Software Architecture Patterns" },
+        "MVI": { "aliases": ["Model-View-Intent", "Unidirectional Data Flow"], "ontology": "UI Architecture Patterns" },
+        "MVVM": { "aliases": ["Model-View-ViewModel"], "ontology": "UI Architecture Patterns" },
+        "Multi-Module Architecture": { "aliases": ["Modular Architecture"], "ontology": "Software Engineering Practices" },
+        "Kotlin Coroutines": { "aliases": ["Coroutines"], "ontology": "Asynchronous Concurrency" },
+        "Flow": { "aliases": ["Kotlin Flow", "Cold Flow"], "ontology": "Reactive Streams" },
+        "StateFlow": { "aliases": ["SharedFlow", "State Holders"], "ontology": "Reactive State Management" },
+        "Multithreading": { "aliases": ["Concurrency", "Thread Safety"], "ontology": "Systems Foundations" },
+        "Dependency Injection": { "aliases": ["DI"], "ontology": "Software Design Principles" },
+        "Hilt": { "aliases": ["Dagger-Hilt"], "ontology": "Android Dependency Injection" },
+        "Koin": { "aliases": ["Koin DI"], "ontology": "Pragmatic Kotlin Dependency Injection" }
+      }
+    },
+    "testing_and_tooling": {
+      "display_name": "Testing & Tooling",
+      "skills": {
+        "JUnit 5": { "aliases": ["JUnit", "JUnit Jupiter"], "ontology": "Testing Frameworks" },
+        "MockK": { "aliases": ["Mocking"], "ontology": "Kotlin Mocking Library" },
+        "Kotest": { "aliases": ["Kotest Assertions"], "ontology": "Kotlin Testing Framework" },
+        "Gradle (Kotlin DSL)": { "aliases": ["Gradle", "build.gradle.kts"], "ontology": "Build Systems" },
+        "Git": { "aliases": ["GitHub", "Version Control"], "ontology": "Software Development" },
+        "GitHub Actions": { "aliases": ["GHA", "CI/CD"], "ontology": "Continuous Integration" },
+        "Android Studio": { "aliases": ["IDE"], "ontology": "Developer Tooling" },
+        "Postman": { "aliases": ["API Testing"], "ontology": "Developer Tooling" },
+        "pytest": { "aliases": ["Pytest"], "ontology": "Testing Frameworks" }
       }
     }
   },

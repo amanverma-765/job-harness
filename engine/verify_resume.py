@@ -209,6 +209,8 @@ class ResumeVerifier:
         """Gate 4: Zero Fluff, Weak Verbs, and Lead Action Verb Diversity."""
         lead_verbs = {}
         for bullet, line_no in bullets:
+            if line_no == 0:
+                continue
             clean = re.sub(r"[*_\\]", "", bullet).strip()
 
             # Check weak verbs

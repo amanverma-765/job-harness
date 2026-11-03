@@ -6,61 +6,74 @@ personal:
   linkedin: "linkedin.com/in/amanverma765"
   site: "github.com/amanverma-765"
 
-skills:
-  - category: "Languages & Core"
-    skills: "Python, Kotlin, Java, SQL, Bash, DSA, OOP, DBMS, Operating Systems"
-  - category: "AI & Agent Frameworks"
-    skills: "Pydantic AI, Model Context Protocol (MCP), LangGraph, LangChain, LlamaIndex, Ollama, Google ADK"
-  - category: "Backend Frameworks"
-    skills: "FastAPI, Celery, Asyncio, SQLAlchemy, Alembic, Nginx, REST APIs"
-  - category: "Databases & Vector Stores"
-    skills: "PostgreSQL, Redis, ChromaDB, SQLite (WAL)"
-  - category: "Web Scraping & Automation"
-    skills: "Selectolax, BeautifulSoup4, httpx, Playwright, Selenium, curl-cffi"
-  - category: "Evals & Observability"
-    skills: "OpenTelemetry, Langfuse, Logfire, Ragas, Pytest, Matplotlib, Jupyter Notebooks"
-  - category: "Developer Tools & DevOps"
-    skills: "Docker, Git, GitHub Actions, Postman, Linux, uv, Ruff"
+spacing:
+  line_gap: "0.68em"
+  section_gap: "0.78em"
+  header_gap: "1.00em"
 
 experience:
-  - role: "Software Development Engineer Intern"
+  - role: "Software Engineer Intern"
     name: "LexoLegal"
     location: "Remote"
     date: "Jan 2026 - Jun 2026"
     points:
-      - "Architected asynchronous REST APIs in *FastAPI*, *SQLAlchemy 2.0*, and *PostgreSQL* behind an *Nginx* reverse proxy, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and *Alembic* schema migrations."
-      - "Built and deployed 'Munshi', an autonomous legal assistant using *Pydantic AI* and *FastAPI*, resolving multi-turn case inquiries over WhatsApp with *sub-2s latency* via tool-calling execution loops."
-      - "Integrated *Model Context Protocol (MCP)* clients with *Pydantic AI* to interface Google Drive and Google Calendar tool servers, orchestrating legal brief retrieval and hearing scheduling within authenticated sessions."
-      - "Eliminated cross-tenant prompt injection risks by isolating verified user identity inside *Pydantic AI* AgentDeps rather than LLM tool parameters, hard-bounding agent access to sandboxed workspace tools."
-      - "Prevented race conditions and dropped turns from rapid WhatsApp messages by designing *Celery* workers with atomic *Redis* distributed locks and non-blocking 10s countdown task requeues (90-retry ceiling)."
-      - "Automated daily judicial data ingestion across all 25 High Courts and 743 District Courts via *Celery* workers with *Selectolax* DOM extractors and *PostgreSQL* batch inserts to keep agent case records synchronized."
+      - "Architected a cross-platform legal case tracking application (Android/iOS) using *Kotlin Multiplatform (KMP)*, *Compose Multiplatform*, and *Koin*, sharing *85%+ core logic* with *Room KMP* for offline-first data sync."
+      - "Engineered an automated case-tracking and push-notification alert pipeline integrating *FastAPI* and *Celery* sweep workers with *Firebase Cloud Messaging*, delivering daily cause-list updates directly to client devices."
+      - "Built an automated conversational legal assistant utilizing *Pydantic AI* and Meta Cloud API webhooks with HMAC-SHA256 verification, processing user case status inquiries with *sub-2s response latency*."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Shipped Coupit, a cross-platform POS loyalty app using *Compose Multiplatform (CMP)* and *Spring Boot*, engineering a custom physics-driven Canvas spin wheel and dynamic *Apple Wallet* pass generation via *PassKit*."
+      - "Implemented Square POS *OAuth 2.0* authentication and webhook ingestion pipelines in *Spring Boot* and *Spring Data JPA*, automating merchant onboarding in *under 2 minutes* with idempotent transaction verification."
+      - "Developed a concurrent trademark search and scraping engine in *Kotlin*, *Spring Boot*, and *PostgreSQL*, leveraging *Coroutines* with custom dispatchers, rate-limited HTTP connections, and indexed *trigram search* queries."
 
 projects:
-  - name: "ncert-rag-evals"
-    skills: "Python 3.14, Jupyter Notebooks, uv, SQLite FTS5, ChromaDB, Pytest"
-    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+  - name: "WatchTower"
+    skills: "Kotlin, Jetpack Compose, WorkManager, Coroutines"
+    link_url: "https://github.com/amanverma-765/WatchTower"
     points:
-      - "Constructed an empirical retrieval benchmark across 17 STEM textbooks in *Python* and *Jupyter Notebooks*, implementing custom hybrid search from scratch in *SQLite FTS5* and *ChromaDB* instead of high-level LlamaIndex abstractions to profile 8 retrieval strategies on raw CPU latency."
-      - "Proved that fusing BM25 with dense embeddings via Reciprocal Rank Fusion (RRF) achieved *86.9% Recall@5 in 8.9ms on CPU*, matching LLM query expansion while cutting latency by *99.8%*."
-      - "Engineered a document parser indexing 4,429 section-aware chunks into *SQLite FTS5* and *ChromaDB*; validated statistical significance via paired McNemar tests (*p = 0.0021*) across 92 unit tests in *Pytest*."
-  - name: "doubtless"
-    skills: "Pydantic AI, FastAPI, Multimodal RAG, Groq Whisper, Celery, Redis, Logfire"
-    link_url: "https://github.com/amanverma-765/doubtless"
+      - "Developed a local-first Android web monitoring app utilizing MD5 checksum hashing and *Myers diff algorithm* to track DOM modifications and dispatch real-time push alerts."
+      - "Optimized concurrent network inspection via *Kotlin Coroutines* with semaphore rate limiting, executing background crawls via *WorkManager* while maintaining a consistent *60 FPS UI frame rate*."
+
+  - name: "Modflix"
+    skills: "Kotlin, Jetpack Compose, Ktor, Koin, KSoup"
+    link_url: "https://github.com/amanverma-765/modflix"
     points:
-      - "Engineered an interactive lecture doubt-solver and AI study workspace in *Pydantic AI* and *FastAPI*, fusing blackboard video frames with 45s playback dialogue windows to stream real-time solutions for visual STEM queries via SSE."
-      - "Designed an asynchronous 4-stage media ingestion pipeline (PipelineRunner) in *Celery* and *Redis* that transcodes HLS streams, slices 16kHz mono audio (<15MB/hr), and transcribes lectures in <10s via *Groq Whisper-Large-V3*."
-      - "Architected the async data layer with thread-safe *SQLite WAL* repositories and *Redis* to serve concurrent agent queries; containerized services and instrumented distributed tracing across agent runs via *OpenTelemetry* and *Logfire* (151 tests)."
-  - name: "vectorless-rag"
-    skills: "Python, Jupyter Notebooks, Matplotlib, Pydantic AI, Ollama, ChromaDB, PyMuPDF"
-    link_url: "https://github.com/amanverma-765/vectorless-rag"
+      - "Architected a multi-module streaming application in *Jetpack Compose*, isolating network scraping into an independent media-parsing library module (*:cassini*) with clean unit testing."
+      - "Engineered an asynchronous web scraper with *KSoup* and *Ktor*, implementing dynamic domain mirror resolution across *8+ streaming providers* with resilient link extraction and IMDb metadata enrichment."
+
+  - name: "Oak"
+    skills: "Kotlin Multiplatform (KMP), Compose Multiplatform, Ktor, Koin"
+    link_url: "https://github.com/amanverma-765/oak"
     points:
-      - "Evaluated dense vector search against LLM-based page indexing on benchmark documents using *Pydantic AI*, configuring *Ollama* as a local testbed alongside cloud LLMs across 18 benchmark queries."
-      - "Benchmarked retrieval trade-offs in *Jupyter Notebooks* using *Matplotlib*: analyzed query failure cases and plotted the *2.7x token cost* and *2x latency* tradeoff (while verifying *100% retrieval hit rate* and *0.85 citation precision*)."
-      - "Built a zero-framework document ingestion engine in *Python* using *PyMuPDF* and *ChromaDB*, streaming page-aligned document windows with bounded memory (*<200MB*) to eliminate context boundary truncation and cut extraction latency by *40%*."
+      - "Authored an open-source *Kotlin Multiplatform* library targeting Android, iOS, and JVM to extract and normalize catalog and pricing data across *5+ major e-commerce platforms*."
+      - "Structured *Clean Architecture* with platform-agnostic domain use cases, multi-engine *Ktor* HTTP client abstractions, and custom *Gradle convention plugins* for automated publication."
+
+  - name: "Cypher-X"
+    skills: "Kotlin, Jetpack Compose, AndroidKeyStore, Biometrics, Room"
+    link_url: "https://github.com/amanverma-765/cypher-x"
+    points:
+      - "Built an offline-first encrypted password manager utilizing hardware-backed *AndroidKeyStore* and *AES-256-GCM* authenticated encryption with cryptographically random initialization vectors."
+      - "Implemented biometric authentication gates using *AndroidX BiometricPrompt* and *MVI* unidirectional data flow to secure local *Room* database persistence against unauthorized access."
+
+skills:
+  - category: "Languages & Core"
+    skills: "Kotlin, Python, SQL, DSA, OOP, DBMS, Operating Systems"
+  - category: "Mobile & Multiplatform"
+    skills: "Android SDK, Jetpack Compose, Kotlin Multiplatform (KMP), Compose Multiplatform (CMP), Retrofit, Room, SQLite, WorkManager, Jetpack Navigation"
+  - category: "Backend & Cloud"
+    skills: "Spring Boot, Spring Data JPA, Spring Security, Ktor, FastAPI, Celery, Redis, PostgreSQL, REST APIs, WebSockets, Firebase"
+  - category: "Architecture & Async"
+    skills: "Clean Architecture, MVI, MVVM, Multi-Module Architecture, Kotlin Coroutines, Flow, StateFlow, Multithreading, Dependency Injection, Hilt, Koin"
+  - category: "Testing & Tooling"
+    skills: "JUnit 5, MockK, Kotest, Gradle (Kotlin DSL), Git, GitHub Actions, Docker, Android Studio, Postman"
 
 leadership:
-  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts and modern AI developer tools."
-  - "Coordinated placement drives and corporate outreach at CTPC (Central Training & Placement Cell), managing logistics and interview scheduling for recruiters and 100+ candidates."
+  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts, prompt engineering, and modern AI developer tools."
+  - "Coordinated placement drives and corporate outreach as Student Coordinator at CTPC (Central Training & Placement Cell), managing logistics and interview scheduling for recruiters and 100+ candidates."
   - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
 
 education:
