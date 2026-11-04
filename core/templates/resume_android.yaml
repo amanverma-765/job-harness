@@ -8,27 +8,27 @@ personal:
 
 spacing:
   line_gap: "0.68em"
-  section_gap: "0.78em"
-  header_gap: "1.00em"
+  section_gap: "0.76em"
+  header_gap: "0.95em"
 
 experience:
   - role: "Software Engineer Intern"
     name: "LexoLegal"
     location: "Remote"
-    date: "Jan 2026 - Jun 2026"
+    date: "Nov 2025 - July 2026"
     points:
-      - "Architected a cross-platform case management client (Android/iOS) in *Kotlin Multiplatform (KMP)* and *Compose Multiplatform*, structuring an adaptive shell on *Jetpack Navigation 3*, *Koin DI*, and *Room KMP* with *85%+ code sharing* (168 unit tests)."
-      - "Automated an idempotent 12-hour case refresh sweep in *FastAPI* and *Celery* with *Firebase Cloud Messaging*, delivering real-time push notifications directly to client devices with zero duplicate alerts."
-      - "Integrated *Model Context Protocol (MCP)* clients with *Pydantic AI* to automate brief discovery and scheduling via Meta Cloud webhooks with HMAC-SHA256 verification (*sub-2s response latency*)."
+      - "Architected a cross-platform case management client (Android/iOS) in *Kotlin Multiplatform (KMP)* and *Compose Multiplatform*, structuring an adaptive shell on *Jetpack Navigation 3*, *Koin DI*, and *Room KMP* with *85%+ code sharing* (*168 unit tests*)."
+      - "Engineered an automated 12-hour case refresh sweep in *FastAPI*, *Celery*, and *Redis* with an idempotent diffing engine, delivering real-time push alerts via *Firebase Cloud Messaging* across *25 High Courts* with *zero duplicate alerts*."
+      - "Deployed 'Munshi', an autonomous legal assistant in *Pydantic AI* and *FastAPI* interfacing *Model Context Protocol (MCP)* servers, automating legal brief retrieval and hearing scheduling with *sub-2s latency* across *38 REST endpoints* (*1,024 pytests*)."
 
   - role: "Freelance Developer"
     name: "Webxela"
     location: "Remote"
     date: "Oct 2024 - Jan 2025"
     points:
-      - "Shipped Coupit, a cross-platform POS loyalty app using *Compose Multiplatform (CMP)* and *Spring Boot*, engineering a custom physics-driven Canvas spin wheel and dynamic *Apple Wallet* pass generation via *PassKit*."
-      - "Implemented Square POS *OAuth 2.0* authentication and webhook ingestion pipelines in *Spring Boot* and *Spring Data JPA*, automating merchant onboarding in *under 2 minutes* with idempotent transaction verification."
-      - "Developed a concurrent trademark search and scraping engine in *Kotlin*, *Spring Boot*, and *PostgreSQL*, leveraging *Coroutines* with custom dispatchers, rate-limited HTTP connections, and indexed *trigram search* queries."
+      - "Shipped Coupit, a cross-platform POS loyalty client in *Compose Multiplatform (CMP)*, engineering a *60 FPS* physics-driven Canvas spin wheel, *Koin DI*, and dynamic on-device QR voucher generation across *Android and iOS*."
+      - "Integrated Square POS *OAuth 2.0* and webhook ingestion in *Spring Boot* and *PostgreSQL* (*7 relational entities*), automating merchant onboarding in *under 2 minutes* with dynamic *Apple Wallet* pass generation via *PassKit*."
+      - "Developed a concurrent trademark search engine in *Kotlin* and *Spring Boot*, executing *25 parallel coroutine worker threads* with connection pooling and *Flyway* batch persistence to sweep *5,000-record chunks* across public registries."
 
 projects:
   - name: "WatchTower"
@@ -37,20 +37,15 @@ projects:
     points:
       - "Developed a local-first Android web monitoring app utilizing MD5 checksum hashing and *Myers diff algorithm* to track DOM modifications and dispatch real-time push alerts."
       - "Optimized concurrent network inspection via *Kotlin Coroutines* with semaphore rate limiting, executing background crawls via *WorkManager* while maintaining a consistent *60 FPS UI frame rate*."
-
-  - name: "Modflix"
-    skills: "Kotlin, Jetpack Compose, Ktor, Koin, KSoup"
-    link_url: "https://github.com/amanverma-765/modflix"
-    points:
-      - "Architected a multi-module streaming application in *Jetpack Compose*, isolating network scraping into an independent media-parsing library module (*:cassini*) with clean unit testing."
-      - "Engineered an asynchronous web scraper with *KSoup* and *Ktor*, implementing dynamic domain mirror resolution across *8+ streaming providers* with resilient link extraction and IMDb metadata enrichment."
+      - "Constructed persistent storage using *Room Database* with *Flow* observables and integrated *OkHttp* client with custom SSL trust managers, rendering visual diffs with bounded memory (*<150MB*)."
 
   - name: "Oak"
     skills: "Kotlin Multiplatform (KMP), Compose Multiplatform, Ktor, Koin"
     link_url: "https://github.com/amanverma-765/oak"
     points:
-      - "Authored an open-source *Kotlin Multiplatform* library targeting Android, iOS, and JVM to extract and normalize catalog and pricing data across *5+ major e-commerce platforms*."
+      - "Authored an open-source *Kotlin Multiplatform* library targeting *Android, iOS, and JVM* to extract and normalize catalog and pricing data across *5+ major e-commerce platforms*."
       - "Structured *Clean Architecture* with platform-agnostic domain use cases, multi-engine *Ktor* HTTP client abstractions, and custom *Gradle convention plugins* for automated publication."
+      - "Abstracted multi-platform e-commerce pagination and product schema mappers using *Koin DI*, decoupling network scrapers to achieve *100% shared business logic* across consumer client apps."
 
   - name: "Cypher-X"
     skills: "Kotlin, Jetpack Compose, AndroidKeyStore, Biometrics, Room"
@@ -58,6 +53,7 @@ projects:
     points:
       - "Built an offline-first encrypted password manager utilizing hardware-backed *AndroidKeyStore* and *AES-256-GCM* authenticated encryption with cryptographically random initialization vectors."
       - "Implemented biometric authentication gates using *AndroidX BiometricPrompt* and *MVI* unidirectional data flow to secure local *Room* database persistence against unauthorized access."
+      - "Engineered a modular Clean Architecture domain layer with *Koin DI* and reactive *Flow* pipelines, managing secure credential lifecycle states with *100% local-first storage* in *Room*."
 
 skills:
   - category: "Languages & Core"

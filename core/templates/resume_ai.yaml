@@ -15,7 +15,7 @@ experience:
   - role: "Software Development Engineer Intern"
     name: "LexoLegal"
     location: "Remote"
-    date: "Jan 2026 - Jun 2026"
+    date: "Nov 2025 - July 2026"
     points:
       - "Architected 38 asynchronous REST API endpoints in *FastAPI* and *SQLAlchemy 2.0* across 12 relational tables behind *Nginx*, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and *Alembic* migrations (1,024 pytest suites)."
       - "Deployed 'Munshi', an autonomous WhatsApp legal assistant in *Pydantic AI* and *FastAPI*, orchestrating *Model Context Protocol (MCP)* clients across Google Drive and Calendar servers to automate brief discovery and hearing scheduling with *sub-2s latency*."

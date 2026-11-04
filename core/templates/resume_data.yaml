@@ -15,7 +15,7 @@ experience:
   - role: "Software Engineer Intern"
     name: "LexoLegal"
     location: "Remote"
-    date: "Jan 2026 - Jun 2026"
+    date: "Nov 2025 - July 2026"
     points:
       - "Architected a cross-platform legal case tracking application (Android/iOS) using *Kotlin Multiplatform (KMP)*, *Compose Multiplatform*, and *Koin*, sharing *85%+ core logic* with *Room KMP* for offline-first data sync."
       - "Engineered an automated case-tracking and push-notification alert pipeline integrating *FastAPI* and *Celery* sweep workers with *Firebase Cloud Messaging*, delivering daily cause-list updates directly to client devices."
