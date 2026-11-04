@@ -286,6 +286,7 @@ class ResearchComplianceVerifier:
 
 
 if __name__ == "__main__":
-    verifier = ResearchComplianceVerifier()
+    target = Path(sys.argv[1]) if len(sys.argv) > 1 else None
+    verifier = ResearchComplianceVerifier(target)
     success = verifier.run()
     sys.exit(0 if success else 1)

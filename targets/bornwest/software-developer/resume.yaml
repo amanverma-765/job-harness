@@ -1,0 +1,72 @@
+personal:
+  name: "Aman Verma"
+  target_title: "Software Developer"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+skills:
+  - category: "Languages & Core"
+    skills: "Python, Kotlin, Java, SQL, Bash, DSA"
+  - category: "Backend & Data Systems"
+    skills: "FastAPI, Spring Boot, PostgreSQL, Redis, Celery, REST APIs, SQLite, Docker"
+  - category: "Architecture & Design"
+    skills: "Clean Architecture, Room, WorkManager, OAuth 2.0"
+  - category: "Testing & Developer Tools"
+    skills: "Git, GitHub Actions, Pytest, JUnit 5, Postman, OpenTelemetry, Logfire"
+
+experience:
+  - role: "Software Developer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Jan 2026 - Jun 2026"
+    points:
+      - "Architected asynchronous *REST APIs* in *FastAPI*, *SQLAlchemy 2.0*, and *PostgreSQL* (SQL) behind an Nginx reverse proxy, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and Alembic migrations with *Postman* test suites."
+      - "Engineered background worker pipelines using *Celery* with atomic *Redis* distributed locks and non-blocking 10s countdown requeues, eliminating race conditions from rapid webhook events."
+      - "Designed an automated conversational assistant utilizing Pydantic AI and webhooks with HMAC-SHA256 verification, processing inquiries with *sub-2s latency* and zero prompt leakage."
+      - "Automated daily judicial data ingestion across 25 High Courts and 743 District Courts via *Celery* workers in *Python* and *Bash*, using Selectolax DOM extractors and *PostgreSQL* batch inserts."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Implemented Square POS *OAuth 2.0* authentication and webhook ingestion pipelines in *Spring Boot* (*Java*) and Spring Data JPA, automating merchant onboarding with idempotent transaction verification."
+      - "Developed a concurrent search and scraping service in *Kotlin*, *Spring Boot*, and *PostgreSQL*, utilizing Coroutines with rate-limited HTTP connections and indexed trigram search queries verified with *JUnit 5*."
+
+projects:
+  - name: "doubtless"
+    skills: "Python, FastAPI, Celery, Redis, SQLite, Docker, OpenTelemetry, Logfire, Git"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Streamlined real-time solutions for academic queries by developing an interactive assistant in *FastAPI*, streaming solutions with live context via Server-Sent Events (SSE)."
+      - "Constructed an asynchronous 4-stage media ingestion pipeline (PipelineRunner) in *Celery* and *Redis* that transcodes HLS streams, slices audio (<15MB/hr), and transcribes lectures in <10s."
+      - "Instrumented distributed tracing across services via *OpenTelemetry* and *Logfire*; built the async data layer with thread-safe *SQLite* WAL repositories and *Docker* containers (151 tests in *Pytest* and *Git* CI)."
+
+  - name: "watchtower"
+    skills: "Kotlin, Room, WorkManager, OkHttp, Clean Architecture, DSA"
+    link_url: "https://github.com/amanverma-765/WatchTower"
+    points:
+      - "Created a local-first web monitoring app utilizing MD5 checksum hashing and Myers diff algorithm (*DSA*) to track DOM modifications and dispatch push alerts."
+      - "Optimized concurrent network inspection via *Kotlin* Coroutines with semaphore rate limiting, executing background jobs via *WorkManager* while maintaining a consistent *60 FPS* UI."
+      - "Structured persistent offline storage in *Clean Architecture* using *Room* database with Flow observables and OkHttp client with custom SSL trust managers."
+
+  - name: "ncert-rag-evals"
+    skills: "Python, SQLite, Pytest, GitHub Actions"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Evaluated empirical retrieval benchmarks across 17 STEM textbooks in *Python*, implementing custom hybrid search in *SQLite* FTS5 to profile retrieval strategies on raw CPU latency."
+      - "Benchmarked Reciprocal Rank Fusion against BM25 and dense embeddings, achieving *86.9% Recall@5 in 8.9ms on CPU* while cutting retrieval latency by *99.8%*."
+      - "Formulated a section-aware parser indexing 4,429 chunks into *SQLite*; verified statistical significance via paired McNemar tests (*p = 0.0021*) across 92 unit tests in *Pytest* with *GitHub Actions*."
+
+leadership:
+  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and developer tooling, training 150+ students on system architecture, prompt engineering, and API integration."
+  - "Coordinated placement drives and technical interview logistics at CTPC (Central Training & Placement Cell), organizing interview scheduling and operational workflows for 100+ candidates."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"

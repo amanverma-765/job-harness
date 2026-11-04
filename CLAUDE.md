@@ -101,7 +101,7 @@ All document spacings must be governed by single master variables in `core/templ
     1. Calibrating `line_gap` upward (and proportionally `section_gap` and `header_gap`) up to `0.85em–0.92em`.
     2. Adding defensible, commit-grounded bullet points from `core/projects_corpus.yaml` (or user-suggested facts) to under-indexed projects or experience.
 - **Over-stuffing Threshold & Pruning Notification Protocol:**
-  - **Base Catalog vs Tailored Scope:** The base resume (`core/templates/resume_base.pdf`) serves as the comprehensive master catalog and is allowed slight overflow/exceeding of density limits. Strict overfitting and over-stuffing thresholds are enforced strictly on company-tailored resumes (`targets/<company>/<role>/`).
+  - **Base Catalog vs Tailored Scope:** The base archetype resumes (`core/templates/resume_ai.pdf` for AI/ML/Backend and `core/templates/resume_android.pdf` for Android/KMP/Systems) serve as comprehensive master catalogs and are allowed slight overflow/exceeding of density limits. Strict overfitting and over-stuffing thresholds are enforced strictly on company-tailored resumes (`targets/<company>/<role>/`).
   - **Threshold Limits (Tailored Resumes):**
     - Total bullets: **Maximum 18 bullets** across the entire resume.
     - Word count: **Maximum 600 words** total body text.

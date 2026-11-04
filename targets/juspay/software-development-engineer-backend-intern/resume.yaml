@@ -1,0 +1,72 @@
+personal:
+  name: "Aman Verma"
+  target_title: "Software Development Engineer Backend Intern"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+skills:
+  - category: "Languages & Core"
+    skills: "Python, Kotlin, SQL, Bash, Linux"
+  - category: "Backend & Systems"
+    skills: "FastAPI, Spring Boot, Celery, Redis, PostgreSQL, SQLite, SQLAlchemy"
+  - category: "Infrastructure & APIs"
+    skills: "Docker, Nginx, REST APIs, OAuth 2.0, JWT, Git, GitHub Actions"
+  - category: "Testing, Data & Observability"
+    skills: "Pytest, OpenTelemetry, Logfire, Pydantic AI, ChromaDB, Jupyter Notebooks"
+
+experience:
+  - role: "Software Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Jan 2026 - Jun 2026"
+    points:
+      - "Architected async *REST APIs* in *FastAPI*, *SQLAlchemy*, and *PostgreSQL* (*SQL*) behind an *Nginx* proxy on *Linux*, implementing *JWT* authentication containerized via *Docker* with *Git* and *GitHub Actions* CI/CD."
+      - "Deployed 'Munshi', an autonomous assistant in *Pydantic AI* and *FastAPI*, resolving multi-turn inquiries with *sub-2s latency* via structured tool-calling loops."
+      - "Prevented race conditions from rapid concurrent requests by designing *Celery* workers with atomic *Redis* distributed locks and non-blocking 10s countdown requeues."
+      - "Automated judicial data ingestion across 25 High Courts and 743 District Courts via *Celery* and *Bash* on *Linux*, utilizing *Selectolax* extractors for batch *PostgreSQL* updates."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Implemented Square POS *OAuth 2.0* authentication and webhook ingestion in *Spring Boot* and *Spring Data JPA*, automating merchant onboarding in under 2 minutes with idempotent transaction verification."
+      - "Developed a concurrent trademark search engine in *Kotlin*, *Spring Boot*, and *PostgreSQL*, leveraging *Coroutines* with custom thread-pool dispatchers, rate-limited connections, and indexed trigram queries."
+
+projects:
+  - name: "ncert-rag-evals"
+    skills: "Python, Jupyter Notebooks, SQLite FTS5, ChromaDB, Pytest"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Evaluated an empirical retrieval benchmark across 17 STEM textbooks in *Python* and *Jupyter Notebooks*, implementing custom hybrid search in *SQLite FTS5* and *ChromaDB* to profile 8 strategies on CPU latency."
+      - "Proved that fusing BM25 with dense embeddings via Reciprocal Rank Fusion (RRF) achieved *86.9% Recall@5 in 8.9ms on CPU*, matching LLM query expansion while cutting latency by *99.8%*."
+      - "Built a document parser indexing 4,429 section-aware chunks into *SQLite FTS5* and *ChromaDB*; validated statistical significance via paired McNemar tests (*p = 0.0021*) across 92 unit tests in *Pytest*."
+
+  - name: "doubtless"
+    skills: "Pydantic AI, FastAPI, Celery, Redis, SQLite, OpenTelemetry, Logfire"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Engineered an interactive lecture doubt-solver in *Pydantic AI* and *FastAPI*, fusing blackboard video frames with 45s dialogue windows to stream real-time solutions for visual queries via SSE."
+      - "Designed an asynchronous 4-stage media pipeline (PipelineRunner) in *Celery* and *Redis* that transcodes HLS streams, slices 16kHz audio (<15MB/hr), and transcribes in <10s via Groq Whisper-Large-V3."
+      - "Constructed the async data layer with thread-safe *SQLite* WAL repositories and *Redis* caching; instrumented distributed tracing via *OpenTelemetry* and *Logfire* across 151 unit tests."
+
+  - name: "vectorless-rag"
+    skills: "Python, Jupyter Notebooks, Matplotlib, Pydantic AI, Ollama, ChromaDB, PyMuPDF"
+    link_url: "https://github.com/amanverma-765/vectorless-rag"
+    points:
+      - "Analyzed dense vector search against LLM page indexing on benchmark documents using *Pydantic AI*, configuring *Ollama* as a local testbed alongside cloud LLMs across 18 benchmark queries."
+      - "Benchmarked retrieval trade-offs in *Jupyter Notebooks* using *Matplotlib*: plotted the *2.7x token cost* and *2x latency* tradeoff (*100% retrieval hit rate* and *0.85 citation precision*)."
+      - "Created a zero-framework document parser in *Python* using *PyMuPDF* and *ChromaDB*, streaming page-aligned windows with bounded memory (*<200MB*) cutting extraction latency by *40%*."
+
+leadership:
+  - "Delivered 3 technical sessions on 'Generative AI Unlocked' and 'Level Up with AI', training 150+ college students on foundational LLM concepts and modern AI developer tools."
+  - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"

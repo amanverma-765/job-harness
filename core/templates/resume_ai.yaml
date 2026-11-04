@@ -1,0 +1,76 @@
+personal:
+  name: "Aman Verma"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+spacing:
+  line_gap: "0.70em"
+  section_gap: "0.85em"
+  header_gap: "1.10em"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Jan 2026 - Jun 2026"
+    points:
+      - "Architected 38 asynchronous REST API endpoints in *FastAPI* and *SQLAlchemy 2.0* across 12 relational tables behind *Nginx*, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and *Alembic* migrations (1,024 pytest suites)."
+      - "Deployed 'Munshi', an autonomous WhatsApp legal assistant in *Pydantic AI* and *FastAPI*, orchestrating *Model Context Protocol (MCP)* clients across Google Drive and Calendar servers to automate brief discovery and hearing scheduling with *sub-2s latency*."
+      - "Hardened multi-tenant agent execution by isolating authenticated identity inside *Pydantic AI* AgentDeps (eliminating prompt injection vectors) and prevented worker race conditions using atomic *Redis* distributed locks with 10s *Celery* countdown requeues (90-retry ceiling)."
+      - "Automated an idempotent 12-hour case refresh sweep using *Celery* and *Redis* with a two-stage notification pipeline (dispatch dedup + deliver channel ledger) guaranteeing zero duplicate alerts."
+      - "Reverse-engineered eCourts' proprietary mobile API protocol in *Python*, implementing *AES-128-CBC* cryptography with dynamic RIV salt generation and GIV lookup tables to ingest case data across 25 High Courts and 743 District Courts into *PostgreSQL*."
+
+projects:
+  - name: "ncert-rag-evals"
+    skills: "Python 3.14, Jupyter Notebooks, uv, SQLite FTS5, ChromaDB, Pytest"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Constructed an empirical retrieval benchmark across 17 STEM textbooks in *Python* and *Jupyter Notebooks*, implementing custom hybrid search from scratch in *SQLite FTS5* and *ChromaDB* instead of high-level LlamaIndex abstractions to profile 8 retrieval strategies on raw CPU latency."
+      - "Proved that fusing BM25 with dense embeddings via Reciprocal Rank Fusion (RRF) achieved *86.9% Recall@5 in 8.9ms on CPU*, matching LLM query expansion while cutting latency by *99.8%*."
+      - "Engineered a document parser indexing 4,429 section-aware chunks into *SQLite FTS5* and *ChromaDB*; validated statistical significance via paired McNemar tests (*p = 0.0021*) across 92 unit tests in *Pytest*."
+
+  - name: "doubtless"
+    skills: "Pydantic AI, FastAPI, Multimodal RAG, Groq Whisper, Celery, Redis, Logfire"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Engineered an interactive lecture doubt-solver and AI study workspace in *Pydantic AI* and *FastAPI*, fusing blackboard video frames with 45s playback dialogue windows to stream real-time solutions for visual STEM queries via SSE."
+      - "Designed an asynchronous 4-stage media ingestion pipeline (PipelineRunner) in *Celery* and *Redis* that transcodes HLS streams, slices 16kHz mono audio (<15MB/hr), and transcribes lectures in <10s via *Groq Whisper-Large-V3*."
+      - "Architected the async data layer with thread-safe *SQLite WAL* repositories and *Redis* to serve concurrent agent queries; containerized services and instrumented distributed tracing across agent runs via *OpenTelemetry* and *Logfire* (151 tests)."
+
+  - name: "vectorless-rag"
+    skills: "Python, Jupyter Notebooks, Matplotlib, Pydantic AI, Ollama, ChromaDB, PyMuPDF"
+    link_url: "https://github.com/amanverma-765/vectorless-rag"
+    points:
+      - "Evaluated dense vector search against LLM-based page indexing on benchmark documents using *Pydantic AI*, configuring *Ollama* as a local testbed alongside cloud LLMs across 18 benchmark queries."
+      - "Benchmarked retrieval trade-offs in *Jupyter Notebooks* using *Matplotlib*: analyzed query failure cases and plotted the *2.7x token cost* and *2x latency* tradeoff (while verifying *100% retrieval hit rate* and *0.85 citation precision*)."
+      - "Built a zero-framework document ingestion engine in *Python* using *PyMuPDF* and *ChromaDB*, streaming page-aligned document windows with bounded memory (*<200MB*) to eliminate context boundary truncation and cut extraction latency by *40%*."
+
+skills:
+  - category: "Languages & Core"
+    skills: "Python, SQL, Bash, DSA, OOP, DBMS, Operating Systems"
+  - category: "AI & Agent Frameworks"
+    skills: "Pydantic AI, Model Context Protocol (MCP), LangGraph, LangChain, LlamaIndex, Ollama, Google ADK"
+  - category: "Backend Frameworks"
+    skills: "FastAPI, Celery, Asyncio, SQLAlchemy, Alembic, Nginx, REST APIs"
+  - category: "Databases & Vector Stores"
+    skills: "PostgreSQL, Redis, ChromaDB, SQLite (WAL)"
+  - category: "Web Scraping & Automation"
+    skills: "Selectolax, BeautifulSoup4, httpx, Playwright, Selenium, curl-cffi"
+  - category: "Evals & Observability"
+    skills: "OpenTelemetry, Langfuse, Logfire, Ragas, Pytest, Matplotlib, Jupyter Notebooks"
+  - category: "Developer Tools & DevOps"
+    skills: "Docker, Git, GitHub Actions, Postman, Linux, uv, Ruff"
+
+leadership:
+  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts and modern AI developer tools."
+  - "Coordinated placement drives and corporate outreach at CTPC (Central Training & Placement Cell), managing logistics and interview scheduling for recruiters and 100+ candidates."
+  - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"
