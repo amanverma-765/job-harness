@@ -37,8 +37,11 @@ def audit_pdf(pdf_path: Path) -> bool:
     # If .scratch/debug exists, save raw extracted text stream for developer inspection
     debug_dir = Path(".scratch/debug")
     if debug_dir.exists():
-        debug_dump = debug_dir / f"{pdf_path.stem}_extracted.txt"
-        debug_dump.write_text(text, encoding="utf-8")
+        try:
+            debug_dump = debug_dir / f"{pdf_path.stem}_extracted.txt"
+            debug_dump.write_text(text, encoding="utf-8")
+        except OSError:
+            pass
 
     # 1. Unicode Purity & CMap Integrity
     pua_chars = []

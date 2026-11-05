@@ -86,7 +86,9 @@ job-workflow/
 │   ├── skills_taxonomy.json           # Canonical O*NET/Lightcast skills & banned non-skills
 │   └── templates/
 │       ├── template.typ               # Jake's Resume Typst engine (single-column, 0 ligature loss)
-│       ├── resume_base.typ            # Base resume layout (Header -> Skills -> Exp -> Proj -> Edu)
+│       ├── yml.typ                    # Dynamic YAML-to-Typst layout engine & renderer
+│       ├── resume_android.typ         # Android/KMP archetype (Header -> Exp -> Proj -> Skills -> Edu)
+│       ├── resume_ai.typ              # AI/ML/Systems archetype (Header -> Exp -> Proj -> Skills -> Edu)
 │       ├── cover_letter_base.typ      # 1-page Typst business letterhead (0.8in margins)
 │       └── sample_cover_letter.typ    # Reference 4-paragraph cover letter implementation
 │
@@ -178,14 +180,17 @@ Ensure the following tools are installed on your workstation:
 Run the deterministic linters against the baseline templates:
 
 ```bash
-# 1. Compile base resume and verify 1-page constraint
-bash engine/compile.sh core/templates/resume_base.typ core/templates/resume_base.pdf
+# 1. Compile archetype resumes and verify 1-page constraint
+bash engine/compile.sh core/templates/resume_android.typ core/templates/resume_android.pdf
+bash engine/compile.sh core/templates/resume_ai.typ core/templates/resume_ai.pdf
 
 # 2. Run AST, 5-Gate, and 1:1 Skill-to-Evidence linter
-python3 engine/verify_resume.py core/templates/resume_base.typ --corpus core/projects_corpus.yaml
+python3 engine/verify_resume.py core/templates/resume_android.typ --corpus core/projects_corpus.yaml
+python3 engine/verify_resume.py core/templates/resume_ai.typ --corpus core/projects_corpus.yaml
 
 # 3. Verify linear text stream extraction and Unicode CMap integrity
-python3 engine/pdftotext_linter.py core/templates/resume_base.pdf
+python3 engine/pdftotext_linter.py core/templates/resume_android.pdf
+python3 engine/pdftotext_linter.py core/templates/resume_ai.pdf
 
 # 4. Compile base cover letter
 bash engine/compile.sh core/templates/sample_cover_letter.typ core/templates/sample_cover_letter.pdf

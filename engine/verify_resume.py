@@ -289,7 +289,7 @@ class ResumeVerifier:
             if lg_val < 0.68:
                 self.log_warning("Over-Stuffing Alert", f"line_gap is compressed to {lg_val}em (< 0.68em floor). Do not cram text with reduced spacing; suggest pruning bullets.")
 
-        # Base templates (core/templates/resume_base) are master catalogs with allowed overflow.
+        # Archetype templates (core/templates/resume_android, resume_ai) are master catalogs with allowed overflow.
         is_base_catalog = "core/templates" in str(self.file_path)
 
         if total_bullets > 18:

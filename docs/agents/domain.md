@@ -1,51 +1,29 @@
-# Domain Docs
+# Domain Docs: Job Harness (Resume-as-Code)
 
-How the engineering skills should consume this repo's domain documentation when exploring the codebase.
+How engineering agents and skills must consume this repository's domain documentation.
 
-## Before exploring, read these
+## Before exploring or modifying code, read:
 
-- **`GLOSSARY.md`** at the repo root, or
-- **`GLOSSARY-MAP.md`** at the repo root if it exists: it points at one `GLOSSARY.md` per context. Read each one relevant to the topic.
-- **`docs/adr/`**: read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
+1. **`GLOSSARY.md`** at the repo root: Formal definitions of Resume-as-Code (RaC), Quality Gates 1–5, the 10.6x Requisition Multiplier, and the 1:1 Skill Evidence Rule.
+2. **`CLAUDE.md`** at the repo root: Immutable candidate ground truth, typography standards, spacing rules, and section ordering.
+3. **`resources/research/`**: Empirical findings on ATS parsers (Sovren, Workday, Greenhouse, Poppler) and systemic failure modes.
 
-If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-docs` and `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
-
-## File structure
-
-Single-context repo (most repos):
+## File Structure
 
 ```
 /
-├── GLOSSARY.md
-├── docs/adr/
-│   ├── 0001-event-sourced-orders.md
-│   └── 0002-postgres-for-write-model.md
-└── src/
+├── GLOSSARY.md                        ← Canonical RaC vocabulary
+├── CLAUDE.md                          ← Agent policies, candidate ground truth, and typography standards
+├── README.md                          ← Executive summary and CI/CD validation commands
+├── core/                              ← Single Source of Truth (profile, corpus, taxonomy, templates)
+├── engine/                            ← Verification linters, AST checks, and compilers
+└── targets/                           ← Isolated company & role application packages
 ```
 
-Multi-context repo (presence of `GLOSSARY-MAP.md` at the root):
+## Use the Domain Vocabulary
 
-```
-/
-├── GLOSSARY-MAP.md
-├── docs/adr/                          ← system-wide decisions
-└── src/
-    ├── ordering/
-    │   ├── GLOSSARY.md
-    │   └── docs/adr/                  ← context-specific decisions
-    └── billing/
-        ├── GLOSSARY.md
-        └── docs/adr/
-```
-
-## Use the glossary's vocabulary
-
-When your output names a domain concept (in an issue title, a refactor proposal, a hypothesis, a test name), use the term as defined in `GLOSSARY.md`. Don't drift to synonyms the glossary explicitly avoids.
-
-If the concept you need isn't in the glossary yet, that's a signal: either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `/domain-modeling`).
-
-## Flag ADR conflicts
-
-If your output contradicts an existing ADR, surface it explicitly rather than silently overriding:
-
-> _Contradicts ADR-0007 (event-sourced orders), but worth reopening because…_
+When analyzing roles or synthesizing materials, strictly adhere to the terms defined in `GLOSSARY.md`:
+- **Resume-as-Code (RaC)**: Treat documents as compiled software artifacts.
+- **Dual Archetypes**: `core/templates/resume_android.typ` (Android/KMP/Systems) and `core/templates/resume_ai.typ` (AI/ML/Systems).
+- **1:1 Skill-to-Evidence Rule**: Every listed skill must have explicit proof in bullet points.
+- **Zero Em-Dash Rule**: Strictly no Unicode (`\u2014`) or LaTeX (`---`) em-dashes.

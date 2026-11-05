@@ -3,9 +3,9 @@
 #show: cover_letter.with(
   name: "Aman Verma",
   location: "Jaunpur, UP, India",
-  phone: "+91 98765 43210",
-  email: "aman@example.com",
-  linkedin: "linkedin.com/in/amanverma",
+  phone: "+91 6386617608",
+  email: "akverma4aman@gmail.com",
+  linkedin: "linkedin.com/in/amanverma765",
   site: "github.com/amanverma-765",
   date_str: "November 1, 2026",
   recipient_name: "Engineering Hiring Team",
