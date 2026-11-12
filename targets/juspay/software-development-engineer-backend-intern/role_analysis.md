@@ -48,7 +48,7 @@
 | Core Backend Languages | Python, Kotlin, Java, or C++ | Python (FastAPI, Pydantic AI), Kotlin (Spring Boot, Ktor, Coroutines) | **MATCH (100%)** |
 | Relational Databases | SQL, PostgreSQL | PostgreSQL, SQLAlchemy 2.0, Spring Data JPA, SQLite WAL, Alembic | **MATCH (100%)** |
 | Caching & Queues | Redis, message brokers, caching | Redis (distributed locks, caching), Celery asynchronous workers | **MATCH (100%)** |
-| Backend Architecture & APIs | REST APIs, authentication, microservices | FastAPI, Spring Boot, Spring Security, JWT, OAuth 2.0, WebSockets | **MATCH (100%)** |
+| Backend Architecture & APIs | REST APIs, authentication, microservices | FastAPI, Spring Boot, Spring Security, JWT, OAuth 2.0 | **MATCH (100%)** |
 | Systems & Concurrency | Concurrency, distributed systems, Docker | Thread-safe SQLite WAL, Redis locks, Docker, Kotlin Coroutines | **MATCH (100%)** |
 | CS Fundamentals | DSA, DBMS, Operating Systems, OOP | B.Tech CSE (2023 - 2027), verified coursework in DSA, DBMS, OS, OOP | **MATCH (100%)** |
 

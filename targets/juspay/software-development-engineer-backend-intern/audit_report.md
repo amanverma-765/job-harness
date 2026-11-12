@@ -22,22 +22,29 @@
 
 ## 2. 1:1 Skill-to-Evidence Verification Matrix
 
-Every single skill declared in `resume.yaml` has verified proof in experience or project bullets:
+Every applied technology declared in `resume.yaml` has verified proof in experience or project bullets. Foundational CS academic coursework (`DSA`, `OOP`, `DBMS`, `Operating Systems`) is exempt from bullet association per rule update:
 
 | Declared Skill | Supporting Bullet Evidence (File: Line / Bullet Context) | Verification Status |
 |---|---|---|
-| `Python` | `ncert-rag-evals`, `doubtless`, `vectorless-rag` ("in *Python* and *Jupyter Notebooks*") | Verified (1:1 Proof) |
-| `Kotlin` | `Webxela` ("in *Kotlin*, *Spring Boot*, and *PostgreSQL*") | Verified (1:1 Proof) |
+| `DSA` | Foundational CS Core (Exempt from forced bullet association) | Verified (CS Core Exemption) |
+| `OOP` | Foundational CS Core (Exempt from forced bullet association) | Verified (CS Core Exemption) |
+| `DBMS` | Foundational CS Core (Exempt from forced bullet association) | Verified (CS Core Exemption) |
+| `Operating Systems` | Foundational CS Core (Exempt from forced bullet association) | Verified (CS Core Exemption) |
+| `Python` | `ncert-rag-evals`, `doubtless` ("in *Python* and...") | Verified (1:1 Proof) |
+| `Kotlin` | `Webxela` & `oak` ("in *Kotlin*, *Spring Boot*...", "library in *Kotlin*") | Verified (1:1 Proof) |
+| `Java` | `Webxela` ("in *Spring Boot* (*Java*) and *Spring Data JPA*") | Verified (1:1 Proof) |
 | `SQL` | `LexoLegal` ("*SQLAlchemy*, and *PostgreSQL* (*SQL*)") | Verified (1:1 Proof) |
 | `Bash` | `LexoLegal` ("via *Celery* and *Bash* on *Linux*") | Verified (1:1 Proof) |
 | `Linux` | `LexoLegal` ("behind an *Nginx* proxy on *Linux*") | Verified (1:1 Proof) |
 | `FastAPI` | `LexoLegal` & `doubtless` ("*REST APIs* in *FastAPI*") | Verified (1:1 Proof) |
-| `Spring Boot` | `Webxela` ("pipelines in *Spring Boot* and *Spring Data JPA*") | Verified (1:1 Proof) |
+| `Spring Boot` | `Webxela` ("pipelines in *Spring Boot* (*Java*)") | Verified (1:1 Proof) |
+| `Ktor` | `oak` ("multi-engine *Ktor* HTTP client abstractions") | Verified (1:1 Proof) |
 | `Celery` | `LexoLegal` & `doubtless` ("*Celery* workers with atomic *Redis* distributed locks") | Verified (1:1 Proof) |
 | `Redis` | `LexoLegal` & `doubtless` ("atomic *Redis* distributed locks", "*Redis* caching") | Verified (1:1 Proof) |
 | `PostgreSQL` | `LexoLegal` & `Webxela` ("batch *PostgreSQL* updates", "*PostgreSQL* trigram queries") | Verified (1:1 Proof) |
 | `SQLite` | `doubtless` & `ncert-rag-evals` ("thread-safe *SQLite* WAL repositories", "*SQLite FTS5*") | Verified (1:1 Proof) |
 | `SQLAlchemy` | `LexoLegal` ("*FastAPI*, *SQLAlchemy*, and *PostgreSQL*") | Verified (1:1 Proof) |
+| `Clean Architecture` | `oak` ("Implemented *Clean Architecture* with platform-agnostic domain use cases") | Verified (1:1 Proof) |
 | `Docker` | `LexoLegal` ("containerized via *Docker* with *Git* and *GitHub Actions*") | Verified (1:1 Proof) |
 | `Nginx` | `LexoLegal` ("behind an *Nginx* proxy on *Linux*") | Verified (1:1 Proof) |
 | `REST APIs` | `LexoLegal` ("Architected async *REST APIs* in *FastAPI*") | Verified (1:1 Proof) |
@@ -46,11 +53,11 @@ Every single skill declared in `resume.yaml` has verified proof in experience or
 | `Git` | `LexoLegal` ("with *Git* and *GitHub Actions* CI/CD") | Verified (1:1 Proof) |
 | `GitHub Actions`| `LexoLegal` ("with *Git* and *GitHub Actions* CI/CD") | Verified (1:1 Proof) |
 | `Pytest` | `ncert-rag-evals` ("across 92 unit tests in *Pytest*") | Verified (1:1 Proof) |
+| `JUnit 5` | `Webxela` ("indexed trigram search queries verified with *JUnit 5*") | Verified (1:1 Proof) |
 | `OpenTelemetry` | `doubtless` ("instrumented distributed tracing via *OpenTelemetry* and *Logfire*") | Verified (1:1 Proof) |
 | `Logfire` | `doubtless` ("instrumented distributed tracing via *OpenTelemetry* and *Logfire*") | Verified (1:1 Proof) |
-| `Pydantic AI` | `LexoLegal`, `doubtless`, `vectorless-rag` ("assistant in *Pydantic AI* and *FastAPI*") | Verified (1:1 Proof) |
-| `ChromaDB` | `ncert-rag-evals` & `vectorless-rag` ("custom hybrid search in *SQLite FTS5* and *ChromaDB*") | Verified (1:1 Proof) |
-| `Jupyter Notebooks` | `ncert-rag-evals` & `vectorless-rag` ("in *Python* and *Jupyter Notebooks*") | Verified (1:1 Proof) |
+| `Pydantic AI` | `LexoLegal` & `doubtless` ("assistant in *Pydantic AI* and *FastAPI*") | Verified (1:1 Proof) |
+| `ChromaDB` | `ncert-rag-evals` ("custom hybrid search in *SQLite FTS5* and *ChromaDB*") | Verified (1:1 Proof) |
 
 ---
 
