@@ -36,6 +36,22 @@ DEFAULT_BANNED_NON_SKILLS = [
     r"\bproblem solving\b",
 ]
 
+# CS fundamentals exempt from 1:1 bullet association rule (foundational academic knowledge)
+CS_FUNDAMENTALS_EXEMPTIONS = {
+    "dsa",
+    "data structures",
+    "algorithms",
+    "data structures & algorithms",
+    "oop",
+    "object-oriented programming",
+    "dbms",
+    "database management systems",
+    "operating systems",
+    "os",
+    "computer networks",
+    "system design",
+}
+
 # Weak and passive verbs
 WEAK_VERBS = [
     r"\bworked on\b",
@@ -254,6 +270,9 @@ class ResumeVerifier:
                 # Strip parenthetical clarifications like 'Docker (Containerization)' -> 'Docker'
                 clean_token = re.sub(r"\([^)]*\)", "", raw_token).strip()
                 if not clean_token or len(clean_token) < 2:
+                    continue
+                # Exempt foundational CS academic coursework
+                if clean_token.lower() in CS_FUNDAMENTALS_EXEMPTIONS:
                     continue
                 # Special cases for short tokens (C, Go, R, SQL)
                 if clean_token in ["Go", "C", "R", "SQL"]:

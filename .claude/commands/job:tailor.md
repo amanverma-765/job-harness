@@ -14,9 +14,8 @@ Synthesize a tailored Jake's Resume in Typst strictly grounded in commit-pinned 
 
 2. **Project Selection & 10.6x Title Multiplier:**
    - Select 3–4 repositories from `core/projects_corpus.yaml` whose verified stacks and architectures best align with Quadrants I–IV.
-   - Inject the exact requisition title extracted in `role_analysis.md` into:
-     - The resume header subtitle (`target_title: "..."`).
-     - The current role subtitle if functionally aligned.
+   - Inject the exact requisition title extracted in `role_analysis.md` into the resume header subtitle (`target_title: "..."`).
+   - **IMMUTABLE EXPERIENCE TITLES:** NEVER alter or synthesize the candidate's work experience titles (e.g. LexoLegal remains immutable as `Software Development Engineer Intern` per `core/profile.yaml`). The 10.6x multiplier is strictly applied to the header subtitle.
 
 3. **Interactive Missing-Skill Resolution:**
    - Identify high-priority skills in the JD that are absent from candidate's verified ground truth.

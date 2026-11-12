@@ -176,8 +176,15 @@ class ResearchComplianceVerifier:
             combined_bullets += (proj.get("skills", "") + " " + " ".join(proj.get("points", []))) + " "
 
         unproven_skills = []
+        cs_exemptions = {
+            "dsa", "data structures", "algorithms", "data structures & algorithms",
+            "oop", "object-oriented programming", "dbms", "database management systems",
+            "operating systems", "os", "computer networks", "system design"
+        }
         for sk in skills_declared:
             clean = sk.lower()
+            if clean in cs_exemptions:
+                continue
             if clean in ["go", "c", "r", "sql"]:
                 pat = rf"\b{re.escape(clean)}\b"
             else:

@@ -61,7 +61,7 @@ skills:
   - category: "Mobile & Multiplatform"
     skills: "Android SDK, Jetpack Compose, Kotlin Multiplatform (KMP), Compose Multiplatform (CMP), Retrofit, Room, SQLite, WorkManager, Jetpack Navigation"
   - category: "Backend & Cloud"
-    skills: "Spring Boot, Spring Data JPA, Spring Security, Ktor, FastAPI, Celery, Redis, PostgreSQL, REST APIs, WebSockets, Firebase"
+    skills: "Spring Boot, Spring Data JPA, Spring Security, Ktor, FastAPI, Celery, Redis, PostgreSQL, REST APIs, Firebase"
   - category: "Architecture & Async"
     skills: "Clean Architecture, MVI, MVVM, Multi-Module Architecture, Kotlin Coroutines, Flow, StateFlow, Multithreading, Dependency Injection, Hilt, Koin"
   - category: "Testing & Tooling"

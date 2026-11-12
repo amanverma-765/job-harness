@@ -250,12 +250,6 @@
             "Spring Auth"
           ],
           "ontology": "Application Security"
-        },
-        "WebSockets": {
-          "aliases": [
-            "WebSocket"
-          ],
-          "ontology": "Real-time Protocols"
         }
       }
     },

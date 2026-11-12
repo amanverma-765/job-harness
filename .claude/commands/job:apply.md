@@ -45,7 +45,7 @@ Master end-to-end orchestrator for the Resume-as-Code job application pipeline.
 3. **Phase 3: Resume Synthesis (Jake's Typst Standard):**
    - Execute `/job:tailor <company-slug>/<role-slug>`.
    - Anchors to commit-pinned projects in `core/projects_corpus.yaml`.
-   - Injects the 10.6x title multiplier into header and current role.
+   - Injects the 10.6x title multiplier into the resume header subtitle (`target_title`). Does NOT alter work experience titles.
    - Formulates Google XYZ bullets with F-pattern keyword bolding (never leading verbs).
    - If a high-priority skill is missing from candidate truth: asks the user before deciding whether to omit or verify.
    - Compiles via `engine/compile.sh` and verifies exact 1-page budget.

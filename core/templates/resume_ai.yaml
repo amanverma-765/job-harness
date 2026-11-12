@@ -60,7 +60,7 @@ skills:
   - category: "Web Scraping & Automation"
     skills: "Selectolax, BeautifulSoup4, httpx, Playwright, Selenium, curl-cffi"
   - category: "Evals & Observability"
-    skills: "OpenTelemetry, Langfuse, Logfire, Ragas, Pytest, Matplotlib, Jupyter Notebooks"
+    skills: "OpenTelemetry, Langfuse, Logfire, Pytest, Matplotlib, Jupyter Notebooks"
   - category: "Developer Tools & DevOps"
     skills: "Docker, Git, GitHub Actions, Postman, Linux, uv, Ruff"
 

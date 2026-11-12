@@ -21,7 +21,7 @@ education:
 experience:
   - company: "LexoLegal"
     location: "Remote"
-    title: "Software Engineer Intern"
+    title: "Software Development Engineer Intern"
     start_date: "Nov 2025"
     end_date: "Jul 2026"
     highlights:
@@ -125,7 +125,6 @@ skills:
     - "Redis"
     - "PostgreSQL"
     - "REST APIs"
-    - "WebSockets"
     - "Firebase"
   web_scraping_and_automation:
     - "Selectolax"
@@ -138,7 +137,6 @@ skills:
     - "OpenTelemetry"
     - "Langfuse"
     - "Logfire"
-    - "Ragas"
     - "Pytest"
     - "Matplotlib"
     - "Jupyter Notebooks"

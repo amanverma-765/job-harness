@@ -50,7 +50,7 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
   - Expand internal shorthand/acronyms to standard titles (e.g. `SDE I Intern` -> `Software Development Engineer Intern`, `SWE` -> `Software Engineer`).
 - Inject this clean, relevant title into:
   - The resume header subtitle (`target_title: "..."`).
-  - The most recent role subtitle if functionally aligned.
+- **Immutability of Work Experience Titles (STRICT):** The 10.6x title multiplier is strictly confined to the resume header subtitle (`target_title`). **NEVER modify or adapt the candidate's work experience role titles** to match the target job title. Work experience role titles must remain strictly immutable as recorded in `core/profile.yaml` (e.g. `Software Development Engineer Intern` at LexoLegal).
 
 ### 2.3 The 4-Quadrant JD Extraction Matrix
 Every ingested job description must be decomposed into four quadrants (`role_analysis.md`):
@@ -68,6 +68,7 @@ Every ingested job description must be decomposed into four quadrants (`role_ana
 ### 2.5 The 1:1 Skill-to-Evidence Rule (Anti-Keyword Stuffing)
 - Modern ATS parsers penalize ungrounded skills listed in summaries without proof in bullets.
 - **Rule:** Every skill declared under `#skill_item(...)` MUST have at least one explicit reference proof inside an experience or project bullet point.
+- **CS Fundamentals Exemption:** Foundational Computer Science concepts and coursework (such as `DSA`, `OOP`, `DBMS`, `Operating Systems`, `Computer Networks`, `System Design`) are exempt from 1:1 bullet association, as they are foundational academic disciplines that belong naturally in the Skills and Education sections.
 
 ### 2.6 F-Pattern Keyword Bolding & Verb Diversity
 - **F-Pattern Bolding:** Bold substantive technologies, frameworks, and impact metrics (`*Python*`, `*PostgreSQL*`, `*sub-25ms latency*`).

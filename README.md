@@ -51,7 +51,7 @@ This repository implements **Resume-as-Code (RaC)**. It eliminates manual tailor
 Every project achievement, framework, benchmark, and test count in `core/projects_corpus.yaml` is anchored to a verified **Git commit SHA** indexed via `gh` and `repomix`. The system strictly prohibits synthesizing unverified experience.
 
 ### 2.2 The 10.6x Requisition Title Multiplier
-ATS search bars execute literal substring matching (e.g. `WHERE parsed_title ILIKE '%Senior Backend Engineer%'`). The system extracts the exact target requisition title during ingestion and injects it into the resume header and recent role subtitle, maximizing search visibility.
+ATS search bars execute literal substring matching (e.g. `WHERE parsed_title ILIKE '%Senior Backend Engineer%'`). The system extracts the exact target requisition title during ingestion and injects it into the resume header subtitle (`target_title`), maximizing search visibility while keeping candidate work experience titles strictly immutable to profile ground truth.
 
 ### 2.3 The 4-Quadrant Job Description Decomposition Matrix
 Every incoming job posting is parsed into four structured quadrants:
