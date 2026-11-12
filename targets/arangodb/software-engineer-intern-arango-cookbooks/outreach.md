@@ -32,7 +32,9 @@ akverma4aman@gmail.com | +91 6386617608
 
 Hi [First Name],
 
-Following up with a quick benchmark: I recently drafted a prototype recipe pairing python-arango graph traversals with vector similarity in a single Jupyter Notebook, maintaining under-20ms multi-hop retrieval. Happy to send over the notebook link if helpful.
+Following up with a quick thought: while benchmarking hybrid retrieval against vector-only baselines in *ncert-rag-evals*, entity-level context fragmentation was the primary failure mode. A multi-model recipe combining ArangoDB graph traversals with vector search directly addresses that gap. 
+
+I'd welcome the chance to contribute this use case to the Arango Cookbooks repo. Open to a brief chat this week?
 
 Best,  
 Aman
