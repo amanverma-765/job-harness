@@ -1,0 +1,72 @@
+personal:
+  name: "Aman Verma"
+  target_title: "Software Development Engineer Intern"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+skills:
+  - category: "Languages & CS Core"
+    skills: "Python, Java, Kotlin, SQL, Bash, DSA, OOP, DBMS, Operating Systems"
+  - category: "Distributed Systems & Backend"
+    skills: "FastAPI, Spring Boot, Celery, Redis, PostgreSQL, SQLite, REST APIs, Docker"
+  - category: "AI & System Architecture"
+    skills: "Model Context Protocol (MCP), Pydantic AI, ChromaDB, Clean Architecture, Linux, Kotlin Multiplatform (KMP)"
+  - category: "Tooling, Testing & Frameworks"
+    skills: "Git, GitHub Actions, Pytest, JUnit 5, OpenTelemetry, Ktor, Koin, Gradle"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Nov 2025 - Jul 2026"
+    points:
+      - "Architected async *REST APIs* in *FastAPI*, *SQLAlchemy*, and *PostgreSQL* (*SQL*) behind Nginx on *Linux*, implementing JWT authentication containerized via *Docker* with *Git* version control."
+      - "Engineered background sweeps in *Celery* and *Redis* with an idempotent diffing engine and atomic distributed locks (10s countdown requeues, 90-retry ceiling), guaranteeing zero duplicate alerts and zero race conditions."
+      - "Integrated autonomous assistant 'Munshi' in *Pydantic AI* and *FastAPI*, orchestrating *Model Context Protocol (MCP)* clients across Google servers to resolve queries with *sub-2s latency*."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Implemented Square POS OAuth 2.0 merchant onboarding in *Spring Boot* (*Java*) and Spring Data JPA, structuring *Clean Architecture* to automate verification in under 2 minutes."
+      - "Developed a high-throughput monitoring service in *Kotlin*, *Spring Boot*, and *PostgreSQL*, utilizing Coroutines with 25 parallel worker threads and semaphore rate limits verified across *JUnit 5* test suites."
+      - "Engineered resilient ingestion pipelines with automated CAPTCHA resolution and 50-step exponential backoff retries (2m-15m bounds), persisting trademark records via Flyway migrations and *PostgreSQL* trigram search."
+      - "Constructed dynamic Apple Wallet pass distribution using PassKit and X.509 cryptographic signing, streaming signed .pkpass bundles with configurable expiration TTL."
+
+projects:
+  - name: "doubtless"
+    skills: "Python, FastAPI, Celery, Redis, SQLite, Docker, OpenTelemetry, Git"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Designed an interactive doubt-solver in *Pydantic AI* and *FastAPI*, fusing video frames with 45s dialogue windows to stream real-time solutions via SSE with *Bash* automated workflows."
+      - "Streamlined an asynchronous 4-stage ingestion pipeline (PipelineRunner) in *Celery* and *Redis* that transcodes HLS streams, slices audio (<15MB/hr), and transcribes in <10s via Groq Whisper-Large-V3."
+      - "Instrumented distributed tracing across services via *OpenTelemetry*; built the async data layer with thread-safe *SQLite* WAL repositories and *Docker* (151 tests in *Pytest*)."
+
+  - name: "ncert-rag-evals"
+    skills: "Python, SQLite FTS5, ChromaDB, Pytest, GitHub Actions"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Evaluated empirical retrieval benchmarks across 17 STEM textbooks in *Python*, implementing custom hybrid search in *SQLite* FTS5 and *ChromaDB* to profile retrieval strategies on raw CPU latency."
+      - "Optimized retrieval performance by fusing BM25 with dense embeddings via Reciprocal Rank Fusion (RRF), achieving *86.9% Recall@5 in 8.9ms on CPU* while cutting latency by *99.8%*."
+      - "Formulated a document parser indexing 4,429 chunks into *SQLite* and *ChromaDB*; validated statistical significance via paired McNemar tests (*p = 0.0021*) across 92 unit tests with *GitHub Actions* CI/CD."
+
+  - name: "oak"
+    skills: "Kotlin, Kotlin Multiplatform (KMP), Ktor, Koin, Gradle, Clean Architecture"
+    link_url: "https://github.com/amanverma-765/oak"
+    points:
+      - "Built an open-source *Kotlin Multiplatform (KMP)* library targeting Android, iOS, and JVM to extract and normalize catalog and pricing data across *5+ major e-commerce platforms*."
+      - "Structured *Clean Architecture* with multi-engine *Ktor* HTTP client abstractions and *Koin* DI, configuring custom *Gradle* convention plugins for automated publication."
+
+leadership:
+  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and developer tooling, training 150+ students on system architecture, prompt engineering, and API integration."
+  - "Coordinated placement drives and technical interview logistics at CTPC (Central Training & Placement Cell), organizing interview scheduling and operational workflows for 100+ candidates."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"

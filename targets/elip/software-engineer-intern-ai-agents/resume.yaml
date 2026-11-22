@@ -1,0 +1,75 @@
+personal:
+  name: "Aman Verma"
+  target_title: "Software Engineer Intern"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+spacing:
+  line_gap: "0.84em"
+  section_gap: "1.00em"
+  header_gap: "1.28em"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Nov 2025 - Jul 2026"
+    points:
+      - "Engineered *Munshi*, an autonomous WhatsApp legal assistant in *Pydantic AI* and *FastAPI*, orchestrating *Model Context Protocol* servers across Google Drive and Calendar to automate brief discovery and hearing scheduling at *sub-2s latency*."
+      - "Implemented 38 asynchronous *REST APIs* in *FastAPI* and *SQLAlchemy 2.0* over 12 *PostgreSQL* tables with *SQL* migrations via *Alembic*, validated across *1,024 pytest tests*."
+      - "Automated a 12-hour case refresh sweep in *Celery* and *Redis* with an idempotent diffing engine and a two-stage notification pipeline, holding *zero duplicate alerts* and *zero message loss* across retries."
+      - "Hardened multi-tenant agent execution by isolating verified user identity inside *Pydantic AI* AgentDeps rather than model-supplied tool parameters, eliminating cross-tenant prompt injection and hard-bounding sandboxed workspace access."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Developed a trademark monitoring engine in *Kotlin*, *Spring Boot*, and *PostgreSQL*, fanning out *25 parallel* *Kotlin Coroutines* with semaphore rate limits across *5,000-record chunks*."
+      - "Implemented resilient crawl ingestion in *Ktor* with automated CAPTCHA resolution and *50-step exponential backoff* retries (2m-15m bounds), persisting records through *Flyway* migrations."
+
+projects:
+  - name: "ncert-rag-evals"
+    skills: "Python, SQLite, ChromaDB, pytest, Jupyter Notebooks, Matplotlib, Open Source"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Constructed a retrieval benchmark from scratch in *Python*, indexing *4,429 section-aware chunks* of 17 STEM textbooks into *SQLite* FTS5 and *ChromaDB* to profile 8 strategies on raw CPU latency."
+      - "Proved Reciprocal Rank Fusion of BM25 and dense vectors reached *86.9% Recall@5 in 8.9ms on CPU*, matching LLM query expansion while cutting latency *99.8%*."
+      - "Validated the gain with paired McNemar tests (*p = 0.0021*) across *92 pytest tests*, turning retrieval tuning into a measured regression suite rather than a vibe check."
+
+  - name: "doubtless"
+    skills: "Python, Pydantic AI, FastAPI, Celery, Redis, SQLite, Docker, Logfire"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Engineered an interactive lecture doubt solver in *Pydantic AI* and *FastAPI* that fuses blackboard video frames with 45s dialogue windows and streams answers over *SSE*."
+      - "Designed a 4-stage asynchronous ingestion pipeline in *Celery* and *Redis* that transcodes HLS, slices 16kHz mono audio (*<15MB/hr*), and transcribes it in *<10s*."
+      - "Architected thread-safe *SQLite* WAL repositories for concurrent reads, containerized the services in *Docker*, and instrumented *OpenTelemetry* and *Logfire* tracing across *151 tests*."
+
+  - name: "vectorless-rag"
+    skills: "Python, Pydantic AI, Ollama, ChromaDB, PyMuPDF, Jupyter Notebooks, Matplotlib"
+    link_url: "https://github.com/amanverma-765/vectorless-rag"
+    points:
+      - "Benchmarked *LLM page indexing* against dense vector search in *Pydantic AI* and *Ollama* over 18 queries, holding *100% hit rate vs 93%* and citation precision at *0.85 vs 0.69*."
+      - "Quantified the trade-off in *Jupyter Notebooks* and *Matplotlib*: *2.7x token cost* and *2x latency* for page indexing against a *40% extraction latency cut*."
+
+skills:
+  - category: "Languages & Core"
+    skills: "Python, Kotlin, SQL, DSA, OOP, DBMS, Operating Systems"
+  - category: "AI, Retrieval & Evals"
+    skills: "Pydantic AI, Model Context Protocol (MCP), ChromaDB, SQLite, Ollama, Jupyter Notebooks, Matplotlib, pytest"
+  - category: "Backend, Data & Infra"
+    skills: "FastAPI, PostgreSQL, Redis, Celery, REST APIs, Spring Boot, Ktor, Docker, OpenTelemetry, Logfire, Open Source"
+
+leadership:
+  - "Delivered 3 sessions on 'Generative AI Unlocked' and 'Level Up Your Career with AI', teaching *150+ students* how to use prompt engineering and agent tooling."
+  - "Contributed fixes and features upstream to a *4,000+ star* open source GitHub repository, working alongside its maintainers."
+  - "Identified critical authorization flaws in the university's exam and fees portal, which serves *500+ affiliated colleges*, and disclosed them to the department head."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"

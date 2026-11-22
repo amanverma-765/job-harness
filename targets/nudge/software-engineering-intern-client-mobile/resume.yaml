@@ -1,0 +1,77 @@
+personal:
+  name: "Aman Verma"
+  target_title: "Software Engineering Intern - Client (Mobile)"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+spacing:
+  line_gap: "0.74em"
+  section_gap: "0.90em"
+  header_gap: "1.20em"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Nov 2025 - Jul 2026"
+    points:
+      - "Architected a cross-platform legal case management client across Android (*Android SDK*) and iOS in *Kotlin Multiplatform (KMP)* and *Compose Multiplatform*, structuring an adaptive shell on *Navigation 3*, *Koin DI*, and *Room KMP* with *85%+ code sharing* across *168 unit tests*."
+      - "Engineered an automated 12-hour case sweep in *Celery* and *Redis* with an idempotent diffing engine, delivering real-time push alerts via *Firebase* Cloud Messaging across *25 High Courts* with *zero duplicate alerts*."
+      - "Deployed 'Munshi' in *Python*, *Pydantic AI*, and *FastAPI* interfacing *Model Context Protocol (MCP)* servers, automating brief retrieval and hearing scheduling with *sub-150ms latency* across *38 REST APIs endpoints* (*1,024 pytests*)."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Shipped Coupit, a cross-platform loyalty client in *Compose Multiplatform (CMP)*, engineering a *60 FPS* physics-driven Canvas spin wheel with continuous angular deceleration and *MVI* state flows across *Android and iOS*."
+      - "Structured *Clean Architecture* across platforms with shared *Kotlin Multiplatform (KMP)* domain models, *Koin DI*, and multi-engine *Ktor* HTTP abstractions with dynamic on-device QR voucher generation."
+      - "Integrated Square POS *OAuth 2.0* and webhook ingestion in *Spring Boot* and *PostgreSQL* (*SQL schema*), automating merchant onboarding in *under 2 minutes* with dynamic *Apple Wallet* pass generation via *PassKit*."
+
+projects:
+  - name: "Oak"
+    skills: "Kotlin Multiplatform (KMP), Compose Multiplatform, Ktor, Koin, Gradle"
+    link_url: "https://github.com/amanverma-765/oak"
+    points:
+      - "Authored an open-source *Kotlin Multiplatform (KMP)* library targeting *Android, iOS, and JVM* to extract and normalize catalog and pricing data across *5+ major e-commerce platforms*."
+      - "Implemented *Clean Architecture* with platform-agnostic domain use cases, multi-engine *Ktor* HTTP client abstractions, and custom *Gradle* convention plugins for automated multi-target publication."
+      - "Abstracted multi-platform pagination and schema mappers via *Koin DI*, decoupling network scrapers to achieve *100% shared business logic* across client apps."
+
+  - name: "WatchTower"
+    skills: "Kotlin, Jetpack Compose, WorkManager, Coroutines, Flow, Room"
+    link_url: "https://github.com/amanverma-765/WatchTower"
+    points:
+      - "Built a local-first Android monitor utilizing MD5 hashing and *Myers diff algorithm* to track DOM modifications and dispatch real-time push alerts."
+      - "Optimized network crawling via *Kotlin Coroutines* with semaphore rate limiting and *WorkManager*, maintaining a consistent *60 FPS UI frame rate*."
+      - "Constructed persistent storage in *Room Database* with reactive *Flow* observables and integrated *OkHttp* with custom SSL trust, rendering diffs in bounded memory (*<150MB*)."
+
+  - name: "Modflix"
+    skills: "Kotlin, Jetpack Compose, Ktor, Koin, Multi-Module, Git, GitHub Actions"
+    link_url: "https://github.com/amanverma-765/modflix"
+    points:
+      - "Designed a multi-module app in *Jetpack Compose*, isolating network scraping into an independent media library module with clean unit testing."
+      - "Automated an asynchronous media scraper via *KSoup* and *Ktor*, implementing dynamic domain mirror resolution across *8+ streaming providers* via *GitHub Actions*."
+
+skills:
+  - category: "Languages & Core"
+    skills: "Kotlin, Python, SQL, DSA, OOP, DBMS, Operating Systems"
+  - category: "Mobile & Multiplatform"
+    skills: "Android SDK, Kotlin Multiplatform (KMP), Compose Multiplatform (CMP), Jetpack Compose, Navigation 3, Room, WorkManager"
+  - category: "Architecture & State"
+    skills: "Clean Architecture, MVI, Koin, Kotlin Coroutines, Flow"
+  - category: "Backend, Cloud & Tooling"
+    skills: "Ktor, FastAPI, REST APIs, Firebase, Redis, PostgreSQL, Git, GitHub Actions, Gradle"
+
+leadership:
+  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked' and 'Level Up with AI', training 150+ students on LLM fundamentals, prompt engineering, and AI tools."
+  - "Coordinated placement drives and corporate outreach as Student Coordinator at CTPC, managing interview scheduling for recruiters and 100+ candidates."
+  - "Organized Smart India Hackathon internal rounds across 2 editions, coordinating problem statements, mentoring, and judging for 20+ teams and 120+ participants."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"
