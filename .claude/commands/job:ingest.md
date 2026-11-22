@@ -18,6 +18,7 @@ Ingest a job posting, extract the 4-Quadrant Matrix, standardize the 10.6x Requi
 
 3. **Extract 4-Quadrant Matrix & Title:**
    - Extract and sanitize the **10.6x Requisition Title**: identify and extract the clean, relevant functional engineering role (e.g. `Software Development Engineer Intern`), stripping recruiter metadata (e.g. `, Amazon University Talent Acquisition`), req IDs, cohort terms (`Summer 2025`), and parenthetical locations.
+   - Keep it bare: no domain, team, product, or track suffix from the JD body. Where the posting offers two titles, keep the shortest sanitized one that is a prefix of the other, then add the employment-type noun if it is an internship (`Software Engineer` + Internship -> `Software Engineer Intern`).
    - Deconstruct JD into:
      - **Quadrant I (Languages & Runtimes):** Primary language tokens.
      - **Quadrant II (Infra, DB & Cloud):** Containerization, cloud, databases.

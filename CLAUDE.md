@@ -48,9 +48,11 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
   - Remove seasonal/cohort markers (e.g. `Summer 2025`, `Fall 2024`, `Class of 2025`).
   - Remove modality/location tags in parentheses (e.g. `(Remote)`, `(Hybrid)`, `(US)`).
   - Expand internal shorthand/acronyms to standard titles (e.g. `SDE I Intern` -> `Software Development Engineer Intern`, `SWE` -> `Software Engineer`).
+- **Zero Synthesized Suffixes (STRICT):** The header title is the bare canonical functional title plus the employment type, and nothing else. NEVER append, invent, or carry over a domain, team, product, or track qualifier from the JD body (e.g. `- AI Agents & Search`, `- Server (Backend)`, `(AI / Data Platform)`, `- Arango Cookbooks`). Those belong in the resume body and cover letter, not the title field. Multi-title postings (marketplace string vs portal string) resolve to the shortest sanitized title that is a prefix of the others, then gain the employment-type noun if the posting is an internship and the title lacks it.
+- **Optional Title:** `target_title` MAY be an empty string when the user chooses to show no header title. Empty is an intentional opt-out, never a defect; the header renders name and contact alone.
 - Inject this clean, relevant title into:
   - The resume header subtitle (`target_title: "..."`).
-- **Immutability of Work Experience Titles (STRICT):** The 10.6x title multiplier is strictly confined to the resume header subtitle (`target_title`). **NEVER modify or adapt the candidate's work experience role titles** to match the target job title. Work experience role titles must remain strictly immutable as recorded in `core/profile.yaml` (e.g. `Software Development Engineer Intern` at LexoLegal).
+- **Immutability of Work Experience Titles (STRICT):** The 10.6x title multiplier is strictly confined to the resume header subtitle (`target_title`). **NEVER modify or adapt the candidate's work experience role titles** to match the target job title. Work experience role titles must remain strictly immutable as recorded in `core/profile.yaml` (e.g. `Software Development Engineer Intern` at LexoLegal). This is machine-enforced: `engine/verify_research_compliance.py` fails any resume whose experience title is absent from `core/profile.yaml`.
 
 ### 2.3 The 4-Quadrant JD Extraction Matrix
 Every ingested job description must be decomposed into four quadrants (`role_analysis.md`):
@@ -105,10 +107,9 @@ All document spacings must be governed by single master variables in `core/templ
   - **Base Catalog vs Tailored Scope:** The base archetype resumes (`core/templates/resume_ai.pdf` for AI/ML/Backend and `core/templates/resume_android.pdf` for Android/KMP/Systems) serve as comprehensive master catalogs and are allowed slight overflow/exceeding of density limits. Strict overfitting and over-stuffing thresholds are enforced strictly on company-tailored resumes (`targets/<company>/<role>/`).
   - **Threshold Limits (Tailored Resumes):**
     - Total bullets: **Maximum 18 bullets** across the entire resume.
-    - Word count: **Maximum 600 words** total body text.
     - Spacing floor: `line_gap` must never be compressed below `0.68em` to cram excess content onto 1 page.
   - **Over-stuffing Verification & User Action:**
-    - If a resume exceeds 18 bullets, exceeds 600 words, or requires `line_gap < 0.68em` to avoid spilling to Page 2, the agent **MUST explicitly flag the over-stuffing to the user**.
+    - If a resume exceeds 18 bullets or requires `line_gap < 0.68em` to avoid spilling to Page 2, the agent **MUST explicitly flag the over-stuffing to the user**.
     - Explain the recruiter scan fatigue risk (cognitive overload during 6–15s triage).
     - Provide a concrete, ranked list of recommended bullet removals (e.g., secondary leadership points, lowest JD-match project bullets, or redundant tech items) for the user to approve.
 

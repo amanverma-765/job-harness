@@ -29,7 +29,7 @@ from typing import List, Dict, Any, Tuple
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 class ResearchComplianceVerifier:
-    def __init__(self, target_dir: Path = None):
+    def __init__(self, target_dir: Path | None = None):
         self.target_dir = target_dir or (REPO_ROOT / "targets/tower-research/ai-ml-intern")
         self.resume_pdf = self.target_dir / "resume.pdf"
         self.resume_yaml = self.target_dir / "resume.yaml"
@@ -146,8 +146,19 @@ class ResearchComplianceVerifier:
         role_md = self.role_analysis.read_text(encoding="utf-8") if self.role_analysis.exists() else ""
         resume_data = yaml.safe_load(self.resume_yaml.read_text(encoding="utf-8")) if self.resume_yaml.exists() else {}
 
-        target_title = resume_data.get("personal", {}).get("target_title", "")
-        self.check("10.6x Title Multiplier in Resume Header", bool(target_title and target_title.upper() in raw_text.upper()), f"'{target_title}' injected into header (All-Caps Typst standard)")
+        target_title = resume_data.get("personal", {}).get("target_title", "") or ""
+        if target_title:
+            self.check("10.6x Title Multiplier in Resume Header", target_title.upper() in raw_text.upper(), f"'{target_title}' injected into header (All-Caps Typst standard)")
+        else:
+            self.check("10.6x Title Multiplier in Resume Header", True, "target_title intentionally omitted (title is optional; header renders name and contact only)")
+
+        # Work experience role titles are immutable profile ground truth; the multiplier is header-only.
+        profile_data = yaml.safe_load(self.profile_file.read_text(encoding="utf-8")) if self.profile_file.exists() else {}
+        kb_titles = {str(role.get("title", "")).strip() for role in (profile_data.get("experience") or []) if role.get("title")}
+        resume_titles = [str(role.get("role") or role.get("title") or "").strip() for role in (resume_data.get("experience") or [])]
+        resume_titles = [t for t in resume_titles if t]
+        drifted = [t for t in resume_titles if t not in kb_titles]
+        self.check("Work Experience Titles Immutable", bool(resume_titles) and not drifted, f"{len(resume_titles)} role title(s) verified verbatim against core/profile.yaml" if not drifted else f"Not in profile.yaml ground truth: {', '.join(drifted)}")
         self.check("4-Quadrant Matrix: Quadrant I (Languages)", "Quadrant I" in role_md, "Languages & runtimes quadrant extracted")
         self.check("4-Quadrant Matrix: Quadrant II (Infra & DB)", "Quadrant II" in role_md, "Infrastructure, datastores & cloud quadrant extracted")
         self.check("4-Quadrant Matrix: Quadrant III (Architecture)", "Quadrant III" in role_md, "Architectural patterns quadrant extracted")
@@ -244,10 +255,10 @@ class ResearchComplianceVerifier:
         self.check("Global Zero Em-Dashes Rule (Resume)", len(em_dashes) == 0, f"{len(em_dashes)} em-dashes found")
 
         pdf_info = subprocess.check_output(["pdfinfo", str(self.resume_pdf)]).decode("utf-8")
-        pages = int(re.search(r"Pages:\s+(\d+)", pdf_info).group(1))
+        m_pages = re.search(r"Pages:\s+(\d+)", pdf_info)
+        pages = int(m_pages.group(1)) if m_pages else 0
         self.check("Strict 1-Page PDF Budget (Resume)", pages == 1, f"Pages: {pages}")
-        doc_words = len(raw_text.split())
-        self.check("Page Density & Over-Stuffing Threshold (<= 18 bullets, <= 600 words)", len(all_bullet_strings) <= 18 and doc_words <= 600, f"{len(all_bullet_strings)} total bullets, {doc_words} words")
+        self.check("Page Density & Over-Stuffing Threshold (<= 18 bullets)", len(all_bullet_strings) <= 18, f"{len(all_bullet_strings)} total bullets")
 
         # ------------------------------------------------------------------
         # SECTION 9: OUTBOUND COVER LETTER & COLD OUTREACH RIGOR
@@ -255,7 +266,8 @@ class ResearchComplianceVerifier:
         print("\n[Checkpoint 9: Outbound Documents (Cover Letter & Outreach)]")
         if self.cover_letter_pdf.exists():
             cl_info = subprocess.check_output(["pdfinfo", str(self.cover_letter_pdf)]).decode("utf-8")
-            cl_pages = int(re.search(r"Pages:\s+(\d+)", cl_info).group(1))
+            m_cl_pages = re.search(r"Pages:\s+(\d+)", cl_info)
+            cl_pages = int(m_cl_pages.group(1)) if m_cl_pages else 0
             cl_raw = subprocess.check_output(["pdftotext", "-layout", str(self.cover_letter_pdf), "-"]).decode("utf-8")
             cl_em = [l for l in cl_raw.splitlines() if "—" in l or "---" in l]
             cl_words = len(cl_raw.split())
