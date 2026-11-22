@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=../../../core/schema/resume-source.schema.json
+personal:
+  name: "Aman Verma"
+  target_title: "Software Engineer Intern"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+spacing:
+  line_gap: "0.72em"
+  section_gap: "0.82em"
+  header_gap: "1.30em"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Nov 2025 - Jul 2026"
+    points:
+      - "Engineered 38 asynchronous *REST APIs* in *FastAPI* and *SQLAlchemy 2.0* across 12 *PostgreSQL* tables behind *Nginx*, with multi-tier JWT auth, RFC 9457 problem details, and *Alembic* migrations validated by *1,024 pytest tests*."
+      - "Hardened multi-tenant agent execution in *Pydantic AI* by binding verified identity inside AgentDeps rather than LLM tool parameters, then orchestrated *Model Context Protocol (MCP)* clients across Google Drive and Calendar for brief discovery at *sub-2s latency*."
+      - "Automated an idempotent 12-hour case refresh sweep in *Celery* and *Redis* with atomic distributed locks and a two-stage dispatch and deliver pipeline, keeping retried jobs duplicate-free against a 90-retry ceiling."
+      - "Architected a *Kotlin Multiplatform* client for Android and iOS in *Compose Multiplatform*, sharing 85%+ of the codebase across Navigation 3, *Koin* DI, and *Room* behind *168 unit tests*."
+      - "Reverse-engineered the eCourts mobile API protocol in *Python* with AES-128-CBC cryptography, ingesting case records from 25 High Courts and 743 District Courts into *PostgreSQL*."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Implemented Square POS OAuth 2.0 onboarding and webhook ingestion in *Spring Boot* and Spring Data JPA on *PostgreSQL*, activating merchants in under 2 minutes with idempotent payment verification and replay protection."
+      - "Developed a trademark monitoring engine in *Kotlin* and *Spring Boot* over *PostgreSQL*, sweeping 5,000-record chunks with 25 parallel coroutines behind semaphore rate limits and Flyway migrations for trigram search."
+      - "Shipped a *Compose Multiplatform* loyalty app for Android and iOS with a 60 FPS physics-driven Canvas spin wheel, shared domain models, *Koin* DI, and a *Ktor* client issuing on-device QR vouchers from verified Square checkouts."
+
+projects:
+  - name: "doubtless"
+    skills: "React 19, TypeScript, FastAPI, Pydantic AI, Celery, Redis, OpenTelemetry"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Built a real-time lecture doubt-solver in *Pydantic AI* and *FastAPI* that fuses blackboard frames with 45s dialogue windows and streams answers over SSE, paired with a *React 19* and *TypeScript* workspace using AbortSignal cancellation."
+      - "Designed a 4-stage async ingestion pipeline in *Celery* and *Redis* that transcodes HLS streams, slices 16kHz mono audio below 15MB/hr, and transcribes lectures in under 10s with Groq Whisper-Large-V3."
+      - "Instrumented thread-safe *SQLite* WAL repositories behind *Redis* caching with *OpenTelemetry* traces across agent runs, covering the API and client with *107* backend and 12 Vitest suites."
+
+  - name: "ncert-rag-evals"
+    skills: "Python, SQL, SQLite FTS5, ChromaDB, Pytest, Jupyter"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Benchmarked retrieval across 17 STEM textbooks in *Python*, writing hybrid BM25 and dense search from scratch in *SQL* on *SQLite FTS5* and *ChromaDB* to profile 8 strategies at raw CPU latency."
+      - "Proved Reciprocal Rank Fusion reached *86.9% Recall@5 in 8.9ms* on CPU, validated through paired McNemar tests (*p = 0.0021*) across *92 pytest cases*."
+
+  - name: "modflix"
+    skills: "Kotlin, Jetpack Compose, Ktor, Koin, ExoPlayer, GitHub Actions"
+    link_url: "https://github.com/amanverma-765/modflix"
+    points:
+      - "Structured a multi-module Kotlin streaming app in *Jetpack Compose*, isolating scraping into an independent :cassini parsing module with its own unit tests and *Koin* DI wiring."
+      - "Engineered an async scraper in *Ktor* and KSoup that resolves mirror domains across 8+ streaming providers with fallback extraction and IMDb metadata enrichment for *ExoPlayer* playback."
+      - "Built a *GitHub Actions* pipeline with custom Python scrapers, synchronizing live mirror endpoints so playback survives provider domain churn."
+
+skills:
+  - category: "Languages & Core"
+    skills: "Kotlin, Python, SQL, TypeScript, OOP, DBMS, Operating Systems"
+  - category: "Backend & Data"
+    skills: "FastAPI, Celery, Redis, PostgreSQL, SQLAlchemy, Alembic, Nginx, REST APIs, SQLite, ChromaDB"
+  - category: "Mobile & Multiplatform"
+    skills: "Kotlin Multiplatform (KMP), Compose Multiplatform, Jetpack Compose, Ktor, Koin, Room"
+  - category: "AI, Evals & Observability"
+    skills: "Pydantic AI, Model Context Protocol (MCP), OpenTelemetry"
+  - category: "Testing & Tooling"
+    skills: "Pytest, Vitest, GitHub Actions"
+
+leadership:
+  - "Delivered 3 technical sessions on LLM basics and modern AI developer tooling to 150+ college students."
+  - "Organized Smart India Hackathon internal rounds across 2 editions for 20+ teams and 120+ participants."
+  - "Contributed upstream fixes and feature work to a 4,000+ star open-source repository, alongside its maintainers."
+  - "Found and responsibly disclosed authentication vulnerabilities in a university portal serving 500+ affiliated colleges."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"

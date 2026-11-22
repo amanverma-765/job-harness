@@ -13,7 +13,7 @@
   company_name: "Shure India",
   company_address: "Hyderabad, Telangana, India",
   font_size: 10.5pt,
-  leading: 0.74em
+  leading: 0.74em,
 )
 
 Dear Engineering Hiring Team,

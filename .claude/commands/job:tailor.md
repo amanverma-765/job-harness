@@ -11,6 +11,7 @@ Synthesize a tailored Jake's Resume in Typst strictly grounded in commit-pinned 
    - Consult `.claude/skills/tech-resume-optimizer/SKILL.md` and `.claude/skills/resume-ats-optimizer/SKILL.md`.
    - Read `targets/<company-slug>/<role-slug>/role_analysis.md`.
    - Read candidate ground truth from `core/profile.yaml` and `core/projects_corpus.yaml`.
+   - **CORE-ONLY (STRICT):** Never read, copy, or adapt any other `targets/<company>/<role>/` resume or document. Build this resume from `core/` alone plus this role's `role_analysis.md`. See `CLAUDE.md` §2.12.
 
 2. **Project Selection & 10.6x Title Multiplier:**
    - Select 3–4 repositories from `core/projects_corpus.yaml` whose verified stacks and architectures best align with Quadrants I–IV.

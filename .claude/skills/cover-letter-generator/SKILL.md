@@ -31,6 +31,12 @@ description: Generate high-signal, 1-page Typst cover letters strictly adhering 
    - Bold substantive keywords (`*Python*`, `*PostgreSQL*`, `*sub-50ms latency*`, `*Model Context Protocol (MCP)*`).
    - **Never bold leading action verbs.**
 
+5. **Recipient Block (three lines, no invented org units):**
+   - Pass `recipient_name`, `company_name`, `company_address`; set `recipient_title: ""` unless the exact team or human title is quoted from `job_description.md` or `company_research.md`.
+   - Generic salutation (`Engineering Hiring Team`) is fine. `Hiring Manager`, `To Whom It May Concern`, and invented department lines (`Internship Program, Technology`) are banned.
+   - `company_name` must match the target directory slug. `company_address` is city/state/country, never an unverified street address.
+   - Verified against `engine/verify_research_compliance.py`, which fails unevidenced titles.
+
 ---
 
 ## The 4-Paragraph Narrative Structure

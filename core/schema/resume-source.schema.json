@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Job Harness Resume Source (yml.typ)",
+  "description": "Source format read by core/templates/yml.typ and every targets/<company>/<role>/resume.yaml. This is NOT JSON Resume; see CLAUDE.md section 1 and 2.10.",
+  "type": "object",
+  "required": ["personal", "experience", "projects", "skills", "education"],
+  "additionalProperties": false,
+  "properties": {
+    "personal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "location", "phone", "email"],
+      "properties": {
+        "name": { "type": "string" },
+        "target_title": {
+          "type": "string",
+          "description": "Header subtitle, bare canonical functional title only. Empty string renders name and contact alone (CLAUDE.md 2.2)."
+        },
+        "location": { "type": "string", "description": "Immutable: Jaunpur, UP, India." },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "site": { "type": "string" }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "em values, governed by CLAUDE.md 2.10-2.11. line_gap floor 0.68em.",
+      "properties": {
+        "line_gap": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?em$" },
+        "section_gap": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?em$" },
+        "header_gap": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?em$" }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "name", "date", "points"],
+        "properties": {
+          "role": { "type": "string", "description": "Immutable, must match core/profile.yaml verbatim (CLAUDE.md 2.2)." },
+          "name": { "type": "string", "description": "Employer." },
+          "location": { "type": "string" },
+          "date": { "type": "string", "description": "Three-letter month range, e.g. Nov 2025 - Jul 2026." },
+          "points": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "points"],
+        "properties": {
+          "name": { "type": "string" },
+          "skills": { "type": "string", "description": "Comma-separated tech line rendered under the project title." },
+          "link_url": { "type": "string" },
+          "points": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "skills"],
+        "properties": {
+          "category": { "type": "string", "description": "One category must start with Languages." },
+          "skills": { "type": "string", "description": "Comma-separated, 20-35 unique skills for the whole document." }
+        }
+      }
+    },
+    "leadership": {
+      "type": "array",
+      "description": "One-line entries, no bullet nesting.",
+      "items": { "type": "string" }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "degree"],
+        "properties": {
+          "name": { "type": "string", "description": "Institution." },
+          "degree": { "type": "string" },
+          "location": { "type": "string" },
+          "date": { "type": "string" },
+          "points": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

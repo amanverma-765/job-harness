@@ -1,0 +1,77 @@
+personal:
+  name: "Aman Verma"
+  target_title: "Forward Deployed Engineer Intern"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+spacing:
+  line_gap: "0.70em"
+  section_gap: "0.80em"
+  header_gap: "1.10em"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Nov 2025 - Jul 2026"
+    points:
+      - "Implemented 38 asynchronous *REST APIs* in *FastAPI* and *SQLAlchemy 2.0* across 12 *PostgreSQL* tables behind *Nginx*, adding multi-tier *JWT* authentication, RFC 9457 problem details, and *Alembic* *SQL* migrations validated across 1,024 *pytest* tests."
+      - "Automated a 12-hour case refresh sweep in *Celery* and *Redis* with an idempotent diffing engine and a two-stage notification pipeline, guaranteeing zero duplicate alerts and zero message loss."
+      - "Engineered 'Munshi', an autonomous WhatsApp legal assistant in *Pydantic AI* and *FastAPI*, orchestrating *Model Context Protocol (MCP)* clients across Google Drive and Calendar servers to discover briefs and schedule hearings with *sub-2s latency*."
+      - "Reverse-engineered eCourts' proprietary mobile API protocol in *Python*, implementing *AES-128-CBC* cryptography and GIV lookup tables to ingest case data from 25 High Courts and 743 District Courts into *PostgreSQL*."
+
+projects:
+  - name: "doubtless"
+    skills: "Pydantic AI, FastAPI, Multimodal RAG, Celery, Redis, React, TypeScript, Docker"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Shipped an interactive lecture doubt-solver in *Pydantic AI* and *FastAPI*, fusing blackboard video frames with 45s playback dialogue windows to stream real-time answers for visual STEM queries via *SSE*."
+      - "Built a Vite based lecture workspace UI in *React 19*, *TypeScript*, and *Tailwind CSS*, consuming SSE token frames through a stream reader with AbortSignal cancellation and converting [MM:SS] citations into seekable in-player anchors."
+      - "Designed an asynchronous 4-stage ingestion pipeline (PipelineRunner) in *Celery* and *Redis* that transcodes HLS streams, slices 16kHz mono audio (<15MB/hr), and transcribes lectures in <10s via *Groq Whisper-Large-V3*, tracing each stage with *OpenTelemetry* and *Logfire*."
+      - "Covered the client with 12 *Vitest* test suites across hooks, services, and components, gating *Git* commits through pre-commit hooks and shipping the API and client as *Docker* images."
+
+  - name: "ncert-rag-evals"
+    skills: "Python, Jupyter Notebooks, SQLite FTS5, ChromaDB, Pytest"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Constructed an empirical retrieval benchmark across 17 STEM textbooks in *Python* and *Jupyter Notebooks*, implementing custom hybrid search from scratch in *SQLite FTS5* and *ChromaDB* instead of high-level abstractions to profile 8 retrieval strategies on raw CPU latency."
+      - "Proved that fusing BM25 with dense embeddings via Reciprocal Rank Fusion (RRF) achieved *86.9% Recall@5 in 8.9ms on CPU*, matching LLM query expansion while cutting latency by *99.8%*."
+      - "Engineered a document parser indexing 4,429 section-aware chunks into *SQLite FTS5* and *ChromaDB*, validating statistical significance via paired McNemar tests (*p = 0.0021*) across 92 *pytest* tests."
+
+  - name: "vectorless-rag"
+    skills: "Python, Pydantic AI, Ollama, ChromaDB, PyMuPDF, Matplotlib"
+    link_url: "https://github.com/amanverma-765/vectorless-rag"
+    points:
+      - "Evaluated dense vector search against LLM-based page indexing on benchmark documents using *Pydantic AI*, configuring *Ollama* as a local testbed alongside cloud LLMs across 18 benchmark queries."
+      - "Benchmarked retrieval trade-offs in *Jupyter Notebooks* with *Matplotlib*, plotting the *2.7x token cost* and *2x latency* tradeoff while verifying *100% retrieval hit rate* and *0.85 citation precision*."
+      - "Created a zero-framework document ingestion engine in *Python* using *PyMuPDF* and *ChromaDB*, streaming page-aligned windows with bounded memory (*<200MB*) to eliminate context truncation and cut extraction latency by *40%*."
+
+skills:
+  - category: "Languages & Core"
+    skills: "Python, SQL, DSA, OOP, DBMS, Operating Systems"
+  - category: "Backend & APIs"
+    skills: "FastAPI, REST APIs, Celery, Redis, Pydantic AI, Model Context Protocol (MCP)"
+  - category: "Databases & Retrieval"
+    skills: "PostgreSQL, SQLite, ChromaDB, Multimodal RAG"
+  - category: "Frontend & Streaming"
+    skills: "React, TypeScript, Tailwind CSS, SSE"
+  - category: "AI & Document Tooling"
+    skills: "Groq Whisper, Ollama, PyMuPDF"
+  - category: "Testing & DevOps"
+    skills: "Pytest, Vitest, Docker, Git"
+  - category: "Observability & Analysis"
+    skills: "OpenTelemetry, Logfire, Jupyter Notebooks, Matplotlib"
+
+leadership:
+  - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts and modern AI developer tools."
+  - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
+  - "Identified critical authorization and authentication vulnerabilities across the university's centralized exam, fees, and result portal serving 500+ affiliated colleges, and responsibly disclosed them to the department head for remediation."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "Bachelor of Technology in Computer Science & Engineering"
+    location: "Jaunpur, India"
+    date: "2023 - 2027"

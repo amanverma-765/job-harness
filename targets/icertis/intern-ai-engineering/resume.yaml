@@ -1,0 +1,72 @@
+personal:
+  name: "Aman Verma"
+  target_title: "AI Engineering Intern"
+  location: "Jaunpur, UP, India"
+  phone: "+91 6386617608"
+  email: "akverma4aman@gmail.com"
+  linkedin: "linkedin.com/in/amanverma765"
+  site: "github.com/amanverma-765"
+
+skills:
+  - category: "Languages & CS Core"
+    skills: "Python, TypeScript, Kotlin, Java, SQL, DSA, OOP, DBMS, Operating Systems"
+  - category: "AI & Agentic Systems"
+    skills: "Pydantic AI, Model Context Protocol (MCP), RAG, ChromaDB"
+  - category: "Backend & Infrastructure"
+    skills: "FastAPI, REST APIs, Celery, Redis, PostgreSQL, Docker, Clean Architecture"
+  - category: "Frontend & Testing"
+    skills: "React, Tailwind CSS, Vite, Vitest, Git, Pytest"
+
+experience:
+  - role: "Software Development Engineer Intern"
+    name: "LexoLegal"
+    location: "Remote"
+    date: "Nov 2025 - Jul 2026"
+    points:
+      - "Built *Munshi*, an autonomous WhatsApp legal assistant in *Python* on *Pydantic AI* and *FastAPI*, orchestrating *Model Context Protocol (MCP)* clients across Google Drive and Calendar to resolve counsel queries at *sub-2s latency*."
+      - "Implemented 38 asynchronous *REST APIs* in *FastAPI* and *SQLAlchemy 2.0* over 12 relational *SQL* tables in *PostgreSQL*, adding multi-tier *JWT* authentication and *Alembic* migrations validated by *1,024 Pytest tests*."
+      - "Applied *Clean Architecture* with identity isolation inside *Pydantic AI* agent dependencies, keeping tenant scope outside model-visible parameters so cross-tenant prompt injection fails at the execution boundary."
+      - "Engineered a 12-hour refresh sweep in *Celery* and *Redis* with idempotent diffing, atomically locking each job to requeue after 10s and capping retries at 90, so no tenant alert is duplicated or dropped."
+      - "Hardened the *WhatsApp* webhook with *HMAC-SHA256* signature verification and published *OpenAPI* schemas, so the assistant's tool surface stayed typed and auditable before dispatch."
+      - "Reverse-engineered the eCourts *AES-128-CBC* endpoint across 25 High Courts and 743 District Courts, publishing OpenAPI schemas that turned an undocumented portal into a queryable litigation source."
+
+  - role: "Freelance Developer"
+    name: "Webxela"
+    location: "Remote"
+    date: "Oct 2024 - Jan 2025"
+    points:
+      - "Shipped *Coupit*, a cross-platform loyalty app in *Kotlin* and Compose Multiplatform, rendering a *60 FPS* Canvas spin wheel from MVI state flows against a *Spring Boot* (*Java*) backend."
+      - "Drove Square POS *OAuth 2.0* onboarding below *2 minutes* in *Spring Boot*, *Docker*, and *PostgreSQL*, with idempotent payment verification covered by *JUnit 5* tests."
+      - "Automated trademark monitoring across 25 parallel coroutines in *Kotlin*, persisting *PostgreSQL* rows through semaphore-bounded *SQL* writes so burst limits never breached the registry quota."
+
+projects:
+  - name: "doubtless"
+    skills: "React, TypeScript, Tailwind CSS, Vite, Vitest, SSE, Docker, Git"
+    link_url: "https://github.com/amanverma-765/doubtless"
+    points:
+      - "Built a *Vite* based lecture workspace UI in *React* and *TypeScript* with *Tailwind CSS*, consuming *SSE* token frames through a stream reader with *AbortSignal* cancellation and turning timestamped citations into seekable in-player anchors."
+      - "Wrote 12 *Vitest* suites across hooks, services, and components, then gated commits through *Git* pre-commit hooks and shipped the API and client as *Docker* images."
+
+  - name: "ncert-rag-evals"
+    skills: "Python, ChromaDB, SQLite FTS5, BM25, Reciprocal Rank Fusion, Pytest, Jupyter"
+    link_url: "https://github.com/amanverma-765/ncert-rag-evals"
+    points:
+      - "Constructed a retrieval benchmark across 17 STEM textbooks, fusing *BM25* with dense *ChromaDB* embeddings through *Reciprocal Rank Fusion* to reach *86.9% Recall@5* at *8.9ms* CPU latency, a *99.8%* cut."
+      - "Validated the fusion win with paired McNemar testing (*p = 0.0021*) across 92 *Pytest* tests, rejecting three retrieval strategies that lost at an equal token budget."
+
+  - name: "vectorless-rag"
+    skills: "Python, PyMuPDF, ChromaDB, Ollama, Matplotlib"
+    link_url: "https://github.com/amanverma-765/vectorless-rag"
+    points:
+      - "Measured a *100%* retrieval hit rate against *93%* for vector *RAG* on 18 golden queries, trading *2.7x* tokens and *2x* latency for *0.85* citation precision."
+      - "Indexed page trees with *PyMuPDF* under *200MB* memory, cutting extraction latency *40%* against the vector baseline on the same corpus."
+
+leadership:
+  - "Identified authorization and authentication vulnerabilities across the university exam, fees, and result portal serving 500+ affiliated colleges, then disclosed them responsibly to the department head for remediation."
+  - "Delivered 3 technical sessions as a speaker on *Generative AI Unlocked: LLM Basics* and *Level Up Your Career with AI*, training 150+ students on prompt engineering and modern AI developer tools."
+
+education:
+  - name: "Veer Bahadur Singh Purvanchal University"
+    degree: "B.Tech in Computer Science and Engineering"
+    location: "Jaunpur, UP, India"
+    date: "2023 - 2027"

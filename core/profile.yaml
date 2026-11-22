@@ -15,8 +15,8 @@ education:
   - institution: "Veer Bahadur Singh Purvanchal University"
     degree: "Bachelor of Technology in Computer Science & Engineering"
     location: "Jaunpur, India"
-    start_date: "2023"
-    end_date: "2027"
+    start_date: "Sept 2023"
+    end_date: "May 2027"
 
 experience:
   - company: "LexoLegal"
@@ -88,7 +88,6 @@ experience:
 
 leadership:
   - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts, prompt engineering, and modern AI developer tools."
-  - "Coordinated placement drives and corporate outreach as Student Coordinator at CTPC (Central Training & Placement Cell), managing logistics and interview scheduling for recruiters and 100+ candidates."
   - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
   - "Contributed upstream fixes and feature improvements to a 4,000+ star open-source GitHub repository, collaborating directly with maintainers."
   - "Identified critical authorization and authentication vulnerabilities across the university's centralized exam, fees, and result portal serving 500+ affiliated colleges, and responsibly disclosed them to the department head for remediation."

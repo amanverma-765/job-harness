@@ -275,8 +275,47 @@ class ResearchComplianceVerifier:
             self.check("Cover Letter 1-Page Budget", cl_pages == 1, f"Pages: {cl_pages}")
             self.check("Cover Letter Zero Em-Dashes", len(cl_em) == 0, f"{len(cl_em)} em-dashes")
             self.check("Cover Letter Word Count (250-350 Words)", 250 <= cl_words <= 350, f"Extracted words: {cl_words}")
+
+        # Letterhead integrity (see CLAUDE.md 3.1): invented department lines are fabrications.
         else:
             self.check("Cover Letter Artifact", False, "Missing cover_letter.pdf")
+
+        # Letterhead integrity: every recipient line is either quoted from the source
+        # documents or omitted. Invented department/team names are fabrications.
+        cl_typ = self.target_dir / "cover_letter.typ"
+        if cl_typ.exists():
+            cl_src = cl_typ.read_text(encoding="utf-8")
+
+            def field(key: str) -> str:
+                m = re.search(rf'{key}:\s*"([^"]*)"', cl_src)
+                return (m.group(1) if m else "").strip()
+
+            rec_name = field("recipient_name")
+            rec_title = field("recipient_title")
+            comp_name = field("company_name")
+            comp_addr = field("company_address")
+            evidence = " ".join(
+                p.read_text(encoding="utf-8")
+                for p in (self.target_dir / "job_description.md", self.target_dir.parent / "company_research.md")
+                if p.exists()
+            ).lower()
+            self.check(
+                "Cover Letter Recipient Name Is Specific",
+                rec_name.lower() not in {"", "hiring manager", "to whom it may concern", "sir/madam"},
+                f"'{rec_name}'",
+            )
+            self.check(
+                "Cover Letter Recipient Title Evidenced Or Empty",
+                not rec_title or rec_title.lower() in evidence,
+                f"'{rec_title}' absent from job_description.md and company_research.md",
+            )
+            target_slug = self.target_dir.parent.name.replace("-", " ").lower()
+            self.check(
+                "Cover Letter Company Matches Target Slug",
+                target_slug in comp_name.lower().replace("-", " "),
+                f"'{comp_name}' vs target dir '{self.target_dir.parent.name}'",
+            )
+            self.check("Cover Letter Company Address Present", bool(comp_addr), f"'{comp_addr}'")
 
         if self.outreach_md.exists():
             outreach_text = self.outreach_md.read_text(encoding="utf-8")
