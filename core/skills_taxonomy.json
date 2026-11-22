@@ -191,6 +191,14 @@
           ],
           "ontology": "Web Frameworks"
         },
+        "OpenAPI": {
+          "aliases": [
+            "Swagger",
+            "Swagger UI",
+            "OpenAPI 3"
+          ],
+          "ontology": "API Specification"
+        },
         "Firebase": {
           "aliases": [
             "FCM",
@@ -391,7 +399,9 @@
         },
         "Jetpack Navigation": {
           "aliases": [
-            "Compose Navigation"
+            "Compose Navigation",
+            "Navigation 3",
+            "Nav3"
           ],
           "ontology": "Application Navigation"
         },
@@ -480,6 +490,14 @@
             "Mocking"
           ],
           "ontology": "Kotlin Mocking Library"
+        },
+        "Open Source": {
+          "aliases": [
+            "open-source",
+            "OSS",
+            "upstream contribution"
+          ],
+          "ontology": "Collaboration & Tooling"
         },
         "Postman": {
           "aliases": [

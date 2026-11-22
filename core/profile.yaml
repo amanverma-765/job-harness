@@ -25,14 +25,14 @@ experience:
     start_date: "Nov 2025"
     end_date: "Jul 2026"
     highlights:
-      - "Architected a cross-platform case management client (Android/iOS) in Kotlin Multiplatform (KMP) and Compose Multiplatform, structuring an adaptive shell on Jetpack Navigation 3, Koin DI, and Room KMP with 85%+ code sharing and 168 unit tests."
-      - "Engineered an automated 12-hour case refresh sweep using Celery and Redis with an idempotent diffing engine; built a two-stage notification pipeline (dispatch dedup and deliver channel ledger) guaranteeing zero duplicate alerts and zero message loss."
-      - "Engineered 'Munshi', an autonomous WhatsApp legal assistant in Pydantic AI and FastAPI, orchestrating Model Context Protocol (MCP) clients across Google Drive and Calendar servers to automate brief discovery and hearing scheduling with sub-2s latency."
-      - "Architected 38 asynchronous REST API endpoints in FastAPI and SQLAlchemy 2.0 across 12 PostgreSQL relational tables behind Nginx, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and Alembic migrations validated across 1,024 pytest suites."
-      - "Hardened multi-tenant agent execution by isolating authenticated identity inside Pydantic AI AgentDeps (eliminating prompt injection vectors) and prevented worker race conditions using atomic Redis distributed locks with 10s Celery countdown requeues (90-retry ceiling)."
+      - "Architected a cross-platform legal case management client across Android (Android SDK) and iOS in Kotlin Multiplatform (KMP) and Compose Multiplatform, structuring an adaptive shell on Navigation 3, Koin DI, and Room KMP with 85%+ code sharing across 168 unit tests."
+      - "Automated a 12-hour case refresh sweep in Celery and Redis with an idempotent diffing engine and a two-stage notification pipeline, guaranteeing zero duplicate alerts and zero message loss."
+      - "Engineered 'Munshi', an autonomous WhatsApp legal assistant in Pydantic AI and FastAPI, orchestrating Model Context Protocol (MCP) clients across Google Drive and Calendar servers to automate authenticated brief discovery and hearing scheduling with sub-2s latency."
+      - "Implemented 38 asynchronous REST API endpoints in FastAPI and SQLAlchemy 2.0 across 12 PostgreSQL relational tables behind Nginx, adding multi-tier JWT authentication, RFC 9457 problem details, and Alembic migrations validated across 1,024 pytest tests."
+      - "Hardened multi-tenant agent execution by isolating verified user identity inside Pydantic AI AgentDeps rather than LLM tool parameters, eliminating cross-tenant prompt injection and hard-bounding sandboxed workspace tool access."
+      - "Prevented worker race conditions with atomic Redis distributed locks and 10s Celery countdown requeues at a 90-retry ceiling, keeping concurrent case refresh jobs idempotent under retry storms."
       - "Reverse-engineered eCourts' proprietary mobile API protocol in Python, implementing AES-128-CBC cryptography with dynamic RIV salt generation and GIV lookup tables to ingest case data across 25 High Courts and 743 District Courts into PostgreSQL."
-      - "Integrated Model Context Protocol (MCP) clients with Pydantic AI to interface Google Drive and Google Calendar MCP servers, orchestrating legal brief retrieval and hearing scheduling within authenticated sessions."
-      - "Eliminated cross-tenant prompt injection risks by isolating verified user identity inside Pydantic AI AgentDeps rather than LLM tool parameters, hard-bounding agent access to sandboxed workspace tools."
+      - "Secured WhatsApp webhook ingress with HMAC-SHA256 payload signature verification and published OpenAPI (Swagger) schemas across the REST surface so client and agent callers integrate against generated contracts."
     verified_skills:
       - "Kotlin"
       - "Android SDK"
@@ -48,6 +48,7 @@ experience:
       - "PostgreSQL"
       - "Redis"
       - "REST APIs"
+      - "OpenAPI"
       - "Docker"
 
   - company: "Webxela"
@@ -62,7 +63,8 @@ experience:
       - "Engineered dynamic Apple Wallet pass generation and distribution using PassKit (jpasskit) and X.509 cryptographic signing, streaming signed .pkpass bundles with configurable expiration TTL."
       - "Engineered real-time POS screen activation using Firebase Cloud Messaging (FCM) to trigger the customer-facing spin wheel instantly upon verified Square checkout webhooks."
       - "Developed a high-throughput trademark search and monitoring engine in Kotlin, Spring Boot, and PostgreSQL, leveraging Coroutines with 25 parallel worker threads and semaphore rate limits to sweep 5,000-record chunks across public registries."
-      - "Engineered resilient data ingestion pipelines in Ktor and Jsoup with automated CAPTCHA resolution and exponential backoff retries, persisting trademark oppositions via Flyway migrations and PostgreSQL trigram search."
+      - "Engineered resilient data ingestion pipelines in Ktor and Jsoup with automated CAPTCHA resolution and 50-step exponential backoff retries (2m-15m bounds), persisting trademark oppositions via Flyway migrations and PostgreSQL trigram search."
+      - "Constructed reactive REST endpoints using Spring Boot, Spring Security JWT authentication, and Docker Compose, decoupling automated scraping worker bots from the customer-facing dashboard."
     verified_skills:
       - "Kotlin"
       - "Compose Multiplatform (CMP)"
@@ -80,11 +82,16 @@ experience:
       - "PassKit"
       - "OAuth 2.0"
       - "Firebase"
+      - "Docker"
+      - "JWT"
+      - "JUnit 5"
 
 leadership:
   - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts, prompt engineering, and modern AI developer tools."
   - "Coordinated placement drives and corporate outreach as Student Coordinator at CTPC (Central Training & Placement Cell), managing logistics and interview scheduling for recruiters and 100+ candidates."
   - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
+  - "Contributed upstream fixes and feature improvements to a 4,000+ star open-source GitHub repository, collaborating directly with maintainers."
+  - "Identified critical authorization and authentication vulnerabilities across the university's centralized exam, fees, and result portal serving 500+ affiliated colleges, and responsibly disclosed them to the department head for remediation."
 
 skills:
   languages_and_core:
@@ -114,6 +121,7 @@ skills:
     - "Room"
     - "SQLite"
     - "WorkManager"
+    - "Navigation 3"
     - "Jetpack Navigation"
   backend_and_cloud:
     - "Spring Boot"
@@ -165,3 +173,4 @@ skills:
     - "Linux"
     - "uv"
     - "Ruff"
+    - "Open Source"
