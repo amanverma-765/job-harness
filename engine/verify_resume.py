@@ -76,6 +76,11 @@ BRANDING_RULES = [
     (r"\bPostgreSql\b", "PostgreSQL"),
 ]
 
+# Resolvable project links: absolute https, real host, and a full owner/repo path on GitHub.
+# A project with no link_url at all is allowed (private or internal work).
+GITHUB_REPO_RE = re.compile(r"^https://(?:www\.)?github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/?$")
+GENERAL_URL_RE = re.compile(r"^https://[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:/\S*)?$")
+
 
 class ResumeVerifier:
     def __init__(self, file_path: Path, corpus_path: Path | None = None):
@@ -303,9 +308,62 @@ class ResumeVerifier:
         if total_bullets < 14 and (not m_lg or float(m_lg.group(1)) <= 0.75):
             self.log_warning("Under-Fill Alert", f"Resume has only {total_bullets} bullets with low/default line gap. Scale line_gap to 0.85em-0.90em or add commit-grounded pointers to avoid dead-space.")
 
+    def load_companion_yaml(self) -> dict | None:
+        """Load the YAML a Typst resume imports, so checks can read structured source truth."""
+        if self.file_path.suffix in (".yaml", ".yml"):
+            try:
+                return yaml.safe_load(self.raw_content) or {}
+            except Exception:
+                return None
+        m_yaml = re.search(r'yaml\(\s*"([^"]+)"\s*\)', self.raw_content)
+        if self.is_typst and m_yaml:
+            yaml_path = self.file_path.parent / m_yaml.group(1)
+            if yaml_path.exists():
+                try:
+                    return yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+                except Exception as e:
+                    self.log_issue("Gate 5: Project Links", f"Companion YAML {m_yaml.group(1)} failed to parse: {e}")
+        return None
+
+    def check_project_links(self):
+        """Every present project link must be a resolvable absolute URL; a missing link is allowed."""
+        data = self.load_companion_yaml()
+        if not data:
+            return
+
+        corpus_urls: dict[str, str] = {}
+        if self.corpus_path and self.corpus_path.exists():
+            try:
+                corpus = yaml.safe_load(self.corpus_path.read_text(encoding="utf-8")) or {}
+                for repo in corpus.get("repositories", []) or []:
+                    for key in (repo.get("id"), repo.get("name")):
+                        if key:
+                            corpus_urls[str(key).lower()] = str(repo.get("repo_url", "")).rstrip("/")
+            except Exception as e:
+                self.log_warning("Gate 5: Project Links", f"Could not read corpus repo_urls from {self.corpus_path}: {e}")
+
+        for proj in data.get("projects", []) or []:
+            name = str(proj.get("name", "?"))
+            link = str(proj.get("link_url", "") or "").strip()
+            if not link:
+                continue  # private or internal project: no link is a valid state
+            if not link.startswith("https://"):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' link must be an absolute https URL: '{link}'.")
+                continue
+            if "github.com" in link and not GITHUB_REPO_RE.match(link):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' GitHub link is incomplete, needs https://github.com/<owner>/<repo>: '{link}'.")
+                continue
+            if "github.com" not in link and not GENERAL_URL_RE.match(link):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' link is not a resolvable absolute URL: '{link}'.")
+                continue
+            expected = corpus_urls.get(name.lower())
+            if expected and expected != link.rstrip("/"):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' link '{link}' disagrees with core/projects_corpus.yaml repo_url '{expected}'.")
+
     def run_all(self) -> bool:
         self.check_em_dashes()
         self.check_canonical_branding()
+        self.check_project_links()
         bullets, skills = self.extract_bullets_and_skills()
         self.check_gate_1_non_skills(skills)
         self.check_gate_2_defensibility(bullets)

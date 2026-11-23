@@ -19,7 +19,7 @@ experience:
     points:
       - "Architected a cross-platform legal case management client across Android (*Android SDK*) and iOS in *Kotlin Multiplatform (KMP)* and *Compose Multiplatform*, structuring an adaptive shell on *Navigation 3*, *Koin DI*, and *Room KMP* with *85%+ code sharing* across *168 unit tests*."
       - "Engineered an automated 12-hour case refresh sweep in *FastAPI*, *Celery*, and *Redis* with an idempotent diffing engine, delivering real-time push alerts via *Firebase Cloud Messaging* across *25 High Courts* with *zero duplicate alerts*."
-      - "Deployed 'Munshi', an autonomous legal assistant in *Pydantic AI* and *FastAPI* interfacing *Model Context Protocol (MCP)* servers, automating legal brief retrieval and hearing scheduling with *sub-2s latency* across *38 REST endpoints* (*1,024 pytests*)."
+      - "Deployed 'Munshi', an autonomous legal assistant in *Pydantic AI* and *FastAPI* interfacing *Model Context Protocol (MCP)* servers, automating legal brief retrieval and hearing scheduling with *sub-2s latency* across *38 REST endpoints* (*1,024 pytest test cases*)."
 
   - role: "Freelance Developer"
     name: "Webxela"

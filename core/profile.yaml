@@ -1,6 +1,7 @@
 # Candidate Master Ground Truth Profile (Resume-as-Code)
 # Immutable contact and location rules: location is strictly "Jaunpur, UP, India" and never altered.
 schema_version: "1.0.0"
+# Ordering convention: experience highlights and leadership are listed by signal strength (quantified production impact, applied GenAI/automation, measurement), highest first. Generators take the leading N; nothing is deleted.
 
 candidate:
   name: "Aman Verma"
@@ -25,14 +26,16 @@ experience:
     start_date: "Nov 2025"
     end_date: "Jul 2026"
     highlights:
-      - "Architected a cross-platform legal case management client across Android (Android SDK) and iOS in Kotlin Multiplatform (KMP) and Compose Multiplatform, structuring an adaptive shell on Navigation 3, Koin DI, and Room KMP with 85%+ code sharing across 168 unit tests."
-      - "Automated a 12-hour case refresh sweep in Celery and Redis with an idempotent diffing engine and a two-stage notification pipeline, guaranteeing zero duplicate alerts and zero message loss."
       - "Engineered 'Munshi', an autonomous WhatsApp legal assistant in Pydantic AI and FastAPI, orchestrating Model Context Protocol (MCP) clients across Google Drive and Calendar servers to automate authenticated brief discovery and hearing scheduling with sub-2s latency."
-      - "Implemented 38 asynchronous REST API endpoints in FastAPI and SQLAlchemy 2.0 across 12 PostgreSQL relational tables behind Nginx, adding multi-tier JWT authentication, RFC 9457 problem details, and Alembic migrations validated across 1,024 pytest tests."
+      - "Automated a 12-hour case refresh sweep in Celery and Redis with an idempotent diffing engine and a two-stage notification pipeline, guaranteeing zero duplicate alerts and zero message loss."
+      - "Implemented 38 asynchronous REST API endpoints in FastAPI and SQLAlchemy 2.0 across 12 PostgreSQL relational tables behind Nginx, adding multi-tier JWT authentication, RFC 9457 problem details, and Alembic migrations validated across 1,024 pytest test cases."
       - "Hardened multi-tenant agent execution by isolating verified user identity inside Pydantic AI AgentDeps rather than LLM tool parameters, eliminating cross-tenant prompt injection and hard-bounding sandboxed workspace tool access."
       - "Prevented worker race conditions with atomic Redis distributed locks and 10s Celery countdown requeues at a 90-retry ceiling, keeping concurrent case refresh jobs idempotent under retry storms."
-      - "Reverse-engineered eCourts' proprietary mobile API protocol in Python, implementing AES-128-CBC cryptography with dynamic RIV salt generation and GIV lookup tables to ingest case data across 25 High Courts and 743 District Courts into PostgreSQL."
       - "Secured WhatsApp webhook ingress with HMAC-SHA256 payload signature verification and published OpenAPI (Swagger) schemas across the REST surface so client and agent callers integrate against generated contracts."
+      - "Architected a cross-platform legal case management client across Android (Android SDK) and iOS in Kotlin Multiplatform (KMP) and Compose Multiplatform, structuring an adaptive shell on Navigation 3, Koin DI, and Room KMP with 85%+ code sharing across 168 unit tests."
+    # resume-excluded: retained as ground truth, never rendered. The eCourts reverse-engineering reads to reviewers as circumventing access controls; the resume copy was dropped deliberately.
+    internal_highlights:
+      - "Reverse-engineered eCourts' proprietary mobile API protocol in Python, implementing AES-128-CBC cryptography with dynamic RIV salt generation and GIV lookup tables to ingest case data across 25 High Courts and 743 District Courts into PostgreSQL."
     verified_skills:
       - "Kotlin"
       - "Android SDK"
@@ -57,14 +60,14 @@ experience:
     start_date: "Oct 2024"
     end_date: "Jan 2025"
     highlights:
-      - "Shipped Coupit, a cross-platform customer loyalty app in Compose Multiplatform (CMP) and Spring Boot, engineering a 60 FPS physics-driven Canvas spin wheel with continuous angular velocity deceleration and MVI state flows."
-      - "Structured Clean Architecture across Android and iOS with shared Kotlin Multiplatform (KMP) domain models, Koin DI, and multi-engine Ktor HTTP client abstractions with dynamic on-device QR voucher generation."
-      - "Implemented Square POS OAuth 2.0 merchant onboarding and webhook ingestion pipelines in Spring Boot and Spring Data JPA, automating merchant onboarding in under 2 minutes with idempotent payment transaction verification and replay protection."
-      - "Engineered dynamic Apple Wallet pass generation and distribution using PassKit (jpasskit) and X.509 cryptographic signing, streaming signed .pkpass bundles with configurable expiration TTL."
-      - "Engineered real-time POS screen activation using Firebase Cloud Messaging (FCM) to trigger the customer-facing spin wheel instantly upon verified Square checkout webhooks."
       - "Developed a high-throughput trademark search and monitoring engine in Kotlin, Spring Boot, and PostgreSQL, leveraging Coroutines with 25 parallel worker threads and semaphore rate limits to sweep 5,000-record chunks across public registries."
       - "Engineered resilient data ingestion pipelines in Ktor and Jsoup with automated CAPTCHA resolution and 50-step exponential backoff retries (2m-15m bounds), persisting trademark oppositions via Flyway migrations and PostgreSQL trigram search."
+      - "Implemented Square POS OAuth 2.0 merchant onboarding and webhook ingestion pipelines in Spring Boot and Spring Data JPA, automating merchant onboarding in under 2 minutes with idempotent payment transaction verification and replay protection."
       - "Constructed reactive REST endpoints using Spring Boot, Spring Security JWT authentication, and Docker Compose, decoupling automated scraping worker bots from the customer-facing dashboard."
+      - "Engineered dynamic Apple Wallet pass generation and distribution using PassKit (jpasskit) and X.509 cryptographic signing, streaming signed .pkpass bundles with configurable expiration TTL."
+      - "Engineered real-time POS screen activation using Firebase Cloud Messaging (FCM) to trigger the customer-facing spin wheel instantly upon verified Square checkout webhooks."
+      - "Shipped Coupit, a cross-platform customer loyalty app in Compose Multiplatform (CMP) and Spring Boot, engineering a 60 FPS physics-driven Canvas spin wheel with continuous angular velocity deceleration and MVI state flows."
+      - "Structured Clean Architecture across Android and iOS with shared Kotlin Multiplatform (KMP) domain models, Koin DI, and multi-engine Ktor HTTP client abstractions with dynamic on-device QR voucher generation."
     verified_skills:
       - "Kotlin"
       - "Compose Multiplatform (CMP)"
@@ -88,9 +91,9 @@ experience:
 
 leadership:
   - "Delivered 3 technical sessions as a speaker on 'Generative AI Unlocked: LLM Basics' and 'Level Up Your Career with AI', training 150+ college students on foundational LLM concepts, prompt engineering, and modern AI developer tools."
-  - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
   - "Contributed upstream fixes and feature improvements to a 4,000+ star open-source GitHub repository, collaborating directly with maintainers."
   - "Identified critical authorization and authentication vulnerabilities across the university's centralized exam, fees, and result portal serving 500+ affiliated colleges, and responsibly disclosed them to the department head for remediation."
+  - "Organized Smart India Hackathon internal rounds across 2 editions; coordinated problem statement curation, mentoring, and judging logistics for 20+ teams and 120+ participants."
 
 skills:
   languages_and_core:
@@ -133,6 +136,8 @@ skills:
     - "PostgreSQL"
     - "REST APIs"
     - "Firebase"
+  # Verified for the Webxela tenure (Ktor/Jsoup ingestion). No AI-archetype bullet proves these, so the
+  # resume_ai Technical Skills row omits this group to stay inside the 1:1 skill-to-evidence rule.
   web_scraping_and_automation:
     - "Selectolax"
     - "BeautifulSoup4"

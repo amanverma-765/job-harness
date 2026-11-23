@@ -7,9 +7,9 @@ personal:
   site: "github.com/amanverma-765"
 
 spacing:
-  line_gap: "0.70em"
-  section_gap: "0.85em"
-  header_gap: "1.10em"
+  line_gap: "0.75em"
+  section_gap: "0.90em"
+  header_gap: "1.30em"
 
 experience:
   - role: "Software Development Engineer Intern"
@@ -17,11 +17,10 @@ experience:
     location: "Remote"
     date: "Nov 2025 - Jul 2026"
     points:
-      - "Architected 38 asynchronous REST API endpoints in *FastAPI* and *SQLAlchemy 2.0* across 12 relational tables behind *Nginx*, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and *Alembic* migrations (1,024 pytest suites)."
+      - "Architected 38 asynchronous REST API endpoints in *FastAPI* and *SQLAlchemy 2.0* across 12 *PostgreSQL* tables behind *Nginx*, implementing multi-tier JWT authentication, RFC 9457 standardized problem details, and *Alembic* migrations (validated by *1,024 pytest test cases*)."
       - "Deployed 'Munshi', an autonomous WhatsApp legal assistant in *Pydantic AI* and *FastAPI*, orchestrating *Model Context Protocol (MCP)* clients across Google Drive and Calendar servers to automate brief discovery and hearing scheduling with *sub-2s latency*."
       - "Hardened multi-tenant agent execution by isolating authenticated identity inside *Pydantic AI* AgentDeps (eliminating prompt injection vectors) and prevented worker race conditions using atomic *Redis* distributed locks with 10s *Celery* countdown requeues (90-retry ceiling)."
       - "Automated an idempotent 12-hour case refresh sweep using *Celery* and *Redis* with a two-stage notification pipeline (dispatch dedup + deliver channel ledger) guaranteeing zero duplicate alerts."
-      - "Reverse-engineered eCourts' proprietary mobile API protocol in *Python*, implementing *AES-128-CBC* cryptography with dynamic RIV salt generation and GIV lookup tables to ingest case data across 25 High Courts and 743 District Courts into *PostgreSQL*."
 
 projects:
   - name: "ncert-rag-evals"
@@ -38,7 +37,7 @@ projects:
     points:
       - "Engineered an interactive lecture doubt-solver and AI study workspace in *Pydantic AI* and *FastAPI*, fusing blackboard video frames with 45s playback dialogue windows to stream real-time solutions for visual STEM queries via SSE."
       - "Designed an asynchronous 4-stage media ingestion pipeline (PipelineRunner) in *Celery* and *Redis* that transcodes HLS streams, slices 16kHz mono audio (<15MB/hr), and transcribes lectures in <10s via *Groq Whisper-Large-V3*."
-      - "Architected the async data layer with thread-safe *SQLite WAL* repositories and *Redis* to serve concurrent agent queries; containerized services and instrumented distributed tracing across agent runs via *OpenTelemetry* and *Logfire* (151 tests)."
+      - "Architected the async data layer with thread-safe *SQLite WAL* repositories and *Redis* to serve concurrent agent queries; containerized services and instrumented distributed tracing across agent runs via *OpenTelemetry* and *Logfire*."
 
   - name: "vectorless-rag"
     skills: "Python, Jupyter Notebooks, Matplotlib, Pydantic AI, Ollama, ChromaDB, PyMuPDF"
@@ -57,8 +56,6 @@ skills:
     skills: "FastAPI, Celery, Asyncio, SQLAlchemy, Alembic, Nginx, REST APIs"
   - category: "Databases & Vector Stores"
     skills: "PostgreSQL, Redis, ChromaDB, SQLite (WAL)"
-  - category: "Web Scraping & Automation"
-    skills: "Selectolax, BeautifulSoup4, httpx, Playwright, Selenium, curl-cffi"
   - category: "Evals & Observability"
     skills: "OpenTelemetry, Langfuse, Logfire, Pytest, Matplotlib, Jupyter Notebooks"
   - category: "Developer Tools & DevOps"

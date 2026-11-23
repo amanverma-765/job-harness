@@ -1,12 +1,12 @@
 #let resume_doc(d) = {
   set page(
     paper: "us-letter",
-    margin: (top: 0.35in, bottom: 0.35in, left: 0.45in, right: 0.45in)
+    margin: (top: 0.35in, bottom: 0.35in, left: 0.45in, right: 0.45in),
   )
   set text(
     font: "Nimbus Roman",
     size: 8.7pt,
-    fill: rgb("#000000")
+    fill: rgb("#000000"),
   )
   set par(leading: 0.40em)
   set list(indent: 0.4em, spacing: 0.38em)
@@ -22,10 +22,19 @@
     [#text(size: 8.7pt)[
       #let p = d.personal
       #let parts = ()
-      #if "phone" in p and p.phone != "" { parts.push(link("tel:" + p.phone.replace(" ", ""))[#p.phone]) }
-      #if "email" in p and p.email != "" { parts.push(link("mailto:" + p.email)[#p.email]) }
-      #if "linkedin" in p and p.linkedin != "" { parts.push(link("https://" + p.linkedin)[#p.linkedin]) }
-      #if "site" in p and p.site != "" { parts.push(link("https://" + p.site)[#p.site]) }
+      #if "location" in p and p.location != "" { parts.push(p.location) }
+      #if "phone" in p and p.phone != "" {
+        parts.push(link("tel:" + p.phone.replace(" ", ""))[#p.phone])
+      }
+      #if "email" in p and p.email != "" {
+        parts.push(link("mailto:" + p.email)[#p.email])
+      }
+      #if "linkedin" in p and p.linkedin != "" {
+        parts.push(link("https://" + p.linkedin)[#p.linkedin])
+      }
+      #if "site" in p and p.site != "" {
+        parts.push(link("https://" + p.site)[#p.site])
+      }
       #parts.join("  |  ")
     ]]
   )
@@ -43,10 +52,13 @@
         inset: (y: 1pt, x: 0pt),
         align: (left, right),
         [*#exp.role*], [#exp.date],
-        [_#exp.name _], [_#exp.location _]
+        [_#exp.name _], [_#exp.location _],
       )
       #for pt in exp.points [
-        - #eval(pt.replace("\\@", "@").replace("@", "\\@").replace("<", "\\<"), mode: "markup")
+        - #eval(
+            pt.replace("\\@", "@").replace("@", "\\@").replace("<", "\\<"),
+            mode: "markup",
+          )
       ]
     ]
     #v(1pt)
@@ -68,12 +80,25 @@
         ],
         [
           #if "link_url" in proj and proj.link_url != "" [
-            #link(proj.link_url)[GitHub]
+            #let label = {
+              let l = proj
+                .link_url
+                .replace("https://", "")
+                .replace("http://", "")
+                .replace("www.", "")
+                .trim()
+              if l.ends-with("/") { l = l.slice(0, -1) }
+              l
+            }
+            #link(proj.link_url)[#label]
           ]
-        ]
+        ],
       )
       #for pt in proj.points [
-        - #eval(pt.replace("\\@", "@").replace("@", "\\@").replace("<", "\\<"), mode: "markup")
+        - #eval(
+            pt.replace("\\@", "@").replace("@", "\\@").replace("<", "\\<"),
+            mode: "markup",
+          )
       ]
     ]
     #v(1pt)
@@ -94,7 +119,10 @@
     == LEADERSHIP & ACTIVITIES
 
     #for item in d.leadership [
-      - #eval(item.replace("\\@", "@").replace("@", "\\@").replace("<", "\\<"), mode: "markup")
+      - #eval(
+          item.replace("\\@", "@").replace("@", "\\@").replace("<", "\\<"),
+          mode: "markup",
+        )
     ]
     #v(1pt)
   ]
@@ -110,7 +138,7 @@
         inset: (y: 1pt, x: 0pt),
         align: (left, right),
         [*#edu.name*], [#edu.date],
-        [_#edu.degree _], [_#edu.location _]
+        [_#edu.degree _], [_#edu.location _],
       )
     ]
   ]
