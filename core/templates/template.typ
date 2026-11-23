@@ -18,7 +18,7 @@
   line_gap: line_gap,
   section_gap: section_gap,
   header_gap: header_gap,
-  body
+  body,
 ) = {
   line_gap_state.update(line_gap)
   section_gap_state.update(section_gap)
@@ -30,13 +30,13 @@
 
   set page(
     paper: "us-letter",
-    margin: 0.5in
+    margin: 0.5in,
   )
 
   set text(
     size: 9.1pt,
     font: "Nimbus Roman",
-    fill: rgb("#000000")
+    fill: rgb("#000000"),
   )
   set par(leading: line_gap)
 
@@ -55,35 +55,36 @@
   phone: "",
   email: "",
   linkedin: "",
-  site: ""
+  site: "",
 ) = {
-  align(center,
-    block(below: 0em)[
-      #name_header(name) \
-      #if target_title != "" [
-        #v(1pt)
-        #text(size: 1.05em, weight: "bold", fill: rgb("#333333"))[#upper(target_title)] \
-        #v(1.5pt)
-      ]
-      #{
-        let parts = ()
-        if phone != "" {
-          let clean_phone = phone.replace(" ", "").replace("-", "")
-          parts.push(link("tel:" + clean_phone)[#phone])
-        }
-        if email != "" { parts.push(link("mailto:" + email)[#email]) }
-        if linkedin != "" {
-          let clean_li = linkedin.replace("https://", "").replace("http://", "")
-          parts.push(link("https://" + clean_li)[#clean_li])
-        }
-        if site != "" {
-          let clean_site = site.replace("https://", "").replace("http://", "")
-          parts.push(link("https://" + clean_site)[#clean_site])
-        }
-        parts.join(" | ")
-      }
+  align(center, block(below: 0em)[
+    #name_header(name) \
+    #if target_title != "" [
+      #v(1pt)
+      #text(size: 1.05em, weight: "bold", fill: rgb("#333333"))[#upper(
+        target_title,
+      )] \
+      #v(1.5pt)
     ]
-  )
+    #{
+      let parts = ()
+      if location != "" { parts.push(location) }
+      if phone != "" {
+        let clean_phone = phone.replace(" ", "").replace("-", "")
+        parts.push(link("tel:" + clean_phone)[#phone])
+      }
+      if email != "" { parts.push(link("mailto:" + email)[#email]) }
+      if linkedin != "" {
+        let clean_li = linkedin.replace("https://", "").replace("http://", "")
+        parts.push(link("https://" + clean_li)[#clean_li])
+      }
+      if site != "" {
+        let clean_site = site.replace("https://", "").replace("http://", "")
+        parts.push(link("https://" + clean_site)[#clean_site])
+      }
+      parts.join(" | ")
+    }
+  ])
 }
 
 #let is_first_heading = state("is_first_heading", true)
@@ -112,7 +113,7 @@
   name: "",
   degree: "",
   location: "",
-  date: ""
+  date: "",
 ) = {
   set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, grid(
@@ -124,7 +125,7 @@
     align(right)[
       #date \
       _#location _
-    ]
+    ],
   ))
 }
 
@@ -133,7 +134,7 @@
   name: "",
   date: "",
   location: "",
-  ..points
+  ..points,
 ) = {
   set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, box[
@@ -146,7 +147,7 @@
       align(right)[
         #date \
         _#location _
-      ]
+      ],
     )
     #context {
       let l_gap = line_gap_state.get()
@@ -161,7 +162,7 @@
   skills: "",
   date: "",
   link_url: "",
-  ..points
+  ..points,
 ) = {
   set block(above: 0.45em, below: 0em)
   pad(left: 0.8em, right: 0.4em, box[
@@ -169,7 +170,15 @@
     #if skills != "" [ | _#skills _]
     #if link_url != "" [
       #h(1fr)
-      #let label = if link_url.contains("github.com") [GitHub] else [Link]
+      #let label = {
+        let l = link_url
+          .replace("https://", "")
+          .replace("http://", "")
+          .replace("www.", "")
+          .trim()
+        if l.ends-with("/") { l = l.slice(0, -1) }
+        l
+      }
       #link(link_url)[#label]
     ]
     #context {

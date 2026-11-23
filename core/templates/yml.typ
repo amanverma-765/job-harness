@@ -1,4 +1,6 @@
-#import "template.typ": resume, header, resume_heading, edu_item, exp_item, project_item, skill_item
+#import "template.typ": (
+  edu_item, exp_item, header, project_item, resume, resume_heading, skill_item,
+)
 
 #let render_point(p) = {
   if type(p) == str {
@@ -25,7 +27,7 @@
     phone: d.at("phone", default: ""),
     email: d.at("email", default: ""),
     linkedin: d.at("linkedin", default: ""),
-    site: d.at("site", default: "")
+    site: d.at("site", default: ""),
   )
 }
 
@@ -34,7 +36,7 @@
   for skill in d {
     skill_item(
       category: skill.category,
-      skills: skill.skills
+      skills: skill.skills,
     )
   }
 }
@@ -48,20 +50,20 @@
       name: exp.name,
       location: exp.location,
       date: format_date(exp.date),
-      ..pts
+      ..pts,
     )
   }
 }
 
 #let yml_projects(d) = {
-  resume_heading[Projects]
+  resume_heading[Projects & Open Source]
   for proj in d {
     let pts = proj.points.map(render_point)
     project_item(
       name: proj.name,
       skills: proj.at("skills", default: ""),
       link_url: proj.at("link_url", default: ""),
-      ..pts
+      ..pts,
     )
   }
 }
@@ -80,7 +82,7 @@
       name: edu.name,
       degree: edu.degree,
       location: edu.location,
-      date: format_date(edu.date)
+      date: format_date(edu.date),
     )
   }
 }
@@ -89,7 +91,7 @@
   data,
   line_gap: none,
   section_gap: none,
-  header_gap: none
+  header_gap: none,
 ) = {
   let sp = data.at("spacing", default: (:))
   let lg = if line_gap != none {
@@ -118,7 +120,11 @@
 
   show: resume.with(line_gap: lg, section_gap: sg, header_gap: hg)
 
-  let has_experience = "experience" in data and data.experience != none and data.experience.len() > 0
+  let has_experience = (
+    "experience" in data
+      and data.experience != none
+      and data.experience.len() > 0
+  )
 
   yml_personal(data.personal)
   if has_experience {

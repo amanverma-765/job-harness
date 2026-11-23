@@ -17,7 +17,10 @@ description: Analyze job postings, extract the 4-Quadrant Matrix, standardize th
 - Extract the **relevant, canonical functional engineering title** representing the role (e.g. `Software Development Engineer Intern`, `Senior Distributed Systems Engineer`).
 - **Never copy raw portal strings verbatim.** Strip out recruiter tags, talent acquisition teams (e.g. `, Amazon University Talent Acquisition`), job/req IDs, cohort years/terms (`Summer 2025`), and parenthetical locations (`(Remote)`, `(US)`).
 - Normalize shorthand/acronyms to standard professional titles (`SDE I Intern` -> `Software Development Engineer Intern`).
-- Save this clean title: it will be injected into the resume header and recent role subtitle to match ATS substring queries cleanly.
+- **Never synthesize a qualifier.** The header title is the bare canonical function plus employment type only. Do NOT append domain, team, product, or track text lifted from the JD body (`- AI Agents & Search`, `- Server (Backend)`, `(AI / Data Platform)`, `- Arango Cookbooks`). Domain context belongs in bullets and the cover letter.
+- **Multi-title postings** (marketplace string vs portal string) resolve deterministically: sanitize both, keep the shortest one that is a prefix of the other, then append the employment-type noun if the posting is an internship and the title lacks it (`Software Engineer` + Internship -> `Software Engineer Intern`).
+- **The title is optional.** `target_title: ""` is a valid, intentional choice when the user wants no header title; never treat an empty title as an error.
+- Save this clean title: it will be injected into the resume header subtitle to match ATS substring queries cleanly.
 
 ### 2. The 4-Quadrant JD Extraction Matrix
 Classify all requirements into four distinct quadrants:

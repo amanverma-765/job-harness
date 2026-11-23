@@ -40,5 +40,5 @@ Recruiters scan in an F-pattern during their 6–15 second visual review:
   - Calibrate `line_gap` upward (and proportionally `section_gap` and `header_gap`) up to `0.85em–0.92em` so that content cleanly covers the vertical page budget without leaving trailing dead-space.
   - If spacing expansion alone is insufficient, pull in defensible extra bullet pointers from `core/projects_corpus.yaml` or user-suggested facts to fill out under-indexed items.
 - **Over-stuffing Thresholds & Pruning Protocol:**
-  - **Thresholds:** Total bullets must not exceed **18**, total word count must not exceed **600 words**, and `line_gap` must not be compressed below `0.68em`.
+  - **Thresholds:** Total bullets must not exceed **18**, and `line_gap` must not be compressed below `0.68em`. Vertical fit is governed by the strict 1-page PDF budget, not by a word count.
   - **Warning & Pruning Suggestions:** If any threshold is breached, the agent must alert the user to recruiter scan fatigue and suggest specific ranked candidate bullets for removal (e.g. secondary leadership points, redundant tech bullets, or lowest-priority project details).

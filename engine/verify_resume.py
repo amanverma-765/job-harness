@@ -16,9 +16,7 @@ import sys
 import re
 import yaml
 import argparse
-import subprocess
 from pathlib import Path
-from typing import List, Dict, Tuple, Set
 
 # Non-skills banned from the Technical Skills section
 DEFAULT_BANNED_NON_SKILLS = [
@@ -35,6 +33,22 @@ DEFAULT_BANNED_NON_SKILLS = [
     r"\bscrum\b",
     r"\bproblem solving\b",
 ]
+
+# CS fundamentals exempt from 1:1 bullet association rule (foundational academic knowledge)
+CS_FUNDAMENTALS_EXEMPTIONS = {
+    "dsa",
+    "data structures",
+    "algorithms",
+    "data structures & algorithms",
+    "oop",
+    "object-oriented programming",
+    "dbms",
+    "database management systems",
+    "operating systems",
+    "os",
+    "computer networks",
+    "system design",
+}
 
 # Weak and passive verbs
 WEAK_VERBS = [
@@ -61,21 +75,26 @@ BRANDING_RULES = [
     (r"\bPostgreSql\b", "PostgreSQL"),
 ]
 
+# Resolvable project links: absolute https, real host, and a full owner/repo path on GitHub.
+# A project with no link_url at all is allowed (private or internal work).
+GITHUB_REPO_RE = re.compile(r"^https://(?:www\.)?github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/?$")
+GENERAL_URL_RE = re.compile(r"^https://[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:/\S*)?$")
+
 
 class ResumeVerifier:
-    def __init__(self, file_path: Path, corpus_path: Path = None):
+    def __init__(self, file_path: Path, corpus_path: Path | None = None):
         self.file_path = file_path
         self.corpus_path = corpus_path
         self.raw_content = file_path.read_text(encoding="utf-8")
         self.is_typst = file_path.suffix == ".typ"
-        self.issues: List[str] = []
-        self.warnings: List[str] = []
+        self.issues: list[str] = []
+        self.warnings: list[str] = []
 
-    def log_issue(self, gate: str, message: str, line_no: int = None):
+    def log_issue(self, gate: str, message: str, line_no: int | None = None):
         loc = f"Line {line_no}: " if line_no else ""
         self.issues.append(f"[{gate}] {loc}{message}")
 
-    def log_warning(self, gate: str, message: str, line_no: int = None):
+    def log_warning(self, gate: str, message: str, line_no: int | None = None):
         loc = f"Line {line_no}: " if line_no else ""
         self.warnings.append(f"[{gate}] {loc}{message}")
 
@@ -97,7 +116,7 @@ class ResumeVerifier:
                 if re.search(pattern, line):
                     self.log_issue("Gate 5: Branding", f"Non-canonical casing detected: use '{correct}'.", idx)
 
-    def extract_bullets_and_skills(self) -> Tuple[List[Tuple[str, int]], List[Tuple[str, int]]]:
+    def extract_bullets_and_skills(self) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
         """Extract bullet points and listed skill items from Typst, YAML, or LaTeX."""
         bullets = []
         skills = []
@@ -169,7 +188,7 @@ class ResumeVerifier:
 
         return bullets, skills
 
-    def check_gate_1_non_skills(self, skills: List[Tuple[str, int]]):
+    def check_gate_1_non_skills(self, skills: list[tuple[str, int]]):
         """Gate 1: The Non-Skill Ban (Tools vs. Methods)."""
         has_languages = False
         all_skills_text = " ".join([s[0] for s in skills]).lower()
@@ -198,17 +217,19 @@ class ResumeVerifier:
                 if re.search(pat, skill_line, re.IGNORECASE):
                     self.log_issue("Gate 1: Non-Skills Ban", f"Banned method/concept found in Technical Skills: '{pat}'. Move to bullet points or use real tools.", line_no)
 
-    def check_gate_2_defensibility(self, bullets: List[Tuple[str, int]]):
+    def check_gate_2_defensibility(self, bullets: list[tuple[str, int]]):
         """Gate 2: Defensibility Standard (No impossible SLAs or unverified scraping throughput)."""
         sla_trap = re.compile(r"\b\d+,\d+\s+.*(?:in|within)\s+\d+\s+seconds?\b", re.IGNORECASE)
         for bullet, line_no in bullets:
             if sla_trap.search(bullet):
                 self.log_issue("Gate 2: Defensibility", "Suspicious real-time SLA in bullet (e.g. 15,000 requests in 15 seconds). State batching mechanism or real throughput.", line_no)
 
-    def check_gate_4_fluff_and_verbs(self, bullets: List[Tuple[str, int]]):
+    def check_gate_4_fluff_and_verbs(self, bullets: list[tuple[str, int]]):
         """Gate 4: Zero Fluff, Weak Verbs, and Lead Action Verb Diversity."""
         lead_verbs = {}
         for bullet, line_no in bullets:
+            if line_no == 0:
+                continue
             clean = re.sub(r"[*_\\]", "", bullet).strip()
 
             # Check weak verbs
@@ -238,7 +259,7 @@ class ResumeVerifier:
             if count > 2 and verb not in ["developed", "built"]:
                 self.log_warning("Gate 4: Verb Diversity", f"Leading action verb '{verb}' is repeated {count} times (maximum recommended is 2). Use synonyms.")
 
-    def check_1_to_1_skill_evidence(self, bullets: List[Tuple[str, int]], skills: List[Tuple[str, int]]):
+    def check_1_to_1_skill_evidence(self, bullets: list[tuple[str, int]], skills: list[tuple[str, int]]):
         """Strict 1:1 Skill-to-Evidence Rule: Every skill in Technical Skills must appear in at least one bullet."""
         if not skills or not bullets:
             return
@@ -253,6 +274,9 @@ class ResumeVerifier:
                 clean_token = re.sub(r"\([^)]*\)", "", raw_token).strip()
                 if not clean_token or len(clean_token) < 2:
                     continue
+                # Exempt foundational CS academic coursework
+                if clean_token.lower() in CS_FUNDAMENTALS_EXEMPTIONS:
+                    continue
                 # Special cases for short tokens (C, Go, R, SQL)
                 if clean_token in ["Go", "C", "R", "SQL"]:
                     pat = rf"\b{re.escape(clean_token.lower())}\b"
@@ -262,23 +286,9 @@ class ResumeVerifier:
                 if not re.search(pat, combined_bullets_text):
                     self.log_warning("1:1 Skill Evidence Proof", f"Skill '{clean_token}' listed in Technical Skills has NO supporting evidence in Experience or Projects bullets. Keyword-stuffing penalty risk.", line_no)
 
-    def check_density_and_over_stuffing(self, bullets: List[Tuple[str, int]]):
-        """Audit page density: detect over-stuffing (>18 bullets, >550 words, compressed line gaps) or under-filling."""
+    def check_density_and_over_stuffing(self, bullets: list[tuple[str, int]]):
+        """Audit page density: detect over-stuffing (>18 bullets, compressed line gaps) or under-filling."""
         total_bullets = len(bullets)
-        all_text = " ".join([b[0] for b in bullets])
-        bullet_words = len(re.sub(r"[*_\\]", "", all_text).split())
-
-        # Check total document word count from compiled PDF if available
-        pdf_path = self.file_path.with_suffix(".pdf")
-        doc_words = 0
-        if pdf_path.exists():
-            try:
-                raw_pdf_text = subprocess.check_output(["pdftotext", "-layout", str(pdf_path), "-"]).decode("utf-8")
-                doc_words = len(raw_pdf_text.split())
-            except Exception:
-                pass
-        if not doc_words:
-            doc_words = bullet_words
 
         # Check line gap if specified
         m_lg = re.search(r'line_gap:\s*([0-9.]+)em', self.raw_content)
@@ -287,23 +297,72 @@ class ResumeVerifier:
             if lg_val < 0.68:
                 self.log_warning("Over-Stuffing Alert", f"line_gap is compressed to {lg_val}em (< 0.68em floor). Do not cram text with reduced spacing; suggest pruning bullets.")
 
-        # Base templates (core/templates/resume_base) are master catalogs with allowed overflow.
+        # Archetype templates (core/templates/resume_android, resume_ai) are master catalogs with allowed overflow.
         is_base_catalog = "core/templates" in str(self.file_path)
 
         if total_bullets > 18:
             if not is_base_catalog:
                 self.log_warning("Over-Stuffing Alert", f"Resume has {total_bullets} bullets (threshold: max 18). Visual density causes recruiter scan fatigue. Recommended pruning: remove {total_bullets - 18} lowest-match bullet(s).")
 
-        if doc_words > 600:
-            if not is_base_catalog:
-                self.log_warning("Over-Stuffing Alert", f"Total document word count is {doc_words} words (threshold: max 600 words for tailored resumes; +{doc_words - 600} words over). Recommend pruning candidate bullets to reduce cognitive load.")
-
         if total_bullets < 14 and (not m_lg or float(m_lg.group(1)) <= 0.75):
             self.log_warning("Under-Fill Alert", f"Resume has only {total_bullets} bullets with low/default line gap. Scale line_gap to 0.85em-0.90em or add commit-grounded pointers to avoid dead-space.")
+
+    def load_companion_yaml(self) -> dict | None:
+        """Load the YAML a Typst resume imports, so checks can read structured source truth."""
+        if self.file_path.suffix in (".yaml", ".yml"):
+            try:
+                return yaml.safe_load(self.raw_content) or {}
+            except Exception:
+                return None
+        m_yaml = re.search(r'yaml\(\s*"([^"]+)"\s*\)', self.raw_content)
+        if self.is_typst and m_yaml:
+            yaml_path = self.file_path.parent / m_yaml.group(1)
+            if yaml_path.exists():
+                try:
+                    return yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+                except Exception as e:
+                    self.log_issue("Gate 5: Project Links", f"Companion YAML {m_yaml.group(1)} failed to parse: {e}")
+        return None
+
+    def check_project_links(self):
+        """Every present project link must be a resolvable absolute URL; a missing link is allowed."""
+        data = self.load_companion_yaml()
+        if not data:
+            return
+
+        corpus_urls: dict[str, str] = {}
+        if self.corpus_path and self.corpus_path.exists():
+            try:
+                corpus = yaml.safe_load(self.corpus_path.read_text(encoding="utf-8")) or {}
+                for repo in corpus.get("repositories", []) or []:
+                    for key in (repo.get("id"), repo.get("name")):
+                        if key:
+                            corpus_urls[str(key).lower()] = str(repo.get("repo_url", "")).rstrip("/")
+            except Exception as e:
+                self.log_warning("Gate 5: Project Links", f"Could not read corpus repo_urls from {self.corpus_path}: {e}")
+
+        for proj in data.get("projects", []) or []:
+            name = str(proj.get("name", "?"))
+            link = str(proj.get("link_url", "") or "").strip()
+            if not link:
+                continue  # private or internal project: no link is a valid state
+            if not link.startswith("https://"):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' link must be an absolute https URL: '{link}'.")
+                continue
+            if "github.com" in link and not GITHUB_REPO_RE.match(link):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' GitHub link is incomplete, needs https://github.com/<owner>/<repo>: '{link}'.")
+                continue
+            if "github.com" not in link and not GENERAL_URL_RE.match(link):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' link is not a resolvable absolute URL: '{link}'.")
+                continue
+            expected = corpus_urls.get(name.lower())
+            if expected and expected != link.rstrip("/"):
+                self.log_issue("Gate 5: Project Links", f"Project '{name}' link '{link}' disagrees with core/projects_corpus.yaml repo_url '{expected}'.")
 
     def run_all(self) -> bool:
         self.check_em_dashes()
         self.check_canonical_branding()
+        self.check_project_links()
         bullets, skills = self.extract_bullets_and_skills()
         self.check_gate_1_non_skills(skills)
         self.check_gate_2_defensibility(bullets)

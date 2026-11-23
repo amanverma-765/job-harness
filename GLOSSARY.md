@@ -14,10 +14,10 @@ A structured decomposition of a job description into four categorical requiremen
 - **Quadrant IV:** Operational Scale & SLAs (e.g. 45k req/sec peak, sub-25ms latency, 99.99% uptime)
 
 ### 10.6x Requisition Title Multiplier
-The empirical ATS phenomenon where aligning the resume header title and current job subtitle with the exact literal requisition title from the job posting yields an order-of-magnitude increase in algorithmic search recall and recruiter callbacks.
+The empirical ATS phenomenon where aligning the resume header title (`target_title`) with the exact literal requisition title from the job posting yields an order-of-magnitude increase in algorithmic search recall and recruiter callbacks, while keeping candidate work experience titles strictly immutable to profile ground truth.
 
 ### 1:1 Skill-to-Evidence Rule
-The mandatory constraint that every technical skill listed in the Technical Skills section must have at least one explicit, verifiable reference proof inside the Work Experience or Projects bullet points, preventing ATS keyword-stuffing penalties.
+The mandatory constraint that every technical skill listed in the Technical Skills section must have at least one explicit, verifiable reference proof inside the Work Experience or Projects bullet points, preventing ATS keyword-stuffing penalties. Foundational Computer Science concepts and academic coursework (such as DSA, OOP, DBMS, Operating Systems, Computer Networks, and System Design) are exempt from 1:1 bullet association, as they represent foundational academic disciplines rather than standalone project technologies.
 
 ### Hard Qualification Gate
 The automated pre-flight decision rule that aborts resume generation if candidate verified skills match less than 50% of the job description's essential requirements, preventing spam applications.

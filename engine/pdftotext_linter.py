@@ -10,12 +10,81 @@ import subprocess
 import argparse
 from pathlib import Path
 
+import yaml
+
 EMAIL_REGEX = re.compile(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+")
 PHONE_REGEX = re.compile(r"(\+?\d[\d\s\-().]{8,}\d)")
 URL_REGEX = re.compile(r"(?:linkedin\.com\/in\/[^\s|]+|github\.com\/[^\s|]+)")
 
+# Full, resolvable repository URLs in the extracted text (host + owner + repo).
+# Visible link labels must stay resolvable when annotations are stripped, so a bare
+# "owner/repo" label with no host is a defect, not a style choice.
+REPO_URL_REGEX = re.compile(r"github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+[A-Za-z0-9_.\-]*")
 
-def audit_pdf(pdf_path: Path) -> bool:
+
+def visible_label(link_url: str) -> str:
+    """The text a reader must see for a link to stay resolvable once annotations are stripped."""
+    return (
+        link_url.replace("https://", "")
+        .replace("http://", "")
+        .replace("www.", "")
+        .rstrip("/")
+    )
+
+
+def project_links(pdf_path: Path) -> list[tuple[str, str]]:
+    """Project links declared in the sibling resume YAML, if there is one."""
+    yaml_path = pdf_path.with_suffix(".yaml")
+    if not yaml_path.exists():
+        return []
+    try:
+        data = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+    except Exception as e:
+        print(f"[!] Could not parse {yaml_path} for project links: {e}", file=sys.stderr)
+        return []
+    return [
+        (str(p.get("name", "?")), str(p.get("link_url")))
+        for p in (data.get("projects") or [])
+        if str(p.get("link_url", "") or "").strip()
+    ]
+
+
+def check_resolves(links: list[tuple[str, str]]) -> list[str]:
+    """Opt-in liveness probe: every declared URL must answer below 400.
+
+    Uses http.client with a fixed https scheme so no other URL scheme can be reached.
+    """
+    import http.client
+    import ssl
+    from urllib.parse import urlsplit
+
+    problems = []
+    for name, link in links:
+        parts = urlsplit(link)
+        if parts.scheme != "https" or not parts.hostname:
+            problems.append(f"Project '{name}' link is not an https URL, skipping probe: {link}")
+            continue
+        path = parts.path or "/"
+        if parts.query:
+            path += "?" + parts.query
+        status = None
+        for method in ("HEAD", "GET"):
+            try:
+                conn = http.client.HTTPSConnection(parts.hostname, timeout=10, context=ssl.create_default_context())
+                conn.request(method, path, headers={"User-Agent": "resume-linter"})
+                status = conn.getresponse().status
+                conn.close()
+            except Exception as e:
+                status = str(e)
+            if isinstance(status, int) and status in (403, 405, 501) and method == "HEAD":
+                continue
+            break
+        if not isinstance(status, int) or status >= 400:
+            problems.append(f"Project '{name}' link did not resolve ({status}): {link}")
+    return problems
+
+
+def audit_pdf(pdf_path: Path, resolve: bool = False) -> bool:
     if not pdf_path.exists():
         print(f"[-] PDF file not found: {pdf_path}", file=sys.stderr)
         return False
@@ -37,8 +106,11 @@ def audit_pdf(pdf_path: Path) -> bool:
     # If .scratch/debug exists, save raw extracted text stream for developer inspection
     debug_dir = Path(".scratch/debug")
     if debug_dir.exists():
-        debug_dump = debug_dir / f"{pdf_path.stem}_extracted.txt"
-        debug_dump.write_text(text, encoding="utf-8")
+        try:
+            debug_dump = debug_dir / f"{pdf_path.stem}_extracted.txt"
+            debug_dump.write_text(text, encoding="utf-8")
+        except OSError:
+            pass
 
     # 1. Unicode Purity & CMap Integrity
     pua_chars = []
@@ -69,6 +141,18 @@ def audit_pdf(pdf_path: Path) -> bool:
     if not URL_REGEX.search(header_text):
         issues.append("Could not extract LinkedIn or GitHub profile URLs in the header stream.")
 
+    links = project_links(pdf_path)
+    for name, link in links:
+        if visible_label(link) not in text:
+            issues.append(f"Project '{name}' link is not present as resolvable text; expected '{visible_label(link)}' in the stream.")
+
+    if resolve:
+        issues.extend(check_resolves(links))
+
+    repo_urls = REPO_URL_REGEX.findall(text)
+    if not repo_urls:
+        issues.append("No resolvable repository URL (github.com/<owner>/<repo>) in the extracted text. Link labels must keep the host and path; a bare 'owner/repo' annotation label is unresolvable once PDF annotations are stripped.")
+
     # 3. Reading Order & Multi-Column Detection
     # Look for signs of column interleaving (e.g. widely separated horizontal blocks on single lines)
     for line_no, line in enumerate(lines[:30], start=1):
@@ -94,9 +178,10 @@ def audit_pdf(pdf_path: Path) -> bool:
 def main():
     parser = argparse.ArgumentParser(description="PDF Stream Extraction and CMap Linter")
     parser.add_argument("pdf_file", type=Path, help="Path to compiled PDF")
+    parser.add_argument("--resolve", action="store_true", help="Also probe each project URL over the network (needs internet)")
     args = parser.parse_args()
 
-    success = audit_pdf(args.pdf_file)
+    success = audit_pdf(args.pdf_file, resolve=args.resolve)
     sys.exit(0 if success else 1)
 
 

@@ -15,6 +15,7 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
   - `core/skills_taxonomy.json`: Canonical O*NET/Lightcast skill ontology and explicit list of banned non-skills.
 - **Minimum 3-Pointer Project KB Rule (MANDATORY):** Every project indexed in `core/projects_corpus.yaml` must contain at least 3 distinct, commit-verified bullet points (`defensible_bullets`) obeying the Google XYZ formula. Never store fewer than 3 pointers per project in the knowledge base.
 - **Zero Hallucination & Zero Exaggeration:** Never invent projects, frameworks, test suites, or performance metrics. Every metric and technology claim must be anchored in verified Git commit trees or candidate-confirmed facts.
+- **Resume Source Schema (`core/schema/resume-source.schema.json`):** Every `resume.yaml` opens with `# yaml-language-server: $schema=<relative path>`, so editors validate against the harness format (`personal`, `spacing`, `experience`, `projects`, `skills`, `leadership`, `education`) instead of the unrelated JSON Resume schema. `.yamllint` disables `line-length` because each bullet is a single-line Typst markup string. Bullets are never re-wrapped to satisfy a linter.
 
 ---
 
@@ -48,9 +49,11 @@ This repository implements a deterministic, Git-grounded **Resume-as-Code (RaC)*
   - Remove seasonal/cohort markers (e.g. `Summer 2025`, `Fall 2024`, `Class of 2025`).
   - Remove modality/location tags in parentheses (e.g. `(Remote)`, `(Hybrid)`, `(US)`).
   - Expand internal shorthand/acronyms to standard titles (e.g. `SDE I Intern` -> `Software Development Engineer Intern`, `SWE` -> `Software Engineer`).
+- **Zero Synthesized Suffixes (STRICT):** The header title is the bare canonical functional title plus the employment type, and nothing else. NEVER append, invent, or carry over a domain, team, product, or track qualifier from the JD body (e.g. `- AI Agents & Search`, `- Server (Backend)`, `(AI / Data Platform)`, `- Arango Cookbooks`). Those belong in the resume body and cover letter, not the title field. Multi-title postings (marketplace string vs portal string) resolve to the shortest sanitized title that is a prefix of the others, then gain the employment-type noun if the posting is an internship and the title lacks it.
+- **Optional Title:** `target_title` MAY be an empty string when the user chooses to show no header title. Empty is an intentional opt-out, never a defect; the header renders name and contact alone.
 - Inject this clean, relevant title into:
   - The resume header subtitle (`target_title: "..."`).
-  - The most recent role subtitle if functionally aligned.
+- **Immutability of Work Experience Titles (STRICT):** The 10.6x title multiplier is strictly confined to the resume header subtitle (`target_title`). **NEVER modify or adapt the candidate's work experience role titles** to match the target job title. Work experience role titles must remain strictly immutable as recorded in `core/profile.yaml` (e.g. `Software Development Engineer Intern` at LexoLegal). This is machine-enforced: `engine/verify_research_compliance.py` fails any resume whose experience title is absent from `core/profile.yaml`.
 
 ### 2.3 The 4-Quadrant JD Extraction Matrix
 Every ingested job description must be decomposed into four quadrants (`role_analysis.md`):
@@ -68,6 +71,7 @@ Every ingested job description must be decomposed into four quadrants (`role_ana
 ### 2.5 The 1:1 Skill-to-Evidence Rule (Anti-Keyword Stuffing)
 - Modern ATS parsers penalize ungrounded skills listed in summaries without proof in bullets.
 - **Rule:** Every skill declared under `#skill_item(...)` MUST have at least one explicit reference proof inside an experience or project bullet point.
+- **CS Fundamentals Exemption:** Foundational Computer Science concepts and coursework (such as `DSA`, `OOP`, `DBMS`, `Operating Systems`, `Computer Networks`, `System Design`) are exempt from 1:1 bullet association, as they are foundational academic disciplines that belong naturally in the Skills and Education sections.
 
 ### 2.6 F-Pattern Keyword Bolding & Verb Diversity
 - **F-Pattern Bolding:** Bold substantive technologies, frameworks, and impact metrics (`*Python*`, `*PostgreSQL*`, `*sub-25ms latency*`).
@@ -101,15 +105,20 @@ All document spacings must be governed by single master variables in `core/templ
     1. Calibrating `line_gap` upward (and proportionally `section_gap` and `header_gap`) up to `0.85em–0.92em`.
     2. Adding defensible, commit-grounded bullet points from `core/projects_corpus.yaml` (or user-suggested facts) to under-indexed projects or experience.
 - **Over-stuffing Threshold & Pruning Notification Protocol:**
-  - **Base Catalog vs Tailored Scope:** The base resume (`core/templates/resume_base.pdf`) serves as the comprehensive master catalog and is allowed slight overflow/exceeding of density limits. Strict overfitting and over-stuffing thresholds are enforced strictly on company-tailored resumes (`targets/<company>/<role>/`).
+  - **Base Catalog vs Tailored Scope:** The base archetype resumes (`core/templates/resume_ai.pdf` for AI/ML/Backend and `core/templates/resume_android.pdf` for Android/KMP/Systems) serve as comprehensive master catalogs and are allowed slight overflow/exceeding of density limits. Strict overfitting and over-stuffing thresholds are enforced strictly on company-tailored resumes (`targets/<company>/<role>/`).
   - **Threshold Limits (Tailored Resumes):**
     - Total bullets: **Maximum 18 bullets** across the entire resume.
-    - Word count: **Maximum 600 words** total body text.
     - Spacing floor: `line_gap` must never be compressed below `0.68em` to cram excess content onto 1 page.
   - **Over-stuffing Verification & User Action:**
-    - If a resume exceeds 18 bullets, exceeds 600 words, or requires `line_gap < 0.68em` to avoid spilling to Page 2, the agent **MUST explicitly flag the over-stuffing to the user**.
+    - If a resume exceeds 18 bullets or requires `line_gap < 0.68em` to avoid spilling to Page 2, the agent **MUST explicitly flag the over-stuffing to the user**.
     - Explain the recruiter scan fatigue risk (cognitive overload during 6–15s triage).
     - Provide a concrete, ranked list of recommended bullet removals (e.g., secondary leadership points, lowest JD-match project bullets, or redundant tech items) for the user to approve.
+
+### 2.12 Core-Only Resume Generation (STRICT, NO TARGET INHERITANCE)
+- **Permitted inputs:** Every resume and cover letter must be generated fresh from `core/` only (`core/profile.yaml`, `core/projects_corpus.yaml`, `core/skills_taxonomy.json`, `core/templates/*.typ`) plus the current role's `job_description.md` / `role_analysis.md`.
+- **Banned inputs:** NEVER read, copy, adapt, diff against, or "match the style of" any existing file under `targets/<other-company>/<role>/` (resume.typ, resume.yaml, resume.pdf, cover_letter.typ, audit_report.md, outreach.md). No bullet, wording, ordering, spacing value, or section choice may be inherited from a previously tailored resume.
+- **Current-role exception:** The only `targets/` reads allowed while building a document are the current role's own `job_description.md` and `role_analysis.md`. A role's own existing `resume.typ` may be overwritten but must never be used as a starting template.
+- **Rationale:** Template propagation accumulates drift, copies stale or deleted KB facts, and silently violates the Zero Hallucination and title immutability rules. Every document is a fresh compile of `core/`, not an edit of an older artifact.
 
 ---
 
@@ -123,6 +132,12 @@ All document spacings must be governed by single master variables in `core/templ
   3. *Systems Rigor & Benchmarks (3–4 sentences):* Statistical testing, latency benchmarks, or MLOps depth.
   4. *Confident Close & Logistics (2–3 sentences):* Explicit availability, remote/in-office status, confident call to action.
 - **Formatting:** 0.8in margins, F-pattern keyword bolding, zero em-dashes, strictly 1 page.
+- **Recipient Block Integrity (STRICT):** The letterhead carries `recipient_name`, `company_name`, and `company_address` only. The visible block is never more than three lines.
+  - `recipient_name` is either a real person or a neutral functional salutation (`Engineering Hiring Team`, `Engineering Team`, `Hiring Team`). Banned: `Hiring Manager`, `To Whom It May Concern`, `Sir/Madam`, and empty.
+  - `recipient_title` stays an empty string unless the exact human job title or team name is quoted from `job_description.md` or `company_research.md`. Invented department lines (`Internship Program, Technology`, `Backend Engineering, Gurugram`, `Core Technology Team`) are fabrications and are banned. When a recruiter or hiring manager is identified from LinkedIn or email, record that source line in `company_research.md` first, then quote the title.
+  - `company_name` must match the target directory slug (`targets/agoda/` -> `Agoda`), which blocks letterhead carry-over between targets.
+  - `company_address` is city, state, country. Never state a street address unless verified in `company_research.md`.
+  - Enforced by `engine/verify_research_compliance.py` ("Cover Letter Recipient *" checks), which fails when a title is not evidenced in the current role's own `job_description.md` or `company_research.md`.
 
 ### 3.2 Peer-to-Peer Cold Outreach (`outreach.md`)
 - **Tone:** Engineer speaking to engineer about an interesting systems bottleneck or unassigned bug. Zero generic flattery.
