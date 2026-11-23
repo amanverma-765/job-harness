@@ -17,7 +17,6 @@ import re
 import yaml
 import argparse
 from pathlib import Path
-from typing import List, Dict, Tuple, Set
 
 # Non-skills banned from the Technical Skills section
 DEFAULT_BANNED_NON_SKILLS = [
@@ -88,8 +87,8 @@ class ResumeVerifier:
         self.corpus_path = corpus_path
         self.raw_content = file_path.read_text(encoding="utf-8")
         self.is_typst = file_path.suffix == ".typ"
-        self.issues: List[str] = []
-        self.warnings: List[str] = []
+        self.issues: list[str] = []
+        self.warnings: list[str] = []
 
     def log_issue(self, gate: str, message: str, line_no: int | None = None):
         loc = f"Line {line_no}: " if line_no else ""
@@ -117,7 +116,7 @@ class ResumeVerifier:
                 if re.search(pattern, line):
                     self.log_issue("Gate 5: Branding", f"Non-canonical casing detected: use '{correct}'.", idx)
 
-    def extract_bullets_and_skills(self) -> Tuple[List[Tuple[str, int]], List[Tuple[str, int]]]:
+    def extract_bullets_and_skills(self) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
         """Extract bullet points and listed skill items from Typst, YAML, or LaTeX."""
         bullets = []
         skills = []
@@ -189,7 +188,7 @@ class ResumeVerifier:
 
         return bullets, skills
 
-    def check_gate_1_non_skills(self, skills: List[Tuple[str, int]]):
+    def check_gate_1_non_skills(self, skills: list[tuple[str, int]]):
         """Gate 1: The Non-Skill Ban (Tools vs. Methods)."""
         has_languages = False
         all_skills_text = " ".join([s[0] for s in skills]).lower()
@@ -218,14 +217,14 @@ class ResumeVerifier:
                 if re.search(pat, skill_line, re.IGNORECASE):
                     self.log_issue("Gate 1: Non-Skills Ban", f"Banned method/concept found in Technical Skills: '{pat}'. Move to bullet points or use real tools.", line_no)
 
-    def check_gate_2_defensibility(self, bullets: List[Tuple[str, int]]):
+    def check_gate_2_defensibility(self, bullets: list[tuple[str, int]]):
         """Gate 2: Defensibility Standard (No impossible SLAs or unverified scraping throughput)."""
         sla_trap = re.compile(r"\b\d+,\d+\s+.*(?:in|within)\s+\d+\s+seconds?\b", re.IGNORECASE)
         for bullet, line_no in bullets:
             if sla_trap.search(bullet):
                 self.log_issue("Gate 2: Defensibility", "Suspicious real-time SLA in bullet (e.g. 15,000 requests in 15 seconds). State batching mechanism or real throughput.", line_no)
 
-    def check_gate_4_fluff_and_verbs(self, bullets: List[Tuple[str, int]]):
+    def check_gate_4_fluff_and_verbs(self, bullets: list[tuple[str, int]]):
         """Gate 4: Zero Fluff, Weak Verbs, and Lead Action Verb Diversity."""
         lead_verbs = {}
         for bullet, line_no in bullets:
@@ -260,7 +259,7 @@ class ResumeVerifier:
             if count > 2 and verb not in ["developed", "built"]:
                 self.log_warning("Gate 4: Verb Diversity", f"Leading action verb '{verb}' is repeated {count} times (maximum recommended is 2). Use synonyms.")
 
-    def check_1_to_1_skill_evidence(self, bullets: List[Tuple[str, int]], skills: List[Tuple[str, int]]):
+    def check_1_to_1_skill_evidence(self, bullets: list[tuple[str, int]], skills: list[tuple[str, int]]):
         """Strict 1:1 Skill-to-Evidence Rule: Every skill in Technical Skills must appear in at least one bullet."""
         if not skills or not bullets:
             return
@@ -287,7 +286,7 @@ class ResumeVerifier:
                 if not re.search(pat, combined_bullets_text):
                     self.log_warning("1:1 Skill Evidence Proof", f"Skill '{clean_token}' listed in Technical Skills has NO supporting evidence in Experience or Projects bullets. Keyword-stuffing penalty risk.", line_no)
 
-    def check_density_and_over_stuffing(self, bullets: List[Tuple[str, int]]):
+    def check_density_and_over_stuffing(self, bullets: list[tuple[str, int]]):
         """Audit page density: detect over-stuffing (>18 bullets, compressed line gaps) or under-filling."""
         total_bullets = len(bullets)
 
